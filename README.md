@@ -1,11 +1,10 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 <h1>Shell Config for Hyper</h1>
+<p>A minimalist style setup with Nord theme.</p>
 </div>
 
 Instructions for setting up Hyper Terminal on OSX With Oh My Zsh & Powerlevel10k.
-
-A minimalist style setup with Nord theme.
 
 ## 1. Install Hyper
 
