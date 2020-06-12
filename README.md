@@ -136,7 +136,7 @@ Change the following from false to enable current working directory to be shown 
 POWERLEVEL9K_DIR_ANCHOR_BOLD=true
 ```
 
-Change prompt symbols in `.p10k.zsh` to be more visible, especially when using transient prompt:
+Change prompt symbols for better visibility, especially when using transient prompt:
 
 ```sh
   # Default prompt symbol. ❯
