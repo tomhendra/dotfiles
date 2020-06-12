@@ -1,10 +1,10 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 <h1>Shell Config for Hyper</h1>
-<p>With Oh My Zsh & Powerlevel10k</p>
 </div>
 
-Instructions for setting up Hyper Terminal on OSX. A minimalist style setup with Nord theme.
+Instructions for setting up Hyper Terminal on OSX With Oh My Zsh & Powerlevel10k.
+A minimalist style setup with Nord theme.
 
 ## 1. Install Hyper
 
@@ -12,28 +12,32 @@ Download & install [Hyper](https://hyper.is).
 
 ## 2. Configure Hyper
 
-Download & install [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip).
+Download & install [FuraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip).
 
 **Note**: To use VS Code in the terminal in macOS, first you need to install the code command in the PATH,
-otherwise you might receive this message: zsh: command not found: code.
+otherwise you might receive this message: `zsh: command not found: code`.
 
 As [the docs say](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line),
-open the Command Palette via (F1 or ⇧⌘P) in VS Code and type shell command to find the Shell Command:
+open the Command Palette via (F1 or ⇧⌘P) in VS Code and type `shell command` and select the Shell Command:
 
 Install 'code' command in PATH
 
-Open Hyper config file in VS Code.
+Open the Hyper config file in VS Code.
 
 ```sh
 code ~/.hyper.js
 ```
 
-Set `fontFamily: FuraCode Nerd Font`
-Set `lineHeight: 1.2`
-Set `fontSize: 13`
-Set `webGLRenderer: false` to allow correct rendering of ligatures.
-Set `cursorColor: '#B48EAD'`
-Set `selectionColor: 'rgba(136,192,208,0.4)'`
+Make the following changes.
+
+```js
+fontFamily: 'FuraCode Nerd Font',
+lineHeight: 1.2,
+fontSize: 13,
+webGLRenderer: false, // to allow correct rendering of ligatures.
+cursorColor: '#B48EAD',
+selectionColor: 'rgba(136,192,208,0.4)',
+```
 
 Add plugins:
 
@@ -87,15 +91,19 @@ Open Oh My Zsh config file in VS Code.
 code ~/.zshrc
 ```
 
-Set `plugins=()` to `plugins=(git vscode zsh-autosuggestions zsh-syntax-highlighting)`.
-Set `ZSh_THEME=` to `ZSH_THEME="powerlevel10k/powerlevel10k"`.
+Make the following changes.
+
+```sh
+plugins=(git vscode zsh-autosuggestions zsh-syntax-highlighting)
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
 
 Quit and relaunch Hyper.
 
 ## 5. Configure Powerlevel10K theme
 
 The Powerlevel10K config wizard should have started automatically on Hyper relaunch.
-To run the config wizard manually at any time run `p10k configure`.
+To run the config wizard manually at any time run `p10k configure` from Hyper.
 
 Choose the following options:
 
@@ -126,7 +134,11 @@ Open Powerlevel10k theme config file in VS Code.
 code ~/.p10k.zsh
 ```
 
-Set `POWERLEVEL9K_DIR_ANCHOR_BOLD=true` in `.p10k.zsh` to enable current directory to be shown in bold.
+Change the following from false to enable current working directory to be shown in bold.
+
+```sh
+POWERLEVEL9K_DIR_ANCHOR_BOLD=true
+```
 
 Change prompt symbols in `.p10k.zsh` to be more visible, especially when using transient prompt:
 
@@ -153,7 +165,7 @@ Quit Hyper and relaunch, and you are done! 🚀
 
 Hyper supports Automatic Updates so you should see a notification when there is an update available.
 
-Oh My Zsh also notifies when updates are available. To update manually at any time run `upgrade_oh_my_zsh`.
+Oh My Zsh also notifies when updates are available. To update manually at any time run `upgrade_oh_my_zsh` in Hyper.
 
 Oh My Zsh upgrades are handled by the upgrade.sh script.
 To update any custom plugins (assuming those are Git clones), you can add a few lines lines to the end of the script:
@@ -175,4 +187,4 @@ done
 ```
 
 Now, whenever Oh My Zsh is updated, your custom plugins will be updated too.
-Credit: [Eugene Yarmash](https://unix.stackexchange.com/questions/477258/how-to-auto-update-custom-plugins-in-oh-my-zsh).
+Credit to [Eugene Yarmash](https://unix.stackexchange.com/questions/477258/how-to-auto-update-custom-plugins-in-oh-my-zsh).
