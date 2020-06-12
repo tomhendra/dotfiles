@@ -162,9 +162,9 @@ Press ⌘; to show and hide the window.
 
 ## 6. Bonus: Maintenance
 
-Hyper supports Automatic Updates so you should see a notification when there is an update available.
+Both Hyper & Oh My Zsh support Automatic Updates so you should see a notification when there is an update available.
 
-Oh My Zsh also notifies when updates are available. To update manually at any time run `upgrade_oh_my_zsh` in Hyper.
+To update Oh My Zsh manually at any time run `upgrade_oh_my_zsh` in Hyper.
 
 Oh My Zsh upgrades are handled by the upgrade.sh script.
 To update any custom plugins (assuming those are Git clones), you can add a few lines lines to the end of the script:
