@@ -4,6 +4,7 @@
 </div>
 
 Instructions for setting up Hyper Terminal on OSX With Oh My Zsh & Powerlevel10k.
+
 A minimalist style setup with Nord theme.
 
 ## 1. Install Hyper
@@ -18,9 +19,7 @@ Download & install [FuraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/
 otherwise you might receive this message: `zsh: command not found: code`.
 
 As [the docs say](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line),
-open the Command Palette via (F1 or ⇧⌘P) in VS Code and type `shell command` and select the Shell Command:
-
-Install 'code' command in PATH
+open the Command Palette via (F1 or ⇧⌘P) in VS Code and type `shell command` and select the Shell Command: Install 'code' command in PATH
 
 Open the Hyper config file in VS Code.
 
@@ -45,9 +44,9 @@ Add plugins:
   plugins: [
     'hyper-nord', // color theme
     'hyper-font-ligatures', // correctly render ligatures
-    'hypercwd', // open new tab in cwd
+    'hypercwd', // open new tab in current working directory
     'hyper-search', // search functionality
-    'hyperlinks', // clickable links
+    'hyperlinks', // make links in Hyper clickable
     'hyperterm-summon' // hotkey to show / hide terminal
   ],
 ```
@@ -160,6 +159,7 @@ POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
 ```
 
 Quit Hyper and relaunch, and you are done! 🚀
+Press ⌘+; to show and hide the window.
 
 ## 6. Maintenance
 
