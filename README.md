@@ -2,6 +2,10 @@
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 <h1>Shell Config for Hyper</h1>
 <p>A minimalist style setup with Nord theme.</p>
+<video autoplay>
+<source src="https://res.cloudinary.com/tomhendra/video/upload/v1591954592/github-readmes/hyper-shell-setup.mov" type="video/mov">
+Sorry, your browser doesn't support embedded videos.
+</video>
 </div>
 
 ## 1. Install Hyper
