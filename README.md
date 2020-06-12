@@ -159,7 +159,6 @@ POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
 ```
 
 Quit Hyper and relaunch, and you are done! 🚀
-
 Press ⌘+; to show and hide the window.
 
 ## 6. Maintenance
