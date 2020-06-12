@@ -12,11 +12,10 @@ Download & install [Hyper](https://hyper.is).
 
 Download & install [FuraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip).
 
-**Note**: To use VS Code in the terminal in macOS, first you need to install the code command in the PATH,
-otherwise you might receive this message: `zsh: command not found: code`.
+**Note**: To open files in VS Code from the terminal in macOS, you first need to install the code command in the PATH,
+otherwise you may receive this error message: `zsh: command not found: code`.
 
-As [the docs say](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line),
-open the Command Palette via (F1 or ⇧⌘P) in VS Code and type `shell command` and select the Shell Command: Install 'code' command in PATH
+To correct this, open the Command Palette via (F1 or ⇧⌘P) in VS Code and type `shell command` and select the Shell Command: Install 'code' command in PATH
 
 Open the Hyper config file in VS Code.
 
@@ -157,9 +156,9 @@ POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
 
 Quit Hyper and relaunch, and you are done! 🚀
 
-Press ⌘+; to show and hide the window.
+Press ⌘; to show and hide the window.
 
-## 6. Maintenance
+## 6. Bonus: Maintenance
 
 Hyper supports Automatic Updates so you should see a notification when there is an update available.
 
