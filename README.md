@@ -4,8 +4,6 @@
 <p>A minimalist style setup with Nord theme.</p>
 </div>
 
-Instructions for setting up Hyper Terminal on OSX With Oh My Zsh & Powerlevel10k.
-
 ## 1. Install Hyper
 
 Download & install [Hyper](https://hyper.is).
