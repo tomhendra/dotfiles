@@ -4,7 +4,7 @@
 <p>A minimalist style setup with Nord theme.</p>
 </div>
 
-![Hyper Setup Demo](https://res.cloudinary.com/tomhendra/image/upload/v1591956378/github-readmes/hyper-shell-setup.gif)
+![Hyper Setup Demo]()
 
 ## 1. Install Hyper
 
