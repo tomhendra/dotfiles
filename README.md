@@ -40,7 +40,7 @@ Add plugins:
 
 ```js
   plugins: [
-    'hyper-nord', // color theme
+    'nord-hyper', // color theme
     'hyper-font-ligatures', // correctly render ligatures
     'hypercwd', // open new tab in current working directory
     'hyper-search', // search functionality
