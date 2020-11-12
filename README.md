@@ -1,10 +1,8 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
 <h1>Shell Config for Hyper</h1>
-<p>A minimalist style setup with Nord theme.</p>
+<p>Dotfiles</p>
 </div>
-
-![Hyper Setup Demo](https://res.cloudinary.com/tomhendra/image/upload/v1591959459/github-readmes/hyper-demo.gif)
 
 ## 1. Install Hyper
 
@@ -97,12 +95,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 Quit and relaunch Hyper.
 
-## 5. Configure Powerlevel10K theme
+## 5. 
 
 The Powerlevel10K config wizard should have started automatically on Hyper relaunch.
 To run the config wizard manually at any time run `p10k configure` from Hyper.
 
-Choose the following options:
+Choose the following options to configure Powerlevel10K theme:
 
 ```sh
 1. (y) Yes
