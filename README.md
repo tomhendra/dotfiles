@@ -3,6 +3,10 @@
 <h1>Tom's dotfiles</h1>
 </div>
 
+# Launch
+
+`curl -ssL https://git.io/tomdot | sh`
+
 # TODO
 
 - Sync SSH to iCloud - ?

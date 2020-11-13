@@ -7,10 +7,20 @@ osascript -e 'tell application "System Preferences" to quit'
 # Ask for the administrator password upfront
 sudo -v
 
-echo "Hello $(whoami)! Let's get you set up."
+echo "Hello $(whoami)! Let's get you set up... 🚀"
+echo ""
+
+# Create Dev directory.
+echo 'Creating Dev Directory...'
+  dev="$HOME/Dev"
+  # The pushd command saves the current working directory in memory so it can be returned to at any time
+  pushd .
+  # The -p flag will create nested directories, but only if they don't exist already
+  mkdir -p $dev
+  cd $dev
 
 # Set hostname / computer name.
-echo 'Enter new hostname of the machine (e.g. macbook-pro-name)'
+echo 'Enter a hostname for the new machine (e.g. macbook-pro-name)...'
   read hostname
 echo "Setting new hostname to $hostname..."
   scutil --set HostName "$hostname"
@@ -35,17 +45,8 @@ if ! xcode-select --print-path &> /dev/null; then
     print_result $? 'Agree with the XCode Command Line Tools licence'
 fi
 
-# Create Dev directory.
-echo 'Creating Dev Directory...'
-  dev="$HOME/Dev"
-  # The pushd command saves the current working directory in memory so it can be returned to at any time
-  pushd .
-  # The -p flag will create nested directories, but only if they don't exist already
-  mkdir -p $dev
-  cd $dev
-
 # Setup SSH.
-echo "Generating RSA token for SSH..."
+echo "Creating RSA token for SSH..."
   ssh=$HOME/.ssh
   mkdir -p $ssh
   touch $ssh/config
@@ -54,7 +55,7 @@ echo "Generating RSA token for SSH..."
   eval "$(ssh-agent -s)"
 
 # Authenticate with GitHub.
-echo 'Copying public key to clipboard. Paste it into your Github account...'
+echo 'Copying public key to clipboard. Paste it into your GitHub account...'
   pbcopy < $ssh/id_rsa.pub
   open 'https://github.com/account/ssh'
 
@@ -66,8 +67,8 @@ echo "node --version: $(node --version)"
 echo "npm --version: $(npm --version)"
 
 echo "installing global npm packages..."
-  npm install --global serve fkill-cli npm-quick-run \
-  semantic-release-cli npm-check-updates yarn
+  npm install -g serve vercel @sanity/cli parcel-bundler /
+  fkill-cli npm-quick-run semantic-release-cli npm-check-updates yarn 
 
 # Install Oh My Zsh.
 echo 'Installing Oh My Zsh...'
@@ -76,6 +77,12 @@ echo 'Installing Oh My Zsh...'
 # Install Oh My Zsh extensions & theme.
 echo 'Installing Oh My Zsh extensions...'  
 sh clone-omz-exts.sh
+
+# Configure bat and delta.
+echo 'Configureing bat & delta...'  
+  mkdir -p "${HOME}/.config/bat/themes"
+  git clone https://github.com/batpigandme/night-owlish "${HOME}/.config/bat/themes/night-owlish"
+  bat cache --build
 
 # Install Homebrew if not already installed.
 if test ! $(which brew); then
@@ -87,12 +94,12 @@ fi
 echo 'Updating Homebrew...' 
   brew update
 
-# Install all our dependencies with bundle (See Brewfile).
+# Install all dependencies with brew bundle.
 echo 'Installing Homebrew packages...'
   brew tap homebrew/bundle
   brew bundle
 
-# Install dotfiles & symlink.
+# Install dotfiles & symlink to $HOME.
 echo "Cloning dotfiles & symlinking to system..."
   sh clone-dotfiles.sh
 
