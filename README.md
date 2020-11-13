@@ -1,146 +1,21 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
-<h1>Shell Config for Hyper</h1>
-<p>Dotfiles</p>
+<h1>Tom's dotfiles</h1>
 </div>
 
 # Notes
-------------------------------------------------
-[Sync SSH to iCloud](https://mattstauffer.com/blog/setting-up-a-new-os-x-development-machine-part-3-dotfiles-rc-files-and-ssh-config/) ?
+
+[Sync SSH to iCloud] ?
 
 ```
 $ touch ~/Dropbox/.ssh-config
 $ ln -s ~/Dropbox/.ssh-config ~/.ssh/config
 ```
 
-# Master to Main
+# Powerlevel10K config: ~/.p10k.zsh
 ------------------------------------------------
 
-# Step 1 
-# create main branch locally, taking the history from master
-git branch -m master main
-
-# Step 2 
-# push the new local main branch to the remote repo (GitHub) 
-git push -u origin main
-
-# Step 3
-# switch the current HEAD to the main branch
-git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
-
-# Step 4
-# change the default branch on GitHub to main
-# https://docs.github.com/en/github/administering-a-repository/setting-the-default-branch
-
-# Step 5
-# delete the master branch on the remote
-git push origin --delete master
-
-# Step 6 
-# configure git to initialize with main as the default branch
-git config --global init.defaultBranch main
-
-
-# Hyper
-------------------------------------------------
-
-## 1. Install Hyper
-
-Download & install [Hyper](https://hyper.is).
-
-## 2. Configure Hyper
-
-Download & install [FuraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip).
-
-**Note**: To open files in VS Code from the terminal in macOS, you first need to install the code command in the PATH,
-otherwise you may receive this error message: `zsh: command not found: code`.
-
-To correct this, open the Command Palette via (F1 or ⇧⌘P) in VS Code and type `shell command` and select the Shell Command: Install 'code' command in PATH
-
-Open the Hyper config file in VS Code.
-
-```sh
-code ~/.hyper.js
-```
-
-Make the following changes.
-
-```js
-fontFamily: 'FuraCode Nerd Font',
-lineHeight: 1.2,
-fontSize: 13,
-webGLRenderer: false, // to allow correct rendering of ligatures.
-cursorColor: '#B48EAD',
-selectionColor: 'rgba(136,192,208,0.4)',
-```
-
-Add plugins:
-
-```js
-  plugins: [
-    'nord-hyper', // color theme
-    'hyper-font-ligatures', // correctly render ligatures
-    'hypercwd', // open new tab in current working directory
-    'hyper-search', // search functionality
-    'hyperlinks', // make links in Hyper clickable
-    'hyperterm-summon' // hotkey to show / hide terminal
-  ],
-```
-
-Add settings to config for `hyperterm-summon`.
-
-```js
-module.exports = {
-  config: {
-    // ...rest of config
-    summon: {
-      hotkey: 'Cmd+;',
-    },
-  },
-};
-```
-
-Quit and relaunch Hyper.
-
-## 3. Install Oh My Zsh
-
-Download Oh My Zsh with curl:
-
-```sh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-Clone extensions & theme repos from GitHub and add to Oh My Zsh.
-
-```sh
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-```
-
-## 4. Configure Oh My Zsh
-
-Open Oh My Zsh config file in VS Code.
-
-```sh
-code ~/.zshrc
-```
-
-Make the following changes.
-
-```sh
-plugins=(git vscode zsh-autosuggestions zsh-syntax-highlighting)
-ZSH_THEME="powerlevel10k/powerlevel10k"
-```
-
-Quit and relaunch Hyper.
-
-## 5. 
-
-The Powerlevel10K config wizard should have started automatically on Hyper relaunch.
-To run the config wizard manually at any time run `p10k configure` from Hyper.
-
-Choose the following options to configure Powerlevel10K theme:
+To run the config wizard manually at any time run `p10k configure`.
 
 ```sh
 1. (y) Yes
@@ -194,34 +69,13 @@ Change Transient prompt default to trim down prompt when accepting a command lin
 POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
 ```
 
-Quit Hyper and relaunch, and you are done! 🚀
+# Credit
 
-Press ⌘; to show and hide the window.
+The following very smart folks are to thank for these dotfiles...
 
-## 6. Bonus: Maintenance
-
-Both Hyper & Oh My Zsh support Automatic Updates so you should see a notification when there is an update available.
-
-To update Oh My Zsh manually at any time run `upgrade_oh_my_zsh` in Hyper.
-
-Oh My Zsh upgrades are handled by the upgrade.sh script.
-To update any custom plugins (assuming those are Git clones), you can add a few lines lines to the end of the script:
-
-```sh
-code ~/.oh-my-zsh/tools/upgrade.sh
-```
-
-```sh
-printf "\n${BLUE}%s${RESET}\n" "Updating custom plugins"
-cd custom/plugins
-
-for plugin in */; do
-  if [ -d "$plugin/.git" ]; then
-     printf "${YELLOW}%s${RESET}\n" "${plugin%/}"
-     git -C "$plugin" pull
-  fi
-done
-```
-
-Now, whenever Oh My Zsh is updated, your custom plugins will be updated too.
-Credit to [Eugene Yarmash](https://unix.stackexchange.com/questions/477258/how-to-auto-update-custom-plugins-in-oh-my-zsh).
+- Kent C Dodds
+- Dries Vints
+- Mathias Bynens
+- Paul Irish
+- Paul Miller
+- Zach Holman

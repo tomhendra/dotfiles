@@ -1,0 +1,18 @@
+[user]
+	name = Tom Hendra
+	email = tom.hendra@outlook.com
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[core]
+	editor = code --wait
+	excludesfile = /Users/Tom/.gitignore_global
+
+[commit]
+	template = /Users/Tom/.stCommitMsg
+[init]
+	defaultBranch = main
