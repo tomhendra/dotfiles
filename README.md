@@ -4,6 +4,15 @@
 <p>Dotfiles</p>
 </div>
 
+# Notes
+------------------------------------------------
+[Sync SSH to iCloud](https://mattstauffer.com/blog/setting-up-a-new-os-x-development-machine-part-3-dotfiles-rc-files-and-ssh-config/) ?
+
+```
+$ touch ~/Dropbox/.ssh-config
+$ ln -s ~/Dropbox/.ssh-config ~/.ssh/config
+```
+
 # Master to Main
 ------------------------------------------------
 
