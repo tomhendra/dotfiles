@@ -9,6 +9,16 @@ sudo -v
 
 echo "Hello $(whoami)! Let's get you set up."
 
+# Set hostname / computer name.
+echo 'Enter new hostname of the machine (e.g. macbook-pro-name)'
+  read hostname
+echo "Setting new hostname to $hostname..."
+  scutil --set HostName "$hostname"
+  compname=$(sudo scutil --get HostName | tr '-' '.')
+echo "Setting computer name to $compname..."
+  scutil --set ComputerName "$compname"
+  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$compname"
+
 # Install Xcode command line tools if required -- Credit: https://github.com/alrra/dotfiles/blob/ff123ca9b9b/os/os_x/installs/install_xcode.sh
 if ! xcode-select --print-path &> /dev/null; then
     # Prompt user to install the XCode Command Line Tools
@@ -33,16 +43,6 @@ echo 'Creating Dev Directory...'
   # The -p flag will create nested directories, but only if they don't exist already
   mkdir -p $dev
   cd $dev
-
-# Set hostname / computer name.
-echo 'Enter new hostname of the machine (e.g. macbook-pro-name)'
-  read hostname
-echo "Setting new hostname to $hostname..."
-  scutil --set HostName "$hostname"
-  compname=$(sudo scutil --get HostName | tr '-' '.')
-echo "Setting computer name to $compname..."
-  scutil --set ComputerName "$compname"
-  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$compname"
 
 # Setup SSH.
 echo "Generating RSA token for SSH..."

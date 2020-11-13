@@ -3,19 +3,24 @@
 <h1>Tom's dotfiles</h1>
 </div>
 
-# Notes
+# TODO
 
-[Sync SSH to iCloud] ?
+- Sync SSH to iCloud - ?
 
 ```
 $ touch ~/Dropbox/.ssh-config
 $ ln -s ~/Dropbox/.ssh-config ~/.ssh/config
 ```
 
-# Powerlevel10K config: ~/.p10k.zsh
-------------------------------------------------
+- Install premium fonts manually.
+- After mackup is synced with iCloud, restore preferences by running `mackup restore`.
+- Restart computer to finalize the process.
 
-To run the config wizard manually at any time run `p10k configure`.
+
+# Powerlevel10K config: ~/.p10k.zsh
+
+- To run the config wizard manually at any time run `p10k configure`.
+- The following options generate the `p10k` file.
 
 ```sh
 1. (y) Yes
@@ -38,11 +43,7 @@ To run the config wizard manually at any time run `p10k configure`.
 18. (y) Yes Overwrite ~/.p10k.zsh
 ```
 
-Open Powerlevel10k theme config file in VS Code.
-
-```sh
-code ~/.p10k.zsh
-```
+Open Powerlevel10k theme config file in VS Code: `code ~/.p10k.zsh`
 
 Change the following from false to enable current working directory to be shown in bold.
 
@@ -71,7 +72,7 @@ POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
 
 # Credit
 
-The following very smart folks are to thank for these dotfiles...
+These dotfiles have been created with snippets from others I have discovered. The following very smart folks are to thank.
 
 - Kent C Dodds
 - Dries Vints
