@@ -19,7 +19,7 @@ brew 'tree'
 brew 'watchman' 
 
 # Casks 
-cask 'alfred'
+# cask 'alfred'
 cask 'dash'
 cask 'discord'
 cask 'docker'

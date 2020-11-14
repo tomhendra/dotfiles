@@ -11,12 +11,12 @@ sudo -v
 # Set hostname / computer name.
 echo 'Enter a hostname for the new machine (e.g. Toms-MacBook-Pro)...'
   read hostname
-echo "Setting new hostname to $hostname..."
-  scutil --set HostName "$hostname"
+echo "Setting new hostname to ${hostname}..."
+  scutil --set HostName "${hostname}"
   compname=$(sudo scutil --get HostName | tr '-' '.')
-echo "Setting computer name to $compname..."
-  scutil --set ComputerName "$compname"
-  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$compname"
+echo "Setting computer name to ${compname}..."
+  scutil --set ComputerName "${compname}"
+  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "${compname}"
 
 # Install Xcode command line tools if required.
 # (Credit: https://github.com/alrra/dotfiles/blob/ff123ca9b9b/os/os_x/installs/install_xcode.sh)
@@ -37,16 +37,16 @@ fi
 
 # Setup SSH.
 echo "Creating RSA token for SSH..."
-  ssh=$HOME/.ssh
-  mkdir -p $ssh
-  touch $ssh/config
+  ssh=${HOME}/.ssh
+  mkdir -p ${ssh}
+  touch ${ssh}/config
   ssh-keygen -t rsa -b 4096 -C "tom.hendra@outlook.com"
-  echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile $ssh/id_rsa" | tee $ssh/config
+  echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa" | tee ${ssh}/config
   eval "$(ssh-agent -s)"
 
 # Authenticate with GitHub via SSH.
 echo 'Copying public key to clipboard. Paste it into your GitHub account...'
-  pbcopy < $ssh/id_rsa.pub
+  pbcopy < ${ssh}/id_rsa.pub
   open 'https://github.com/account/ssh'
 
 # Install Node.js.
@@ -91,7 +91,7 @@ echo "Cloning dotfiles & symlinking to system..."
 # Clone GitHub project repositories into Dev directory.
 echo "Cloning project repos..."
   # The -p flag will create nested directories, but only if they don't exist already
-  mkdir -p $HOME/Dev
+  mkdir -p ${HOME}/Dev
   sh clone-projects.sh
 
 echo "$(whoami)'s developer environment setup is complete! ✅"
