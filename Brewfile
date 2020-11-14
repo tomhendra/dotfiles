@@ -1,8 +1,8 @@
 # Taps
-tap 'homebrew/bundle'
 tap 'homebrew/cask'
 tap 'homebrew/cask-versions'
 tap 'homebrew/cask-fonts'
+tap 'romkatv/powerlevel10k'
 
 # Brews
 brew 'bat'
@@ -12,6 +12,7 @@ brew 'git-delta'
 brew 'httpie'
 brew 'mackup'
 brew 'mas'
+brew 'powerlevel10k'
 brew 'ripgrep'
 brew 'stripe'
 brew 'tree'
@@ -68,3 +69,4 @@ mas 'Clockify Desktop', id: 1364502317
 mas 'Numbers, id: 409203825
 mas 'Pages', id: 409201541
 mas 'Trello', id: 1278508951
+# mas "Xcode", id: 497799835

@@ -4,6 +4,25 @@
 # 24h time, 2 lines, dotted, no frame, blue-ornaments, sparse, many icons, concise,
 # transient_prompt, instant_prompt=verbose.
 # Type `p10k configure` to generate another config.
+# Options chosen for this config:
+# 1. (y) Yes
+# 2. (y) Yes
+# 3. (y) Yes
+# 4. (y) Yes
+# 5. (1) Lean
+# 6. (1) Unicode
+# 7. (2) 8 colors
+# 8. (2) 24-hour format
+# 9. (2) Two lines
+# 10. (2) Dotted
+# 11. (1) No frame
+# 12. (4) Blue
+# 13. (2) Sparse
+# 14. (2) Many icons
+# 15. (1) Concise
+# 16. (Y) Transient prompt
+# 17. (3) Verbose
+# 18. (y) Yes Overwrite ~/.p10k.zsh
 #
 # Config for Powerlevel10k with 8-color lean prompt style. Type `p10k configure` to generate
 # your own config based on it.
