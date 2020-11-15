@@ -14,7 +14,6 @@ brew 'mackup'
 brew 'mas'
 brew 'powerlevel10k'
 brew 'ripgrep'
-brew 'stripe'
 brew 'tree'
 brew 'watchman' 
 
@@ -64,9 +63,9 @@ cask 'qlvideo'
 # Mac App Store
 mas 'Affinity Designer', id: 824171161
 mas 'Affinity Photo', id: 824183456
-mas 'Be Focused Pro, id: 961632517
+mas 'Be Focused Pro', id: 961632517
 mas 'Clockify Desktop', id: 1364502317
-mas 'Numbers, id: 409203825
+mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
 mas 'Trello', id: 1278508951
-# mas "Xcode", id: 497799835
+# mas 'Xcode', id: 497799835

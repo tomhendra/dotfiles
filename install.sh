@@ -3,20 +3,10 @@
 # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change.
 osascript -e 'tell application "System Preferences" to quit'
 
-echo "Hello $(whoami), let's get you set up! 🚀"
+echo "Hello $(whoami), let's get you set up! 🚀"s
 
 # Ask for the administrator password upfront
 sudo -v
-
-# Set hostname / computer name.
-echo 'Enter a hostname for the new machine (e.g. Toms-MacBook-Pro)...'
-  read hostname
-echo "Setting new hostname to ${hostname}..."
-  scutil --set HostName "${hostname}"
-  compname=$(sudo scutil --get HostName | tr '-' '.')
-echo "Setting computer name to ${compname}..."
-  scutil --set ComputerName "${compname}"
-  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "${compname}"
 
 # Install Xcode command line tools if required.
 # (Credit: https://github.com/alrra/dotfiles/blob/ff123ca9b9b/os/os_x/installs/install_xcode.sh)
@@ -41,7 +31,7 @@ echo "Creating RSA token for SSH..."
   mkdir -p ${ssh}
   touch ${ssh}/config
   ssh-keygen -t rsa -b 4096 -C "tom.hendra@outlook.com"
-  echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa" | tee ${ssh}/config
+  echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_rsa" | tee ~/.ssh config
   eval "$(ssh-agent -s)"
 
 # Authenticate with GitHub via SSH.
@@ -49,15 +39,9 @@ echo 'Copying public key to clipboard. Paste it into your GitHub account...'
   pbcopy < ${ssh}/id_rsa.pub
   open 'https://github.com/account/ssh'
 
-# Install Node.js.
-echo "installing node (via n-install)..."
-  curl -L https://git.io/n-install | bash
-  echo "node --version: $(node --version)"
-  echo "npm --version: $(npm --version)"
-
-# Install global NPM packages.
-echo "installing global npm packages..."
-  sh npm-g.sh
+# Install Oh My Zsh.
+echo 'Installing Oh My Zsh...'
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install Homebrew if not already installed.
 if test ! $(which brew); then
@@ -70,23 +54,35 @@ echo 'Updating Homebrew...'
   brew update
 
 # Install dependencies with brew bundle.
-echo 'Installing Homebrew packages...'
+echo 'Installing applications with Homebrew...'
+  # brew install mas
+  # Error: The 'signin' command has been disabled: https://github.com/mas-cli/mas#-sign-in
+  # mas signin --dialog tom.hendra@outlook.com
   brew tap homebrew/bundle
   brew bundle
 
-# Install bat / delta theme.
-echo 'Configuring bat & delta...'  
-  mkdir -p "${HOME}/.config/bat/themes"
-  git clone https://github.com/batpigandme/night-owlish "${HOME}/.config/bat/themes/night-owlish"
+# Install Node.js.
+echo "installing node (via n-install)..."
+  curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
+  sudo bash n lts
+  echo "node --version: $(node --version)"
+  echo "npm --version: $(npm --version)"
 
-# Install Oh My Zsh & plugins.
-echo 'Installing Oh My Zsh...'
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-  sh clone-omz-exts.sh
+# Install global NPM packages.
+echo "installing global npm packages..."
+  sh npm-g.sh
 
 # Install dotfiles & symlink.
 echo "Cloning dotfiles & symlinking to system..."
   sh clone-dotfiles.sh
+
+# Install Oh My Zsh plugins 
+  sh clone-omz-plugins.sh
+
+# Install bat / delta theme.
+echo 'Configuring bat & delta...'  
+  git clone https://github.com/batpigandme/night-owlish "${HOME}/.config/bat/themes/night-owlish"
+  bat cache --build
 
 # Clone GitHub project repositories into Dev directory.
 echo "Cloning project repos..."

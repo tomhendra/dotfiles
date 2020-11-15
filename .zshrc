@@ -111,7 +111,6 @@ export LANG=en_GB.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source $DOTFILES/aliases.zsh
 
 # To customize prompt, run `p10k configure` or edit .p10k.zsh.
 [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh

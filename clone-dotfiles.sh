@@ -7,7 +7,6 @@ git clone git@github.com:tomhendra/dotfiles.git ${dotfiles}
 
 # Symlink bat config.
 ln -s ${dotfiles}/bat.cfg ${HOME}/.config/bat/config
-bat cache --build
 
 # Symlink git files.
 ln -s ${dotfiles}/.gitconfig ${HOME}/.gitconfig

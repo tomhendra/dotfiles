@@ -1,12 +1,12 @@
 #!/bin/sh
   
 # NPM global packages
-npm i -g @sanity/cli 
-npm i -g fkill-cli 
-npm i -g serve 
-npm i -g vercel 
-npm i -g npm-check-updates 
-npm i -g npm-quick-run 
-npm i -g parcel-bundler
-npm i -g semantic-release-cli 
-npm i -g yarn 
+npm i -g -s @sanity/cli 
+npm i -g -s fkill-cli 
+npm i -g -s serve 
+npm i -g -s vercel 
+npm i -g -s npm-check-updates 
+npm i -g -s npm-quick-run 
+npm i -g -s parcel-bundler
+npm i -g -s semantic-release-cli 
+npm i -g -s yarn 
