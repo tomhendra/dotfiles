@@ -17,21 +17,13 @@ if ! xcode-select --print-path &> /dev/null; then
     until xcode-select --print-path &> /dev/null; do
         sleep 5
     done
-
-    print_result $? 'Install Xcode Command Line Tools'
-    # Prompt user to agree to the terms of the Xcode license
-    # https://github.com/alrra/dotfiles/issues/10
-    sudo xcodebuild -license
-    print_result $? 'Agree with the Xcode Command Line Tools licence'
 fi
 
 # Setup SSH.
 echo "Creating RSA token for SSH..."
-  ssh=${HOME}/.ssh
-  mkdir -p ${ssh}
-  touch ${ssh}/config
+  mkdir -p ${HOME}/.ssh && touch ${HOME}/.ssh/config
+  echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
   ssh-keygen -t rsa -b 4096 -C "tom.hendra@outlook.com"
-  echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_rsa" | tee ~/.ssh/config
   eval "$(ssh-agent -s)"
 
 # Authenticate with GitHub via SSH.
