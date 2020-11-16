@@ -2,9 +2,9 @@
 tap 'homebrew/cask'
 tap 'homebrew/cask-versions'
 tap 'homebrew/cask-fonts'
-tap 'romkatv/powerlevel10k'
 
 # Brews
+brew 'antibody'
 brew 'bat'
 brew 'gh'
 brew 'git'
@@ -12,8 +12,10 @@ brew 'git-delta'
 brew 'httpie'
 brew 'mackup'
 brew 'mas'
-brew 'powerlevel10k'
+brew 'node'
+brew 'n'
 brew 'ripgrep'
+brew 'starship'
 brew 'tree'
 brew 'watchman' 
 
@@ -46,19 +48,18 @@ cask 'whatsapp'
 cask 'zoomus'
 
 # Quicklook Casks
-cask 'qlcolorcode'
-cask 'qlmarkdown'
-cask 'quicklook-json'
-cask 'quicklook-csv'
-cask 'qlstephen'
-cask 'webpquicklook'
-cask 'quicklook-json'
-cask 'qlvideo'
+# cask 'qlcolorcode'
+# cask 'qlmarkdown'
+# cask 'qlstephen'
+# cask 'qlvideo'
+# cask 'quicklook-json'
+# cask 'quicklook-csv'
+# cask 'webpquicklook'
 
 # Fonts
-# cask 'font-lato'
-# cask 'font-open-sans'
-# cask 'font-roboto'
+cask 'font-lato'
+cask 'font-open-sans'
+cask 'font-roboto'
 
 # Mac App Store
 mas 'Affinity Designer', id: 824171161

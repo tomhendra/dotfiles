@@ -15,10 +15,10 @@ ln -s ${dotfiles}/.gitignore_global ${HOME}/.gitignore_global
 # Symlink Mackup config.
 ln -s ${dotfiles}/.mackup.cfg ${HOME}/.mackup.cfg
 
-# Symlink Powerlevel10K config.
-rm -rf ${HOME}/.p10k.zsh
-ln -s ${dotfiles}/.p10k.zsh ${HOME}/.p10k.zsh
+# Symlink Starship config.
+ln -s ${dotfiles}/starship.toml ${HOME}/.config/starship.toml
 
-# Symlink .zshrc config.
+# Symlink .zshrc config
+cat ${HOME}/.zshrc >> ${dotfiles}/zsh/.zshrc.bak
 rm -rf ${HOME}/.zshrc
-ln -s ${dotfiles}/.zshrc ${HOME}/.zshrc
+ln -s ${dotfiles}/zsh/.zshrc ${HOME}/.zshrc
