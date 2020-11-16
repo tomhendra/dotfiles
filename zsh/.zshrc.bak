@@ -1,0 +1,11 @@
+# Starship init
+eval "$(starship init zsh)"
+
+# Antibody init
+source <(antibody init)
+
+# Dynamically load zsh plugins
+antibody bundle < ${HOME}/.dotfiles/zsh/plugins.txt
+
+# Source 
+antibody bundle ${HOME}/.dotfiles/zsh/* kind:zsh
