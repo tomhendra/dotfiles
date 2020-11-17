@@ -3,11 +3,7 @@
 <h1>Hola 👋</h1>
 </div>
 
-## Disclaimer
-
-Dotfiles are personal and as such I advise against blindly running them yourself. By all means, fill your boots, but I am very much the bash script amateur so please don't rebuke me if your Mac says no.
-
-## What
+**Disclaimer:** Dotfiles are personal and as such I advise against using these ones unchanged. By all means, fill your boots, but I am very much the bash script amateur, so please don't rebuke me if your Mac grumbles.
 
 On a fresh macOS system, the `install.sh` script will install...
 
@@ -22,8 +18,8 @@ On a fresh macOS system, the `install.sh` script will install...
 
 ## Pre-Installation
 
-- Backup premium fonts to iCloud.
-- Backup any required application preferences to `~/.dotfiles/preferences`.
+- Backup premium fonts to Dropbox.
+- Backup any required application preferences to `~/Dropbox/Preferences`.
 - Ensure `~/.dotfiles` & `~/Dev` repos are up-to-date & pushed to GitHub.
 
 ## Installation
@@ -31,14 +27,14 @@ On a fresh macOS system, the `install.sh` script will install...
 - Enter Internet Recovery Mode, by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
 - Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD'.
 - Clean install macOS.
-- Install premium fonts not available via Homebrew.
+- Install premium fonts backed up to Dropbox.
 - Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas#-sign-in)).
 - Run dotfiles installation script in terminal: `curl -ssL https://git.io/tomdot | sh`
 
 ## Post-Installation
 
-- Install apps purchased outside of App Store (Sketch, Adobe, Affinity...).
-- Set iTerm2 preferences to load from `~/.dotfiles/preferences`.
+- Install apps purchased outside of App Store like Sketch & Affinity apps (potential automation❓)
+- Set iTerm2 preferences to load from `~/Dropbox/Preferences`.
 - Restart computer to finalize the process.
 
 ## Credit
@@ -51,3 +47,50 @@ My dotfiles have been created using snippets and inspiration from others I have 
 - Paul Irish
 - Paul Miller
 - Zach Holman
+
+## Next Steps: Tool Consideration 
+
+Mackup was removed from the workflow, because the only useful support (not already handled) is easily configured with a dotfile and symlinked:
+
+- Docker
+- npm
+- ripgrep
+- Vim
+- yarn
+
+And everything else I use which is supported by Mackup would be of little use due to the reasons in brackets:
+
+- Homebrew (not much to configure!)
+- IINA (a media player)
+- Messages (iCloud)
+- Apple Music (iCloud)
+- WhatsApp Web (synced to iPhone)
+
+Benefits of Mackup:
+
+- No need to pull changes from GitHub dotfiles repo on other machine.
+- Make a change to dotfile > run `mackup backup` > done. 
+- New apps installed just need a mackup.cfg entry if supported. 
+
+Drawbacks of Mackup: 
+
+- Lack of control (although we can specify which apps to handle, which is better than the reverse).
+- Need to remember where dotfiles are located for editing.
+- `mackup backup` command symlinks everything not just what has changed (?).
+- zsh / vim issues (reported) - Common pattern seems to be excluding zsh in Mackup.cfg! 
+- If zsh / vim need to be handled outside Mackup anyway, I'd prefer dotfile management to be unified. 
+- iTerm2 overwrites Mackup set symlinks (verified).
+- Mackup dev team lists apps as supported without having official vendor support. 
+- Negative comments from vendors requesting removal from Mackup's support list!
+- Reports of file duplicates by Dropbox due to devices syncing concurrently.
+
+All things considered, Mackup's negatives far outweigh the positives. 
+
+The current setup with git and symlinks works, but could could scale poorly, and isn't Linux-compatible. Bringing a tool into play seems like a good idea. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
+
+Dropbox is now used for iTerm2 prefs and Alfred (if adopted) prefers sync via Dropbox. 
+
+This sets a course for a future workflow: 
+
+- Dotfiles: Stow and git (make Linux-safe for future proofing).
+- App prefs: Dropbox (supported by app, manually dumped or scripted).

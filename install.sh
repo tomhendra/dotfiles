@@ -33,9 +33,13 @@ else
 fi
 
 # Install paackges & apps with brew bundle.
-echo 'Installing applications...'
+echo 'Installing Homebrew packages, fonts and applications...'
   brew tap homebrew/bundle
   brew bundle
+
+# Quicklook plugins: remove the quarantine attribute 9https://github.com/sindresorhus/quick-look-plugins)
+echo 'Removing quarantine from Quicklook plugins...' 
+  xattr -d -r com.apple.quarantine ~/Library/QuickLook
 
 # Configure Node version management with n via Homebrew.
 echo 'Configuring Node version management...'
@@ -50,7 +54,7 @@ echo 'Configuring Node version management...'
 
 # Install global NPM packages.
 echo 'Installing NPM packages...'
-  sh npm-g.sh
+  sh npm-global.sh
 
 # Generate SSH key pair for GitHub authentication.
 ssh="${HOME}/.ssh"
@@ -80,7 +84,7 @@ echo 'Configuring bat & delta...'
   git clone https://github.com/batpigandme/night-owlish "${HOME}/.config/bat/themes/night-owlish"
   bat cache --build
 
-# # Install the Night Owl theme for iTerm
+# Install the Night Owl theme for iTerm: Commented out as backed up preferences to Dropbox should include this.
 # echo 'Insalling iTerm2 theme...'
   # file="${HOME}/Downloads/Night Owl.itermcolors"
   # curl https://raw.githubusercontent.com/jsit/night-owl-iterm2-theme/master/themes/Night%20Owl.itermcolors -s -o ${file}

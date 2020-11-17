@@ -15,13 +15,14 @@ brew 'node'
 brew 'n'
 brew 'ripgrep'
 brew 'starship'
+brew 'svn' # required for some cask fonts: https://github.com/Homebrew/homebrew-cask/issues/80695
 brew 'tree'
 brew 'watchman' 
 
 # Casks 
-# cask 'alfred'
 cask 'discord'
 cask 'docker'
+cask 'dropbox'
 cask 'figma'
 cask 'firefox'
 cask 'firefox-nightly'
@@ -38,20 +39,22 @@ cask 'qbittorrent'
 cask 'skype'
 cask 'slack'
 cask 'steam'
-cask 'suspicious-package'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
 cask 'whatsapp'
 cask 'zoomus'
 
-# Quicklook Casks
-# cask 'qlcolorcode'
-# cask 'qlmarkdown'
-# cask 'qlstephen'
-# cask 'qlvideo'
-# cask 'quicklook-json'
-# cask 'quicklook-csv'
-# cask 'webpquicklook'
+# Quicklook plugin Casks: https://github.com/sindresorhus/quick-look-plugins
+cask 'betterzipql' # Preview archives
+cask 'qlcolorcode' # Preview source code files with syntax highlighting
+cask 'qlimagesize' # Display image size and resolution
+cask 'qlmarkdown' # Preview Markdown files
+cask 'qlstephen' # Preview plain text files without a file extension. Example: README, CHANGELOG, etc.
+cask 'qlprettypatch' # Preview .patch files
+cask 'quicklook-csv' # Preview CSV files
+cask 'quicklook-json' # Preview JSON files
+cask 'suspicious-package' # Preview the contents of a standard Apple installer package
+cask 'webpquicklook' # Preview WebP images
 
 # Fonts
 cask 'font-lato'
