@@ -3,40 +3,47 @@
 <h1>Hola 👋</h1>
 </div>
 
-On a fresh MacOS system, these dotfiles will install...
+## Disclaimer
+
+Dotfiles are personal and as such I advise against blindly running them yourself. By all means, fill your boots, but I am very much the bash script amateur so please don't rebuke me if your Mac says no.
+
+## What
+
+On a fresh macOS system, the `install.sh` script will install...
 
 1. Xcode Command Line Tools.
-2. SSH key for authentication.
-3. Node & NPM global packages.
-4. Applications & fonts via Homebrew & App Store.
-5. Starship prompt & Antibody shell plugin manager for zsh.
-6. Symlinks from dotfiles to OS.
-7. MacOS system preferences.
+2. Applications & fonts via Homebrew & App Store.
+3. Configuration for Node.js version management with n.
+4. NPM global packages.
+5. SSH key pair for authentication.
+6. Project repos from GitHub to `~/Dev`.
+7. Symlinks from `~/.dotfiles` to OS.
+8. macOS system preferences.
 
-Application preferences are backed up by Mackup, excluding some manually symlinked in the dotfiles. Mackup [uses symlinks](https://github.com/lra/mackup#bullsht-what-does-it-really-do-to-my-files) under the hood in the same manner as this repo does, but using iCloud as a backup source rather than GitHub.
+## Pre-Installation
 
-# Pre-Installation
+- Backup premium fonts to iCloud.
+- Backup any required application preferences to `~/.dotfiles/preferences`.
+- Ensure `~/.dotfiles` & `~/Dev` repos are up-to-date & pushed to GitHub.
 
-- Update mackup & run `mackup backup` to backup system preferences.
-- Ensure projects & `~/.dotfiles` repos are committed & pushed to GitHub.
+## Installation
 
-# Installation
-
-- Enter Internet Recovery Mode, by holding CMD + OPT + R on startup.
-- Use Disk Utility to delete Macintosh - Data volume, and erase Macintosh HD.
-- Fresh install MacOS.
-- Install premium fonts not available via Homebrew (Operator Mono / Dank Mono / Fira Code Nerd Font).
+- Enter Internet Recovery Mode, by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
+- Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD'.
+- Clean install macOS.
+- Install premium fonts not available via Homebrew.
 - Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas#-sign-in)).
 - Run dotfiles installation script in terminal: `curl -ssL https://git.io/tomdot | sh`
 
-# Post-Installation
+## Post-Installation
 
-- Assuming `mackup backup` was run on the previous system, once Mackup has synced with iCloud on the new system, run `mackup restore`.
+- Install apps purchased outside of App Store (Sketch, Adobe, Affinity...).
+- Set iTerm2 preferences to load from `~/.dotfiles/preferences`.
 - Restart computer to finalize the process.
 
-# Credit
+## Credit
 
-These dotfiles have been created with snippets from others I have discovered. The following very smart folks are to thank:
+My dotfiles have been created using snippets and inspiration from others I have discovered, with thanks to these very smart people:
 
 - Kent C Dodds
 - Dries Vints
