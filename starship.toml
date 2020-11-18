@@ -1,1 +1,6 @@
-# ~/.config/starship.toml
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
