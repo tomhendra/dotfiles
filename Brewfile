@@ -45,7 +45,6 @@ cask 'whatsapp'
 cask 'zoomus'
 
 # Quicklook plugin Casks: https://github.com/sindresorhus/quick-look-plugins
-cask 'betterzipql' # Preview archives
 cask 'qlcolorcode' # Preview source code files with syntax highlighting
 cask 'qlimagesize' # Display image size and resolution
 cask 'qlmarkdown' # Preview Markdown files

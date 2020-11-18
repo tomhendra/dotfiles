@@ -3,50 +3,50 @@
 <h1>Hola 👋</h1>
 </div>
 
-**Disclaimer:** Dotfiles are personal and as such I advise against using these ones unchanged. By all means, fill your boots, but I am very much the bash script amateur, so please don't rebuke me if your Mac grumbles.
+**Disclaimer:** Dotfiles are personal and as such I advise against using these ones unchanged. By all means, fill your boots, but I am very much the  scripting amateur, so please don't *bash* me if your Mac grumbles.
 
 On a fresh macOS system, the `install.sh` script will install...
 
-1. Xcode Command Line Tools.
-2. Applications & fonts via Homebrew & App Store.
-3. Configuration for Node.js version management with n.
-4. NPM global packages.
-5. SSH key pair for authentication.
-6. Project repos from GitHub to `~/Dev`.
-7. Symlinks from `~/.dotfiles` to OS.
+1. Xcode CLT & Homebrew.
+2. SSH keys & repos from GitHub.
+3. Packages, apps & fonts.
+4. Node.js configured for n.
+5. NPM global packages.
+6. Symlinks from `~/.dotfiles`.
+7. Theme for bat & delta.
 8. macOS system preferences.
 
 ## Pre-Installation
 
-- Backup premium fonts to Dropbox.
-- Backup any required application preferences to `~/Dropbox/Preferences`.
+- Backup premium fonts to iCloud.
+- Backup any required app preferences to `~/Dropbox/Preferences`.
 - Ensure `~/.dotfiles` & `~/Dev` repos are up-to-date & pushed to GitHub.
 
 ## Installation
 
-- Enter Internet Recovery Mode, by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
-- Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD'.
-- Clean install macOS.
-- Install premium fonts backed up to Dropbox.
-- Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas#-sign-in)).
+- Enter Internet Recovery Mode by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
+- Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD' as APFS (for SSD).
+- Install squeaky clean macOS.
+- Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas#-sign-in)) :(
 - Run dotfiles installation script in terminal: `curl -ssL https://git.io/tomdot | sh`
 
 ## Post-Installation
 
-- Install apps purchased outside of App Store like Sketch & Affinity apps (potential automation❓)
-- Set iTerm2 preferences to load from `~/Dropbox/Preferences`.
+- Install premium fonts that were backed up to iCloud.
+- Set iTerm2 preferences to load from `~/Dropbox/Preferences` (temporarily disable 'save changes to folder when iterm2 quits' to avoid overwrite).
+- Install apps purchased outside of App Store.
 - Restart computer to finalize the process.
 
 ## Credit
 
 My dotfiles have been created using snippets and inspiration from others I have discovered, with thanks to these very smart people:
 
-- Kent C Dodds
-- Dries Vints
-- Mathias Bynens
-- Paul Irish
-- Paul Miller
-- Zach Holman
+- [Kent C Dodds](https://github.com/kentcdodds/dotfiles)
+- [Dries Vints](https://github.com/driesvints/dotfiles)
+- [Mathias Bynens](https://github.com/mathiasbynens/dotfiles)
+- [Paul Irish](https://github.com/paulirish/dotfiles)
+- [Paul Miller](https://github.com/paulmillr/dotfiles)
+- [Zach Holman](https://github.com/holman/dotfiles)
 
 ## Next Steps: Tool Consideration 
 
