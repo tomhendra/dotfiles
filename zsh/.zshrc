@@ -4,7 +4,10 @@ source <(antibody init)
 # Plugins
 antibody bundle < ${HOME}/.dotfiles/zsh/plugins.zsh
 
-# Paths
+# Environment variables
+source ${HOME}/.dotfiles/zsh/env-vars.zsh
+
+# $PATH additions
 source ${HOME}/.dotfiles/zsh/paths.zsh
 
 # Aliases

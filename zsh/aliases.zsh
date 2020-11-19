@@ -1,13 +1,17 @@
 # Shortcuts
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
-alias reloadshell="source ${HOME}/.zshrc"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+alias reloadshell="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 
 # Directories
-alias dotfiles="cd ${DOTFILES}"
-alias library="cd ${HOME}/Library"
-alias dev="cd ${HOME}/Dev"
+alias ..="cd .."
+alias cw="cd ${DEV}/coursework"
+alias d="cd ${DEV}"
+alias df="cd ${DOTFILES}"
+alias bu="brew update && brew cleanup && brew doctor"
+alias lib="cd ${HOME}/Library"
+alias pg="echo 'Pinging Google' && ping www.google.com";
 
 # JS
 alias yfresh="rm -rf node_modules/ yarn.lock && yarn"
