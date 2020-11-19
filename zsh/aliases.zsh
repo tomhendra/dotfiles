@@ -15,6 +15,7 @@ alias ywatch="yarn watch"
 
 # Git
 alias gst="git status"
+alias gs="git status -sb"
 alias gb="git branch"
 alias gc="git checkout"
 alias gl="git log --oneline --decorate --color"
