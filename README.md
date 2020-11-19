@@ -3,9 +3,13 @@
 <h1>Hola 👋</h1>
 </div>
 
-**Disclaimer:** Dotfiles are personal and as such I advise against using these ones unchanged. By all means, fill your boots, but I am very much the  scripting amateur, so please don't *bash* me if your Mac grumbles.
+**TLDR:** For all the things on squeaky clean macOS: `curl -ssL https://git.io/tomdot | sh`
 
-On a fresh macOS system, the `install.sh` script will install...
+**Disclaimer:** Dotfiles are personal things, and as such I would advise against rolling these ones unmodified. By all means, fill your boots, but I am no shellscript expert so there ~~may well~~ most likely will be misfires. 
+
+## What is Installed
+
+On a fresh macOS system the `install.sh` script will install...
 
 1. Xcode CLT & Homebrew.
 2. SSH keys & repos from GitHub.
@@ -19,78 +23,80 @@ On a fresh macOS system, the `install.sh` script will install...
 ## Pre-Installation
 
 - Backup premium fonts to iCloud.
-- Backup any required app preferences to `~/Dropbox/Preferences`.
+- Backup any desired app preferences to Dropbox.
 - Ensure `~/.dotfiles` & `~/Dev` repos are up-to-date & pushed to GitHub.
 
-## Installation
+## Do Installation
 
 - Enter Internet Recovery Mode by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
 - Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD' as APFS (for SSD).
-- Install squeaky clean macOS.
-- Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas#-sign-in)) :(
+- Install fresh copy of macOS.
+- Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas#-sign-in) 🤕)
 - Run dotfiles installation script in terminal: `curl -ssL https://git.io/tomdot | sh`
 
 ## Post-Installation
 
-- Install premium fonts that were backed up to iCloud.
-- Set iTerm2 preferences to load from `~/Dropbox/Preferences` (temporarily disable 'save changes to folder when iterm2 quits' to avoid overwrite).
-- Install apps purchased outside of App Store.
-- Restart computer to finalize the process.
+- Install premium fonts from iCloud backup.
+- Set iTerm2 to load preferences from Dropbox (temporarily disable 'save changes to folder when iterm2 quits' to avoid overwrite).
+- Install apps not purchased from App Store.
+- Restart computer.
 
 ## Credit
 
-My dotfiles have been created using snippets and inspiration from others I have discovered, with thanks to these very smart people:
+I've used snippets and found inspiration from dotfiles I have discovered, with many thanks to these very smart people:
 
-- [Kent C Dodds](https://github.com/kentcdodds/dotfiles)
 - [Dries Vints](https://github.com/driesvints/dotfiles)
+- [Kent C Dodds](https://github.com/kentcdodds/dotfiles)
 - [Mathias Bynens](https://github.com/mathiasbynens/dotfiles)
 - [Paul Irish](https://github.com/paulirish/dotfiles)
 - [Paul Miller](https://github.com/paulmillr/dotfiles)
 - [Zach Holman](https://github.com/holman/dotfiles)
 
-## Next Steps: Tool Consideration 
+## Next Steps: Add Tooling 
 
-Mackup was removed from the workflow, because the only useful support (not already handled) is easily configured with a dotfile and symlinked:
+Mackup was removed from the workflow due to the following considerations. 
 
+The only supported apps that I use which Mackup could prove useful for are: 
+
+- Bat
+- Git
 - Docker
-- npm
+- NPM
 - ripgrep
+- Starship
 - Vim
-- yarn
+- Yarn
+- Zsh
 
-And everything else I use which is supported by Mackup would be of little use due to the reasons in brackets:
+The other supported apps that I use would not benefit from Mackup's features due to the reasons stated:
 
 - Homebrew (not much to configure!)
 - IINA (a media player)
 - Messages (iCloud)
-- Apple Music (iCloud)
+- Apple Music (iCloud for library)
 - WhatsApp Web (synced to iPhone)
 
 Benefits of Mackup:
 
-- No need to pull changes from GitHub dotfiles repo on other machine.
+- No need to pull changes from GitHub dotfiles repo to apply changes - "set and forget".
 - Make a change to dotfile > run `mackup backup` > done. 
-- New apps installed just need a mackup.cfg entry if supported. 
+- New apps installed just need a mackup.cfg entry if supported (specifying which apps to handle). 
 
 Drawbacks of Mackup: 
 
-- Lack of control (although we can specify which apps to handle, which is better than the reverse).
-- Need to remember where dotfiles are located for editing.
-- `mackup backup` command symlinks everything not just what has changed (?).
-- zsh / vim issues (reported) - Common pattern seems to be excluding zsh in Mackup.cfg! 
-- If zsh / vim need to be handled outside Mackup anyway, I'd prefer dotfile management to be unified. 
-- iTerm2 overwrites Mackup set symlinks (verified).
-- Mackup dev team lists apps as supported without having official vendor support. 
+- Less control (although specifying which apps to handle in .cfg is better than the reverse).
+- Zsh / Vim errors (reported) - Common pattern seems to be excluding zsh in Mackup.cfg! 
+- Moving things away from Mackup due to errors disorganizes maintenance by using multiple backup methods.
+- iTerm2 overwrites Mackup-created symlinks (verified).
+- Mackup dev team's support list contains apps without official vendor support. 
 - Negative comments from vendors requesting removal from Mackup's support list!
-- Reports of file duplicates by Dropbox due to devices syncing concurrently.
+- Dropbox file duplicate errors due to devices syncing concurrently (error handling concerns).
 
-All things considered, Mackup's negatives far outweigh the positives. 
+All things considered, Mackup's negatives outweigh its positives. 
 
-The current setup with git and symlinks works, but could could scale poorly, and isn't Linux-compatible. Bringing a tool into play seems like a good idea. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
+The current setup of git and symlinks works, but could scale messily and isn't Linux-compatible. Bringing a tool into play would be beneficial when time allows. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
 
-Dropbox is now used for iTerm2 prefs and Alfred (if adopted) prefers sync via Dropbox. 
+Dropbox is being used for iTerm2 prefs and Alfred (if adopted after trailing Spotlight improvements) prefers sync via Dropbox. This with Stow sets a course for a future workflow: 
 
-This sets a course for a future workflow: 
-
-- Dotfiles: Stow and git (make Linux-safe for future proofing).
-- App prefs: Dropbox (supported by app, manually dumped or scripted).
+- **TODO:** Dotfiles: Stow and git (make Linux-safe for future proofing).
+- **TODO:** App prefs: Dropbox (supported by app, or `ln` / Stow from Dropbox to Library).

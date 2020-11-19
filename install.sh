@@ -58,6 +58,7 @@ echo 'Downloading project repos...'
 echo 'Installing Homebrew packages, fonts and applications...'
   brew tap homebrew/bundle
   brew bundle --file=${dotfiles}/Brewfile
+  brew cleanup
 
 # Quicklook plugins: remove the quarantine attribute (https://github.com/sindresorhus/quick-look-plugins)
 echo 'Removing quarantine from Quicklook plugins...' 
