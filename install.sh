@@ -1,11 +1,10 @@
 #!/bin/sh
 
+echo "Hello $(whoami), let's setup your developer environment! 🚀"
+
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
-
-echo "Hello $(whoami), let's setup your developer environment! 🚀"
-
 # Ask for the administrator password upfront
 sudo -v
 # Keep-alive: update existing `sudo` time stamp until script has finished
@@ -60,7 +59,7 @@ echo 'Installing Homebrew packages, fonts and applications...'
   brew tap homebrew/bundle
   brew bundle --file=${dotfiles}/Brewfile
 
-# Quicklook plugins: remove the quarantine attribute 9https://github.com/sindresorhus/quick-look-plugins)
+# Quicklook plugins: remove the quarantine attribute (https://github.com/sindresorhus/quick-look-plugins)
 echo 'Removing quarantine from Quicklook plugins...' 
   xattr -d -r com.apple.quarantine ${HOME}/Library/QuickLook
 
