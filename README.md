@@ -96,7 +96,7 @@ All things considered, Mackup's negatives outweigh its positives.
 
 The current setup of git and symlinks works, but could scale messily and isn't Linux-compatible. Bringing a tool into play would be beneficial. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
 
-Dropbox is being used for iTerm2 prefs, and Alfred (if adopted after trailing Spotlight improvements) prefers it for sync. This with choosing Stow sets the course of action when time allows: 
+Dropbox is being used for iTerm2 prefs, and Alfred (if adopted after trailing Spotlight improvements) prefers it for sync. This with choosing Stow sets the next course of action when time allows: 
 
 - **TODO:** Dotfiles: Stow and git (make Linux-safe for future proofing).
 - **TODO:** App prefs: Dropbox (supported by app, or `ln` / Stow from Dropbox to Library).
