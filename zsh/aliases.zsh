@@ -1,25 +1,27 @@
 # Shortcuts
-alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
+alias bu="brew update && brew cleanup && brew doctor"
+alias cssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
-alias reloadshell="source ${HOME}/.zshrc"
+alias pg="echo 'Pinging Google' && ping www.google.com";
+alias rshell="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 
 # Directories
 alias ..="cd .."
-alias cw="cd ${DEV}/coursework"
 alias d="cd ${DEV}"
+alias cw="cd ${DEV}/coursework"
+alias ccw="code ${DEV}/coursework"
 alias df="cd ${DOTFILES}"
-alias bu="brew update && brew cleanup && brew doctor"
+alias cdf="code ${DOTFILES}"
 alias lib="cd ${HOME}/Library"
-alias pg="echo 'Pinging Google' && ping www.google.com";
 
 # JS
 alias yfresh="rm -rf node_modules/ yarn.lock && yarn"
 alias ywatch="yarn watch"
 
 # Git
-alias gst="git status"
 alias gs="git status -sb"
+alias gst="git status"
 alias gb="git branch"
 alias gc="git checkout"
 alias gl="git log --oneline --decorate --color"
