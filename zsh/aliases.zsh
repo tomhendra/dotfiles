@@ -1,18 +1,18 @@
 # Shortcuts
-alias bu="brew update && brew cleanup && brew doctor"
-alias cssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
+alias brewup="brew update && brew cleanup && brew doctor"
+alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
-alias pg="echo 'Pinging Google' && ping www.google.com";
-alias rshell="source ${HOME}/.zshrc"
+alias pingoo="echo 'Pinging Google' && ping www.google.com";
+alias reloadshell="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 
 # Directories
 alias ..="cd .."
 alias d="cd ${DEV}"
 alias cw="cd ${DEV}/coursework"
-alias ccw="code ${DEV}/coursework"
+alias cwc="code ${DEV}/coursework"
 alias df="cd ${DOTFILES}"
-alias cdf="code ${DOTFILES}"
+alias dfc="code ${DOTFILES}"
 alias lib="cd ${HOME}/Library"
 
 # JS
