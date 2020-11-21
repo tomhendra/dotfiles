@@ -1,5 +1,5 @@
 # Shortcuts
-alias brewup="brew update && brew cleanup && brew doctor"
+alias brewup="brew upgrade && brew cleanup && brew doctor"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias pingoo="echo 'Pinging Google' && ping www.google.com";
