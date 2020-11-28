@@ -16,7 +16,8 @@ alias dfc="code ${DOTFILES}"
 alias lib="cd ${HOME}/Library"
 
 # JS
-alias yfresh="rm -rf node_modules/ yarn.lock && yarn"
+alias yclean="rm -rf node_modules/ yarn.lock"
+alias yfresh="yclean && yarn"
 alias ywatch="yarn watch"
 
 # Git
