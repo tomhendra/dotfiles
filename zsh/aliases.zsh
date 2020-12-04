@@ -18,7 +18,8 @@ alias lib="cd ${HOME}/Library"
 # JS
 alias yclean="rm -rf node_modules/ yarn.lock"
 alias yfresh="yclean && yarn"
-alias ywatch="yarn watch"
+alias yd="yarn dev"
+alias yb="yarn build"
 
 # Git
 alias gs="git status -sb"
