@@ -14,6 +14,7 @@ alias cwc="code ${DEV}/coursework"
 alias df="cd ${DOTFILES}"
 alias dfc="code ${DOTFILES}"
 alias lib="cd ${HOME}/Library"
+alias c="code ."
 
 # JS
 alias yclean="rm -rf node_modules/ yarn.lock"
