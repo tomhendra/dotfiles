@@ -1,9 +1,10 @@
 # Shortcuts
 alias brewup="brew upgrade && brew cleanup && brew doctor"
 alias caffeinate="cafe"
+alias chrome="open -a 'Google Chrome Dev'"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
-alias pingoo="echo 'Pinging Google' && ping www.google.com";
+alias pingoogle="echo 'th: Pinging Google' && ping www.google.com";
 alias reloadshell="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 
@@ -22,6 +23,7 @@ alias yclean="rm -rf node_modules/ yarn.lock"
 alias yfresh="yclean && yarn"
 alias yd="yarn dev"
 alias yb="yarn build"
+alias yt="yarn test"
 
 # Git
 alias gs="git status -sb"
