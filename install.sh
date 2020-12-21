@@ -64,16 +64,16 @@ echo 'Installing Homebrew packages, fonts and applications...'
 echo 'Removing quarantine from Quicklook plugins...' 
   xattr -d -r com.apple.quarantine ${HOME}/Library/QuickLook
 
-# Configure Node version management with n via Homebrew.
+# Configure Node version management with n (installed via Homebrew).
 echo 'Configuring Node version management...'
-  # Prevent Homebrew from updating the Node formula.
-  brew pin node
   # To avoid requiring sudo for n and npm global installs (https://github.com/tj/n/blob/master/README.md#installation)
   # Make cache folder and take ownership.
   sudo mkdir -p /usr/local/n
   sudo chown -R $(whoami) /usr/local/n
   # Take ownership of node install destination folders.
   sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+  # Install Node LTS with n
+  n lts
 
 # Install global NPM packages.
 echo 'Installing NPM packages...'
