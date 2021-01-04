@@ -30,6 +30,10 @@ fi
 echo 'Updating Homebrew...' 
   brew update
 
+# Install Node via n-install to ~/.n directory.
+echo "installing Node via n-install..."
+  curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -y lts latest
+
 # Generate SSH key pair for GitHub authentication.
 ssh="${HOME}/.ssh"
 echo "Generating RSA token for SSH..."
@@ -54,17 +58,6 @@ echo 'Downloading project repos...'
   mkdir -p ${HOME}/Dev
   sh ${dotfiles}/git/clone-projects.sh
 
-# Install Node via n-install to ~/Dev directory.
-echo "installing Node via n-install..."
-  curl -L https://git.io/n-install | N_PREFIX=~/Dev/n bash -s -- -y
-  . ~/.zshrc
-echo "node --version: $(node --version)"
-echo "npm --version: $(npm --version)"
-
-# Install global NPM packages.
-echo 'Installing NPM packages...'
-  sh ${dotfiles}/install-npm-global.sh
-
 # Install Homebrew paackges & apps with brew bundle.
 echo 'Installing Homebrew packages, fonts and applications...'
   brew tap homebrew/bundle
@@ -78,6 +71,13 @@ echo 'Removing quarantine from Quicklook plugins...'
 # Create symlinks from dotfiles.
 echo 'Creating symlinks...'
   sh ${dotfiles}/create-symlinks.sh
+
+# reload .zshrc to use of Node via n.
+. ${HOME}/.zshrc
+
+# Install global NPM packages.
+echo 'Installing NPM packages...'
+  sh ${dotfiles}/install-npm-global.sh
 
 # Install the Night Owl theme for bat / delta.
 echo 'Configuring bat & delta...'  
