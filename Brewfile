@@ -11,7 +11,6 @@ brew 'git'
 brew 'git-delta'
 brew 'httpie'
 brew 'mas'
-brew 'n'
 brew 'ripgrep'
 brew 'starship'
 brew 'svn' # required for some cask fonts: https://github.com/Homebrew/homebrew-cask/issues/80695

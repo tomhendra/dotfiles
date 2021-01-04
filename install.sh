@@ -45,16 +45,27 @@ echo 'Public key copied to clipboard. Paste it into your GitHub account...'
 # dotfiles path variable to be used throughout the rest of this script.
 dotfiles="${HOME}/.dotfiles"
 
-# Clone dotfiles repo containing additional scripts & Brewfile. 
+# Clone dotfiles repo containing additional installation scripts. 
 echo 'Downloading dotfiles repo...'
   git clone git@github.com:tomhendra/dotfiles.git ${dotfiles}
 
-# Create Dev directory & Clone GitHub project repos.
+# Clone GitHub project repos to ~/Dev directory.
 echo 'Downloading project repos...'
   mkdir -p ${HOME}/Dev
   sh ${dotfiles}/git/clone-projects.sh
 
-# Install paackges & apps with brew bundle.
+# Install Node via n-install to ~/Dev directory.
+echo "installing Node via n-install..."
+  curl -L https://git.io/n-install | N_PREFIX=~/Dev/n bash -s -- -y
+  . ~/.zshrc
+echo "node --version: $(node --version)"
+echo "npm --version: $(npm --version)"
+
+# Install global NPM packages.
+echo 'Installing NPM packages...'
+  sh ${dotfiles}/install-npm-global.sh
+
+# Install Homebrew paackges & apps with brew bundle.
 echo 'Installing Homebrew packages, fonts and applications...'
   brew tap homebrew/bundle
   brew bundle --file=${dotfiles}/Brewfile
@@ -63,21 +74,6 @@ echo 'Installing Homebrew packages, fonts and applications...'
 # Quicklook plugins: remove the quarantine attribute (https://github.com/sindresorhus/quick-look-plugins)
 echo 'Removing quarantine from Quicklook plugins...' 
   xattr -d -r com.apple.quarantine ${HOME}/Library/QuickLook
-
-# Configure Node version management with n (installed via Homebrew).
-echo 'Configuring Node version management...'
-  # To avoid requiring sudo for n and npm global installs (https://github.com/tj/n/blob/master/README.md#installation)
-  # Make cache folder and take ownership.
-  sudo mkdir -p /usr/local/n
-  sudo chown -R $(whoami) /usr/local/n
-  # Take ownership of node install destination folders.
-  sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
-  # Install Node LTS with n
-  n lts
-
-# Install global NPM packages.
-echo 'Installing NPM packages...'
-  sh ${dotfiles}/install-npm-global.sh
 
 # Create symlinks from dotfiles.
 echo 'Creating symlinks...'
