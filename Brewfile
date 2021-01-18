@@ -30,6 +30,7 @@ cask 'iina'
 cask 'iterm2'
 cask 'kap'
 cask 'omnidisksweeper'
+cask 'notion'
 cask 'nvidia-geforce-now'
 cask 'opera'
 cask 'origin'
@@ -64,4 +65,3 @@ mas 'Be Focused Pro', id: 961632517
 mas 'Clockify Desktop', id: 1364502317
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
-mas 'Trello', id: 1278508951
