@@ -1,6 +1,6 @@
 # Shortcuts
 alias brewup="brew upgrade && brew cleanup && brew doctor"
-alias caffeinate="cafe"
+alias cafe="caffeinate -u -t 3600"
 alias chrome="open -a 'Google Chrome Dev'"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
