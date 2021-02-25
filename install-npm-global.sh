@@ -10,4 +10,5 @@ npm i -g -s npm-quick-run
 npm i -g -s parcel-bundler
 npm i -g -s pnpm
 npm i -g -s semantic-release-cli 
+npm i -g -s typescript 
 npm i -g -s yarn 
