@@ -23,7 +23,7 @@ On a fresh macOS system the `install.sh` script will install:
 ## Pre-Installation
 
 - Backup premium fonts to iCloud.
-- Backup any desired app preferences to Dropbox.
+- Backup any desired app preferences to `iCloud/Preferences`.
 - Ensure `~/.dotfiles` & repos within `~/Dev` are up-to-date & pushed to GitHub.
 
 ## Installation
@@ -37,7 +37,8 @@ On a fresh macOS system the `install.sh` script will install:
 ## Post-Installation
 
 - Install premium fonts from iCloud backup.
-- Set iTerm2 to load preferences from Dropbox (temporarily disable 'save changes to folder when iterm2 quits' to avoid overwrite).
+- Set iTerm2 to load preferences from iCloud/Preferences directory.
+  (Temporarily disable 'save changes to folder when iterm2 quits' to avoid overwrite).
 - Install apps not purchased from App Store.
 - Restart computer.
 
@@ -96,7 +97,7 @@ All things considered, Mackup's negatives outweigh its positives.
 
 The current setup of git and symlinks works, but could scale messily and isn't Linux-compatible. Bringing a tool into play would be beneficial. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
 
-Dropbox is being used for iTerm2 prefs, and Alfred (if adopted after trailing Spotlight improvements) prefers it for sync. This with choosing Stow sets the next course of action when time allows: 
+iCloud is being used for iTerm2 prefs. This with choosing Stow sets the next course of action when time allows: 
 
 - 📝 **TODO:** Dotfiles: Stow and git (make Linux-safe for future proofing).
-- 📝 **TODO:** App prefs: Dropbox (supported by app, or `ln` / Stow from Dropbox to Library).
+- 📝 **TODO:** App prefs: iCloud (native support by app, or `ln` / Stow from iCloud to Library).

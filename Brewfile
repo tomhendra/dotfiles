@@ -18,10 +18,10 @@ brew 'tree'
 brew 'watchman' 
 
 # Casks 
+cask '1password'
 cask 'brave-browser'
 cask 'discord'
 cask 'docker'
-cask 'dropbox'
 cask 'figma'
 cask 'firefox'
 cask 'google-chrome'
@@ -42,7 +42,7 @@ cask 'steam'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
 cask 'whatsapp'
-cask 'zoomus'
+cask 'zoom'
 
 # Quicklook plugin Casks: https://github.com/sindresorhus/quick-look-plugins
 cask 'qlcolorcode' # Preview source code files with syntax highlighting
