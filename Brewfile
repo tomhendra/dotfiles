@@ -18,7 +18,6 @@ brew 'tree'
 brew 'watchman' 
 
 # Casks 
-cask '1password'
 cask 'brave-browser'
 cask 'discord'
 cask 'docker'
@@ -62,6 +61,7 @@ cask 'font-roboto'
 
 # Mac App Store
 mas 'Be Focused Pro', id: 961632517
+mas 'Bitwarden', id: 1352778147
 mas 'Clockify Desktop', id: 1364502317
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
