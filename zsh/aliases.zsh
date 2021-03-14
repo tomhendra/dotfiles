@@ -18,12 +18,23 @@ alias dfc="code ${DOTFILES}"
 alias lib="cd ${HOME}/Library"
 alias c="code ."
 
-# JS
+# npm
+alias nclean="rm -rf node_modules package-lock.json"
+alias nfresh="nclean && npm i"
+alias nb="npm run build"
+alias nd="npm run dev"
+alias ns="npm start"
+alias nt="npm test"
+alias nw="echo 'when will npm support workspace targeting? 👀'"
+
+# yarn
 alias yclean="rm -rf node_modules/ yarn.lock"
 alias yfresh="yclean && yarn"
-alias yd="yarn dev"
 alias yb="yarn build"
+alias yd="yarn dev"
+alias ys="yarn start"
 alias yt="yarn test"
+alias yw="yarn workspace"
 
 # Git
 alias gs="git status -sb"
