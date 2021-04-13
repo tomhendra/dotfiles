@@ -19,13 +19,12 @@ alias lib="cd ${HOME}/Library"
 alias c="code ."
 
 # npm
-alias nclean="rm -rf node_modules package-lock.json"
-alias nfresh="nclean && npm i"
-alias nb="npm run build"
-alias nd="npm run dev"
-alias ns="npm start"
-alias nt="npm test"
-alias nw="echo 'when will npm support workspace targeting? 👀'"
+alias npmclean="rm -rf node_modules package-lock.json"
+alias npmfresh="npm clean && npm i"
+alias npmb="npm build"
+alias npmd="npm run dev"
+alias npms="npm start"
+alias npmw="echo 'when will npm support workspace targeting? 👀'"
 
 # yarn
 alias yclean="rm -rf node_modules/ yarn.lock"
