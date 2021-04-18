@@ -1,6 +1,8 @@
 #!/bin/sh
   
 # NPM global packages
+npm i -g -s @11ty/eleventy
+npm i -g -s @aws-amplify/cli
 npm i -g -s @sanity/cli 
 npm i -g -s fauna-shell
 npm i -g -s fkill-cli 
