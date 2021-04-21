@@ -53,3 +53,7 @@ alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
+
+# aws amplify
+alias apush="amplify push --y"
+alias apull="amplify pull"
