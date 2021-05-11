@@ -20,7 +20,7 @@ alias c="code ."
 
 # npm
 alias npmclean="rm -rf node_modules package-lock.json"
-alias npmfresh="npm clean && npm i"
+alias npmfresh="npmclean && npm i"
 alias npmb="npm build"
 alias npmd="npm run dev"
 alias npms="npm start"
