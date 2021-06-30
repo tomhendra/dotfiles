@@ -7,6 +7,8 @@ alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias pingoogle="echo 'th: Pinging Google' && ping www.google.com";
 alias reloadshell="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
+alias disapprove="echo ಠ_ಠ | pbcopy"
+alias rage="echo (╯°□°）╯︵ ┻━┻ | pbcopy"
 
 # Directories
 alias ..="cd .."
