@@ -19,8 +19,7 @@ brew 'svn' # required for some cask fonts: https://github.com/Homebrew/homebrew-
 brew 'tree'
 brew 'watchman' 
 
-# Casks 
-cask 'brave-browser'
+# Casks
 cask 'discord'
 cask 'docker'
 cask 'figma'

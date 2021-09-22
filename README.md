@@ -14,7 +14,7 @@ On a fresh macOS system the `install.sh` script will install:
 1. Xcode CLT & Homebrew.
 2. SSH keys & repos from GitHub.
 3. Packages, apps & fonts.
-4. Node.js configured for n.
+4. Node.js configured via n.
 5. NPM global packages.
 6. Symlinks from `~/.dotfiles`.
 7. Theme for bat & delta.
@@ -22,7 +22,7 @@ On a fresh macOS system the `install.sh` script will install:
 
 ## Pre-Installation
 
-- Backup premium fonts to iCloud.
+- Backup premium fonts (Operator Mono) to iCloud.
 - Backup any desired app preferences to `iCloud/Preferences`.
 - Ensure `~/.dotfiles` & repos within `~/Dev` are up-to-date & pushed to GitHub.
 
@@ -31,7 +31,7 @@ On a fresh macOS system the `install.sh` script will install:
 - Enter Internet Recovery Mode by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
 - Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD' as APFS (for SSD).
 - Install fresh copy of macOS.
-- Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas#-sign-in) 🤕)
+- Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas/issues/164) 🤕)
 - Run dotfiles installation script in terminal: `curl -ssL https://git.io/tomdot | sh`
 
 ## Post-Installation
@@ -44,7 +44,7 @@ On a fresh macOS system the `install.sh` script will install:
 
 ## Credit
 
-I've used snippets and found inspiration from dotfiles I have discovered, with many thanks to these very smart people:
+As a base and for inspiration I have used dotfiles from these very smart people with many thanks:
 
 - [Dries Vints](https://github.com/driesvints/dotfiles)
 - [Kent C Dodds](https://github.com/kentcdodds/dotfiles)
