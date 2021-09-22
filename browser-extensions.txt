@@ -1,0 +1,6 @@
+Notion web clipper
+React dev tools
+MetaMask
+Testing Playground
+
+Also FF security extensions suggested here: https://github.com/arkenfox/user.js/wiki/4.1-Extensions

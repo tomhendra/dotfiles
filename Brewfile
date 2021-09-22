@@ -15,7 +15,6 @@ brew 'mas'
 brew 'python'
 brew 'ripgrep'
 brew 'starship'
-brew 'svn' # required for some cask fonts: https://github.com/Homebrew/homebrew-cask/issues/80695
 brew 'tree'
 brew 'watchman' 
 
@@ -23,7 +22,6 @@ brew 'watchman'
 cask 'discord'
 cask 'docker'
 cask 'figma'
-cask 'framer'
 cask 'firefox-developer-edition'
 cask 'google-chrome'
 cask 'iina'
@@ -33,15 +31,12 @@ cask 'kap'
 cask 'omnidisksweeper'
 cask 'microsoft-edge'
 cask 'notion'
-cask 'nvidia-geforce-now'
 cask 'opera'
 cask 'origin'
-cask 'postman'
 cask 'qbittorrent'
 cask 'signal'
 cask 'skype'
 cask 'slack'
-cask 'steam'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
 cask 'whatsapp'
@@ -62,10 +57,8 @@ cask 'webpquicklook' # Preview WebP images
 cask 'font-lato'
 cask 'font-open-sans'
 cask 'font-roboto'
+cask 'font-inter'
 
 # Mac App Store
 mas 'Be Focused Pro', id: 961632517
 mas 'Bitwarden', id: 1352778147
-mas 'Clockify Desktop', id: 1364502317
-mas 'Numbers', id: 409203825
-mas 'Pages', id: 409201541
