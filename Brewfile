@@ -20,6 +20,7 @@ brew 'tree'
 brew 'watchman' 
 
 # Casks
+cask 'blender'
 cask 'discord'
 cask 'docker'
 cask 'figma'
