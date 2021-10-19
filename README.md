@@ -3,13 +3,13 @@
 <h1>Hola 👋</h1>
 </div>
 
-**TLDR:** For all the things on squeaky clean macOS: `curl -ssL https://git.io/tomdot | sh`
+**TLDR:** For all the web dev things on macOS: `curl -ssL https://git.io/tomdot | sh`
 
-**Disclaimer:** Dotfiles are personal things, and as such I would advise against rolling these ones unmodified. By all means, fill your boots, but I am no shellscript expert so there ~~may well~~ most likely will be misfires. 
+**Disclaimer:** Dotfiles are personal things, and as such I would advise against rolling these ones unmodified. By all means, fill your boots, but I am no shellscript expert so there most likely will be misfires. 
 
 ## What is Installed
 
-On a fresh macOS system the `install.sh` script will install:
+On a fresh macOS system, running `install.sh` script will handle the following:
 
 1. Xcode CLT & Homebrew.
 2. SSH keys & repos from GitHub.
@@ -22,9 +22,9 @@ On a fresh macOS system the `install.sh` script will install:
 
 ## Pre-Installation
 
-- Backup premium fonts (Operator Mono) to iCloud.
+- Backup premium fonts to iCloud (Operator Mono & Operator Mono Nerd Font).
 - Backup any desired app preferences to `iCloud/Preferences`.
-- Ensure `~/.dotfiles` & repos within `~/Dev` are up-to-date & pushed to GitHub.
+- Ensure local `~/.dotfiles` & repos in `~/Dev` are up-to-date & pushed to GitHub.
 
 ## Installation
 
@@ -39,12 +39,13 @@ On a fresh macOS system the `install.sh` script will install:
 - Install premium fonts from iCloud backup.
 - Set iTerm2 to load preferences from iCloud/Preferences directory.
   (Temporarily disable 'save changes to folder when iterm2 quits' to avoid overwrite).
-- Install apps not purchased from App Store.
+- Launch fig.app & go through setup.
+- Install apps not purchased from App Store (Affinity Photo/Designer).
 - Restart computer.
 
 ## Credit
 
-As a base and for inspiration I have used dotfiles from these very smart people with many thanks:
+Inspiration comes from these very smart people with many thanks:
 
 - [Dries Vints](https://github.com/driesvints/dotfiles)
 - [Kent C Dodds](https://github.com/kentcdodds/dotfiles)
@@ -57,7 +58,7 @@ As a base and for inspiration I have used dotfiles from these very smart people 
 
 Mackup was removed from the workflow due to the following considerations. 
 
-The only supported apps that I use which Mackup could prove useful for are: 
+Supported apps that I use for which Mackup could be useful are few:
 
 - Bat
 - Git
@@ -69,35 +70,35 @@ The only supported apps that I use which Mackup could prove useful for are:
 - Yarn
 - Zsh
 
-The other supported apps that I use would not benefit from Mackup's features due to the reasons stated:
+Other supported apps that I use would not benefit from Mackup because:
 
-- Homebrew (not much to configure!)
-- IINA (a media player)
-- Messages (iCloud)
-- Apple Music (iCloud for library)
-- WhatsApp Web (synced to iPhone)
+- Homebrew: Not much to configure
+- IINA: A media player
+- Messages: iCloud
+- Apple Music: iCloud for library
+- WhatsApp Web: Synced to iPhone
 
-**Benefits of Mackup:**
+**Benefits of Mackup**
 
 - No need to pull changes from GitHub dotfiles repo to apply changes - "set and forget".
-- Make a change to dotfile > run `mackup backup` > done. 
-- New apps installed just need a mackup.cfg entry if supported (specifying which apps to handle). 
+- Making changes to dotfiles is more work than running `mackup backup`. 
+- Newly installed apps supported by Mackup just need a `mackup.cfg` entry. 
 
-**Drawbacks of Mackup:**
+**Drawbacks of Mackup**
 
-- Less control (although specifying which apps to handle in .cfg is better than the reverse).
-- Zsh / Vim errors (reported) - Common pattern seems to be excluding zsh in Mackup.cfg! 
-- Moving things away from Mackup due to errors fragments maintenance by using multiple backup methods.
+- Less control (although specifying which apps to handle in `.cfg` is better than the reverse).
+- Zsh / Vim errors (reported) - Common pattern seems to be excluding zsh in `Mackup.cfg`! 
 - iTerm2 overwrites Mackup-created symlinks (verified).
+- Moving things away from Mackup due to errors complicates maintenance by requiring additional backup methods.
 - Mackup dev team's support list contains apps without official vendor support. 
 - Negative comments from vendors requesting removal from Mackup's support list!
 - Dropbox file duplicate errors due to devices syncing concurrently (error handling concerns).
 
 All things considered, Mackup's negatives outweigh its positives. 
 
-The current setup of git and symlinks works, but could scale messily and isn't Linux-compatible. Bringing a tool into play would be beneficial. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
+The current setup of git and symlinks works, but could scale messily and isn't compatible with Linux. Bringing a tool into play would be beneficial. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
 
 iCloud is being used for iTerm2 prefs. This with choosing Stow sets the next course of action when time allows: 
 
-- 📝 **TODO:** Dotfiles: Stow and git (make Linux-safe for future proofing).
-- 📝 **TODO:** App prefs: iCloud (native support by app, or `ln` / Stow from iCloud to Library).
+- 📝 Dotfiles: Stow and git (make Linux-safe for future proofing).
+- 📝 App prefs: iCloud (native support by app, or `ln` / Stow from iCloud to Library).
