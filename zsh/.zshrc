@@ -3,6 +3,7 @@
 # Please make sure this block is at the start of this file.
 [ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
 #### END FIG ENV VARIABLES ####
+
 # Antibody init
 source <(antibody init)
 
@@ -21,7 +22,8 @@ source ${HOME}/.dotfiles/zsh/aliases.zsh
 # Starship init
 eval "$(starship init zsh)"
 
-export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+# Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
 #### FIG ENV VARIABLES ####
 # Please make sure this block is at the end of this file.
