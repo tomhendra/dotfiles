@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Hello $(whoami), let's setup your developer environment! 🚀"
+echo "🚀 Hello $(whoami), let's setup your developer environment!"
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -64,11 +64,6 @@ echo 'Creating symlinks from dotfiles...'
 echo 'Removing quarantine attribute from Quicklook plugins...' 
   xattr -d -r com.apple.quarantine ${HOME}/Library/QuickLook
 
-# Install the Night Owl theme for bat / delta.
-echo 'Configuring bat & delta...'  
-  git clone https://github.com/batpigandme/night-owlish "${HOME}/.config/bat/themes/night-owlish"
-  bat cache --build
-
 # Install global NPM packages.
 echo 'Installing global npm packages...'
   # reload .zshrc to use Node & npm via n.
@@ -80,7 +75,7 @@ echo 'Cloning GitHub repos into Dev...'
   mkdir -p ${HOME}/Dev
   sh ${dotfiles}/git/clone-projects.sh
 
-echo "$(whoami)'s developer environment setup is complete! ✅"
+echo "✅ $(whoami)'s developer environment setup is complete!"
 
 # Apply macOS system preferences from dotfiles (this will reload the shell).
 echo 'Applying System Preferences. Restart terminal when it closes...'

@@ -13,16 +13,17 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 
 1. Xcode CLT & Homebrew.
 2. SSH keys & repos from GitHub.
-3. Packages, apps & fonts.
-4. Node.js configured via n.
-5. NPM global packages.
-6. Symlinks from `~/.dotfiles`.
-7. Theme for bat & delta.
+3. Homebrew packages.
+4. App Store purchases.
+5. Node.js configured via n.
+6. npm global packages.
+7. Symlinks from `~/.dotfiles`.
 8. macOS system preferences.
 
 ## Pre-Installation
 
-- Backup premium fonts to iCloud (Operator Mono & Operator Mono Nerd Font).
+- Access iCloud in terminal: `cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/`
+- Backup premium fonts to `iCloud/Fonts` (Operator Mono & Operator Mono Nerd Font).
 - Backup any desired app preferences to `iCloud/Preferences`.
 - Ensure local `~/.dotfiles` & repos in `~/Dev` are up-to-date & pushed to GitHub.
 
@@ -30,9 +31,9 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 
 - Enter Internet Recovery Mode by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
 - Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD' as APFS (for SSD).
-- Install fresh copy of macOS.
-- Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas/issues/164) 🤕)
-- Run dotfiles installation script in terminal: `curl -ssL https://git.io/tomdot | sh`
+- Install fresh copy of macOS using on-screen prompts.
+- Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas/issues/164) 🤕).
+- Run this command in terminal: `curl -ssL https://git.io/tomdot | sh`.
 
 ## Post-Installation
 
