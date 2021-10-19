@@ -59,7 +59,7 @@ Inspiration comes from these very smart people with many thanks:
 
 Mackup was removed from the workflow due to the following considerations. 
 
-Supported apps that I use for which Mackup could be useful are few:
+There aren't many supported apps that I use for which Mackup would be useful:
 
 - Bat
 - Git
@@ -71,19 +71,19 @@ Supported apps that I use for which Mackup could be useful are few:
 - Yarn
 - Zsh
 
-Other supported apps that I use would not benefit from Mackup because:
+Other supported apps that I use would not benefit much from Mackup:
 
 - Homebrew: Not much to configure
 - IINA: A media player
-- Messages: iCloud
-- Apple Music: iCloud for library
+- Messages: iCloud backup
+- Apple Music: iCloud backup
 - WhatsApp Web: Synced to iPhone
 
 **Benefits of Mackup**
 
-- No need to pull changes from GitHub dotfiles repo to apply changes - "set and forget".
-- Making changes to dotfiles is more work than running `mackup backup`. 
-- Newly installed apps supported by Mackup just need a `mackup.cfg` entry. 
+- No need to pull dotfiles repo from GitHub to apply changes locally.
+- Making changes to dotfiles is more work than running `mackup backup` in terminal. 
+- Newly installed apps just need a `mackup.cfg` entry to be backed up, if supported. 
 
 **Drawbacks of Mackup**
 
