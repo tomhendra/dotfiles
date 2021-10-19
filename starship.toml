@@ -24,6 +24,7 @@ discharging_symbol = " "
 
 [aws]
 symbol = "  "
+disabled = true
 
 [conda]
 symbol = " "
