@@ -6,6 +6,7 @@ tap 'homebrew/cask-fonts'
 # Brews
 brew 'antibody'
 brew 'bat'
+brew 'doctl'
 brew 'gh'
 brew 'git'
 brew 'git-delta'
