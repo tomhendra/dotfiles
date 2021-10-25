@@ -42,6 +42,7 @@ On a fresh macOS system, running `install.sh` script will handle the following:
   (Temporarily disable 'save changes to folder when iterm2 quits' to avoid overwrite).
 - Launch fig.app & go through setup.
 - Install apps not purchased from App Store (Affinity Photo/Designer).
+- Install web browser extensions.
 - Restart computer.
 
 ## Credit
