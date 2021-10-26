@@ -30,8 +30,11 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 
 ## Installation
 
-- Enter Internet Recovery Mode by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
-- Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD' as APFS (for SSD).
+- To perform a clean install on macOS Monterey: 
+  - Launch System Preferences & select Erase All Content and Settings.
+- To perform a clean install on macOS Big Sur or earlier: 
+  - Enter Internet Recovery Mode by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
+  - Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD' as APFS (for SSD).
 - Install fresh copy of macOS using on-screen prompts.
 - Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas/issues/164) 🤕).
 - Run this command in terminal: `curl -ssL https://git.io/tomdot | sh`.
