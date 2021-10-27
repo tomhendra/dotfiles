@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "🚀 Hello $(whoami), let's setup your developer environment!"
+echo "🚀 Hello $(whoami)! Let's setup the developer environment for this Mac."
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -20,16 +20,6 @@ if ! xcode-select --print-path &> /dev/null; then
   done
 fi
 
-# Install Homebrew.
-if test ! $(which brew); then
-  echo 'Installing Homebrew...' 
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-fi
-
-# Install LTS & latest versions of Node via n-install to custom .n directory.
-echo "installing Node via n-install..."
-  curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -y lts latest
-
 # Generate SSH key pair for GitHub authentication.
 ssh="${HOME}/.ssh"
 echo "Generating RSA token for SSH..."
@@ -42,12 +32,26 @@ echo 'Public key copied to clipboard. Paste it into your GitHub account...'
   pbcopy < ${ssh}/id_rsa.pub
   open 'https://github.com/account/ssh'
 
-# dotfiles path variable.
+# Define dotfiles path variable.
 dotfiles="${HOME}/.dotfiles"
 
 # Clone dotfiles repo. 
 echo 'Cloning dotfiles...'
   git clone git@github.com:tomhendra/dotfiles.git ${dotfiles}
+
+# Install Rust via rustup
+echo "installing Rust via rustup..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+# Install Node via n-install to custom .n directory.
+echo "installing Node via n-install..."
+  curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -y lts latest
+
+# Install Homebrew.
+if test ! $(which brew); then
+  echo 'Installing Homebrew...' 
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
 
 # Install Homebrew packges & apps with brew bundle.
 echo 'Installing Homebrew packages, fonts and applications...'
@@ -55,10 +59,6 @@ echo 'Installing Homebrew packages, fonts and applications...'
   brew tap homebrew/bundle
   brew bundle --file=${dotfiles}/Brewfile
   brew cleanup
-
-# Create symlinks from dotfiles.
-echo 'Creating symlinks from dotfiles...' 
-  sh ${dotfiles}/create-symlinks.sh
 
 # Quicklook plugins: remove the quarantine attribute (https://github.com/sindresorhus/quick-look-plugins)
 echo 'Removing quarantine attribute from Quicklook plugins...' 
@@ -69,6 +69,10 @@ echo 'Installing global npm packages...'
   # reload .zshrc to use Node & npm via n.
   . ${HOME}/.zshrc
   sh ${dotfiles}/install-npm-global.sh
+
+# Create symlinks from custom dotfiles, overwriting system defaults.
+echo 'Creating symlinks from dotfiles...' 
+  sh ${dotfiles}/create-symlinks.sh
 
 # Create ~/Dev directory & Clone GitHub project repos into it.
 echo 'Cloning GitHub repos into Dev...'

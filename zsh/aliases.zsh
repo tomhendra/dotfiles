@@ -1,7 +1,8 @@
 # Shortcuts
 alias brewup="brew upgrade && brew cleanup && brew doctor"
 alias cafe="caffeinate -u -t 3600"
-alias chrome="open -a 'Google Chrome Dev'"
+alias ffd="open -a 'Firefox Developer Edition'"
+alias chrome="open -a 'Google Chrome'"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias pingoogle="echo 'th: Pinging Google' && ping www.google.com";
@@ -10,7 +11,7 @@ alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias disapprove="echo 'ಠ_ಠ' | pbcopy"
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 
-# Directories
+# Files & Directories
 alias ..="cd .."
 alias d="cd ${DEV}"
 alias cw="cd ${DEV}/coursework"
@@ -19,6 +20,11 @@ alias df="cd ${DOTFILES}"
 alias dfc="code ${DOTFILES}"
 alias lib="cd ${HOME}/Library"
 alias c="code ."
+alias tp="trash-put"
+alias te="trash-empty"
+alias tl="trash-list"
+alias tr="trash-restore"
+alias-trm="trash-rm"
 
 # npm
 alias npmclean="rm -rf node_modules package-lock.json"
@@ -26,7 +32,8 @@ alias npmfresh="npmclean && npm i"
 alias npmb="npm build"
 alias npmd="npm run dev"
 alias npms="npm start"
-alias npmw="echo 'when will npm support workspace targeting? 👀'"
+alias npmt="npm test"
+alias npmw="echo 'when will npm support workspace targeting? ¯\_(ツ)_/¯'"
 
 # yarn
 alias yclean="rm -rf node_modules/ yarn.lock"
@@ -55,7 +62,3 @@ alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
-
-# aws amplify
-alias apush="amplify push --y"
-alias apull="amplify pull"

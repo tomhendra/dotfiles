@@ -17,6 +17,7 @@ brew 'postgres'
 brew 'python'
 brew 'ripgrep'
 brew 'starship'
+brew 'trash-cli'
 brew 'tree'
 brew 'watchman' 
 
