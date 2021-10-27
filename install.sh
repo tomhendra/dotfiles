@@ -39,13 +39,24 @@ dotfiles="${HOME}/.dotfiles"
 echo 'Cloning dotfiles...'
   git clone git@github.com:tomhendra/dotfiles.git ${dotfiles}
 
+# Create ~/Dev directory & Clone GitHub project repos into it.
+echo 'Cloning GitHub repos into Dev...'
+  mkdir -p ${HOME}/Dev
+  sh ${dotfiles}/git/clone-projects.sh
+
 # Install Rust via rustup
 echo "installing Rust via rustup..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Install Node via n-install to custom .n directory.
-echo "installing Node via n-install..."
-  curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -y lts latest
+echo "installing Node & n via n-install..."
+  curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -y lts
+
+# Install global NPM packages.
+echo 'Installing global npm packages...'
+# reload .zshrc to use Node & npm via n.
+. ${HOME}/.zshrc
+sh ${dotfiles}/install-npm-global.sh
 
 # Install Homebrew.
 if test ! $(which brew); then
@@ -64,20 +75,9 @@ echo 'Installing Homebrew packages, fonts and applications...'
 echo 'Removing quarantine attribute from Quicklook plugins...' 
   xattr -d -r com.apple.quarantine ${HOME}/Library/QuickLook
 
-# Install global NPM packages.
-echo 'Installing global npm packages...'
-  # reload .zshrc to use Node & npm via n.
-  . ${HOME}/.zshrc
-  sh ${dotfiles}/install-npm-global.sh
-
 # Create symlinks from custom dotfiles, overwriting system defaults.
 echo 'Creating symlinks from dotfiles...' 
   sh ${dotfiles}/create-symlinks.sh
-
-# Create ~/Dev directory & Clone GitHub project repos into it.
-echo 'Cloning GitHub repos into Dev...'
-  mkdir -p ${HOME}/Dev
-  sh ${dotfiles}/git/clone-projects.sh
 
 echo "✅ $(whoami)'s developer environment setup is complete!"
 
