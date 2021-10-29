@@ -23,24 +23,6 @@ alias tl="trash-list"
 alias tr="trash-restore"
 alias-trm="trash-rm"
 
-# npm
-alias npmclean="rm -rf node_modules package-lock.json"
-alias npmfresh="npmclean && npm i"
-alias npmb="npm build"
-alias npmd="npm run dev"
-alias npms="npm start"
-alias npmt="npm test"
-alias npmw="echo 'when will npm support workspace targeting? ¯\_(ツ)_/¯'"
-
-# yarn
-alias yclean="rm -rf node_modules/ yarn.lock"
-alias yfresh="yclean && yarn"
-alias yb="yarn build"
-alias yd="yarn dev"
-alias ys="yarn start"
-alias yt="yarn test"
-alias yw="yarn workspace"
-
 # Git
 alias gs="git status -sb"
 alias gst="git status"
@@ -60,7 +42,25 @@ alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
 
-# Rust
-alias cb="cargo build"
-alias cr="cargo run"
+# Cargo
 alias cc="cargo check"
+alias cr="cargo run"
+alias cb="cargo build"
+alias cbr="cargo build --release"
+
+# npm
+alias npmclean="rm -rf node_modules package-lock.json"
+alias npmfresh="npmclean && npm i"
+alias npmb="npm build"
+alias npmd="npm run dev"
+alias npms="npm start"
+alias npmt="npm test"
+
+# yarn
+alias yclean="rm -rf node_modules/ yarn.lock"
+alias yfresh="yclean && yarn"
+alias yb="yarn build"
+alias yd="yarn dev"
+alias ys="yarn start"
+alias yt="yarn test"
+alias yw="yarn workspace"
