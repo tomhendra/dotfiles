@@ -13,7 +13,7 @@ alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 
 # Files & Directories
 alias ..="cd .."
-alias d="cd ${DEV}"
+alias d="cd ${DEVELOPER}"
 alias df="cd ${DOTFILES}"
 alias dfc="code ${DOTFILES}"
 alias lib="cd ${HOME}/Library"

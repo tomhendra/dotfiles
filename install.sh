@@ -39,9 +39,9 @@ dotfiles="${HOME}/.dotfiles"
 echo 'Cloning dotfiles...'
   git clone git@github.com:tomhendra/dotfiles.git ${dotfiles}
 
-# Create ~/Dev directory & Clone GitHub project repos into it.
-echo 'Cloning GitHub repos into Dev...'
-  mkdir -p ${HOME}/Dev
+# Create ~/Developer directory & Clone GitHub project repos into it.
+echo 'Cloning GitHub repos into Developer...'
+  mkdir -p ${HOME}/Developer
   sh ${dotfiles}/git/clone-projects.sh
 
 # Install Rust via rustup
