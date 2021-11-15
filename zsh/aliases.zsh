@@ -21,7 +21,7 @@ alias tp="trash-put"
 alias te="trash-empty"
 alias tl="trash-list"
 alias tr="trash-restore"
-alias-trm="trash-rm"
+alias trm="trash-rm"
 
 # Git
 alias gs="git status -sb"
