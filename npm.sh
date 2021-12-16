@@ -5,6 +5,7 @@ npm i -g @cloudflare/wrangler
 npm i -g @sanity/cli 
 npm i -g fkill-cli 
 npm i -g serve 
+npm i -g ngrok
 npm i -g npm-check-updates 
 npm i -g npm-quick-run 
 npm i -g semantic-release-cli

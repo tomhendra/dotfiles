@@ -44,6 +44,7 @@ cask 'skype'
 cask 'slack'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
+cask 'webstorm'
 cask 'whatsapp'
 cask 'zoom'
 
