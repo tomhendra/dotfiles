@@ -10,16 +10,6 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Install Xcode CLT as required by Homebrew.
-if ! xcode-select --print-path &> /dev/null; then
-  echo 'Installing Xcode CLT. Close dialog box once complete...'
-  xcode-select --install &> /dev/null
-  # Wait until the Xcode Command Line Tools are installed
-  until xcode-select --print-path &> /dev/null; do
-      sleep 8
-  done
-fi
-
 # Generate SSH key pair for GitHub authentication.
 ssh="${HOME}/.ssh"
 echo "Generating RSA token for SSH..."
@@ -57,6 +47,16 @@ echo 'Installing global npm packages...'
 # reload .zshrc to use Node & npm via n.
 . ${HOME}/.zshrc
 sh ${dotfiles}/install-npm-global.sh
+
+# Install Xcode CLT as required by Homebrew.
+if ! xcode-select --print-path &> /dev/null; then
+  echo 'Installing Xcode CLT. Close dialog box once complete...'
+  xcode-select --install &> /dev/null
+  # Wait until the Xcode Command Line Tools are installed
+  until xcode-select --print-path &> /dev/null; do
+      sleep 8
+  done
+fi
 
 # Install Homebrew.
 if test ! $(which brew); then
