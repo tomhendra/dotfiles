@@ -1,5 +1,6 @@
 # Shortcuts
 alias brewup="brew upgrade && brew cleanup && brew doctor"
+alias c="code ."
 alias cafe="caffeinate -u -t 3600"
 alias ffd="open -a 'Firefox Developer Edition'"
 alias chrome="open -a 'Google Chrome'"
