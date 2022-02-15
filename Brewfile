@@ -34,19 +34,18 @@ cask 'google-chrome'
 cask 'iina'
 cask 'insomnia'
 cask 'iterm2'
+cask 'logseq'
 cask 'kap'
 cask 'omnidisksweeper'
 cask 'microsoft-edge'
 cask 'notion'
-cask 'obsidian'
-cask 'opera'
 cask 'qbittorrent'
 cask 'signal'
 cask 'skype'
 cask 'slack'
+cask 'telegram'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
-cask 'webstorm'
 cask 'whatsapp'
 cask 'zoom'
 
@@ -71,3 +70,4 @@ cask 'font-inter'
 mas 'Be Focused Pro', id: 961632517
 mas 'Bitwarden', id: 1352778147
 mas 'Notion Web Clipper', id: 1559269364
+ 
