@@ -11,6 +11,7 @@ alias reloadshell="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias balk="echo 'ಠ_ಠ' | pbcopy"
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
+alias sol="◎"
 
 # Files & Directories
 alias ..="cd .."
