@@ -1,13 +1,13 @@
 # Shortcuts
 alias brewup="brew upgrade && brew cleanup && brew doctor"
 alias c="code ."
+alias cm="open -a 'Google Chrome'"
+alias ff="open -a 'Firefox Developer Edition'"
 alias cafe="caffeinate -u -t 3600"
-alias ffd="open -a 'Firefox Developer Edition'"
-alias chrome="open -a 'Google Chrome'"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
-alias pingoogle="echo 'th: Pinging Google' && ping www.google.com";
-alias reloadshell="source ${HOME}/.zshrc"
+alias pingg="echo 'th: Pinging Google' && ping www.google.com";
+alias reloadzsh="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias balk="echo 'ಠ_ಠ' | pbcopy"
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
