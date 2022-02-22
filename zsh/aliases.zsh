@@ -60,7 +60,13 @@ alias npms="npm start"
 alias npmt="npm test"
 
 # pnpm
-alias pnpmp="pnpm add --save-peer"
+alias pnpmclean="rm -rf node_modules package-lock.json"
+alias pnpmfresh="npmclean && pnpm i"
+alias pnpmb="pnpm build"
+alias pnpmd="npm run dev"
+alias pnpms="npm start"
+alias pnpmt="npm test"
+alias pnpmap="pnpm add --save-peer"
 
 # yarn
 alias yclean="rm -rf node_modules/ yarn.lock"
