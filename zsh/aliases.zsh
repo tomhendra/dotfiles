@@ -2,6 +2,7 @@
 alias brewup="brew upgrade && brew cleanup && brew doctor"
 alias c="code ."
 alias cm="open -a 'Google Chrome'"
+alias b="open -a 'Brave Browser'"
 alias ff="open -a 'Firefox Developer Edition'"
 alias cafe="caffeinate -u -t 3600"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
@@ -57,6 +58,9 @@ alias npmb="npm build"
 alias npmd="npm run dev"
 alias npms="npm start"
 alias npmt="npm test"
+
+# pnpm
+alias pnpmp="pnpm add --save-peer"
 
 # yarn
 alias yclean="rm -rf node_modules/ yarn.lock"
