@@ -1,8 +1,8 @@
-# Shortcuts
+# General
 alias brewup="brew upgrade && brew cleanup && brew doctor"
 alias c="code ."
 alias cm="open -a 'Google Chrome'"
-alias b="open -a 'Brave Browser'"
+alias br="open -a 'Brave Browser'"
 alias ff="open -a 'Firefox Developer Edition'"
 alias cafe="caffeinate -u -t 3600"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
@@ -12,7 +12,7 @@ alias reloadzsh="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias balk="echo 'ಠ_ಠ' | pbcopy"
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
-alias sol="◎"
+alias sol="echo '◎' | pbcopy"
 
 # Files & Directories
 alias ..="cd .."
@@ -51,22 +51,26 @@ alias cr="cargo run"
 alias cb="cargo build"
 alias cbr="cargo build --release"
 
-# npm
-alias npmclean="rm -rf node_modules package-lock.json"
-alias npmfresh="npmclean && npm i"
-alias npmb="npm build"
-alias npmd="npm run dev"
-alias npms="npm start"
-alias npmt="npm test"
-
 # pnpm
-alias pnpmclean="rm -rf node_modules package-lock.json"
-alias pnpmfresh="npmclean && pnpm i"
-alias pnpmb="pnpm build"
-alias pnpmd="npm run dev"
-alias pnpms="npm start"
-alias pnpmt="npm test"
-alias pnpmap="pnpm add --save-peer"
+alias pclean="rm -rf node_modules package-lock.json"
+alias pfresh="pclean && pnpm i"
+alias pa="pnpm add"
+alias pr="pnpm rm"
+alias pb="pnpm build"
+alias pd="npm run dev"
+alias ps="npm start"
+alias pt="npm test"
+alias pasp="pnpm add --save-peer"
+
+# npm
+alias nclean="rm -rf node_modules package-lock.json"
+alias nfresh="npmclean && npm i"
+alias ni="npm install"
+alias nr="npm remove"
+alias nb="npm build"
+alias nd="npm run dev"
+alias ns="npm start"
+alias nt="npm test"
 
 # yarn
 alias yclean="rm -rf node_modules/ yarn.lock"
