@@ -54,6 +54,7 @@ alias cbr="cargo build --release"
 # pnpm
 alias pclean="rm -rf node_modules package-lock.json"
 alias pfresh="pclean && pnpm i"
+alias pi="pnpm i"
 alias pa="pnpm add"
 alias pr="pnpm rm"
 alias pb="pnpm build"
@@ -64,7 +65,7 @@ alias pasp="pnpm add --save-peer"
 
 # npm
 alias nclean="rm -rf node_modules package-lock.json"
-alias nfresh="npmclean && npm i"
+alias nfresh="nlean && npm i"
 alias ni="npm install"
 alias nr="npm remove"
 alias nb="npm build"
