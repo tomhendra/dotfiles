@@ -34,19 +34,23 @@ echo 'Cloning GitHub repos into Developer...'
   mkdir -p ${HOME}/Developer
   sh ${dotfiles}/git/clone-projects.sh
 
-# Install Rust via rustup
-echo "installing Rust via rustup..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+# Install pnpm
+echo "installing pnpm..."
+  curl -fsSL https://get.pnpm.io/install.sh | sh -
 
-# Install Node via n-install to custom .n directory.
-echo "installing Node & n via n-install..."
-  curl -L https://git.io/n-install | N_PREFIX=${HOME}/.n bash -s -- -y lts
+# Install node via pnpm
+echo "installing Node..."
+  pnpm env use --global lts
 
-# Install global NPM packages.
-echo 'Installing global npm packages...'
-# reload .zshrc to use Node & npm via n.
+# Install global  packages.
+echo 'Installing global packages...'
+# reload .zshrc to use pnpm / Node
 . ${HOME}/.zshrc
-sh ${dotfiles}/install-npm-global.sh
+sh ${dotfiles}/global-pkg.sh
+
+# Install Rust via rustup
+echo "installing Rust..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Install Xcode CLT as required by Homebrew.
 if ! xcode-select --print-path &> /dev/null; then

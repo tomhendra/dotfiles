@@ -22,8 +22,9 @@ source ${HOME}/.dotfiles/zsh/aliases.zsh
 # Starship init
 eval "$(starship init zsh)"
 
-# Added by n-install (see http://git.io/n-install-repo).
-export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+# pnpm path variables
+export PNPM_HOME="/Users/tom/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 
 #### FIG ENV VARIABLES ####
 # Please make sure this block is at the end of this file.
