@@ -13,6 +13,7 @@ alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias balk="echo 'ಠ_ಠ' | pbcopy"
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 alias sol="echo '◎' | pbcopy"
+alias stx="echo 'Ӿ' | pbcopy"
 
 # Files & Directories
 alias ..="cd .."
