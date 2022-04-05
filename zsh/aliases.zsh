@@ -14,6 +14,7 @@ alias balk="echo 'ಠ_ಠ' | pbcopy"
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 alias sol="echo '◎' | pbcopy"
 alias stx="echo 'Ӿ' | pbcopy"
+alias wen="echo 'https://tenor.com/view/when-wen-naru-yummi-yummi-universe-gif-23030317' | pbcopy"
 
 # Files & Directories
 alias ..="cd .."
@@ -55,7 +56,7 @@ alias cbr="cargo build --release"
 
 # Node
 alias rnm="rm -rf node_modules"
-
+# pnpm
 alias pi="pnpm install"
 alias pa="pnpm add"
 alias pap="pnpm add --save-peer"
@@ -70,7 +71,7 @@ alias pb="pnpm build"
 alias pnuke="rm -rf node_modules pnpm-lock.yaml"
 alias plts="pnpm env use --global lts"
 alias platest="pnpm env use --global latest"
-
+# npm
 alias ni="npm install"
 alias nr="npm remove"
 alias nd="npm run dev"
@@ -78,7 +79,7 @@ alias ns="npm run start"
 alias nt="npm run test"
 alias nb="npm run build"
 alias nnuke="rm -rf node_modules package-lock.json"
-
+# yarn
 alias yd="yarn dev"
 alias ys="yarn start"
 alias yt="yarn test"

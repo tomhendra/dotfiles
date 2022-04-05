@@ -20,6 +20,7 @@ brew 'starship'
 brew 'trash-cli'
 brew 'tree'
 brew 'watchman' 
+brew 'flyctl'
 
 # Casks
 cask 'blender'
