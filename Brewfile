@@ -70,4 +70,4 @@ cask 'font-inter'
 mas 'Be Focused Pro', id: 961632517
 mas 'Bitwarden', id: 1352778147
 mas 'Notion Web Clipper', id: 1559269364
- 
+mas 'Xcode', id: 497799835
