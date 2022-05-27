@@ -42,8 +42,6 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 ## Post-Installation
 
 - Install premium fonts from iCloud backup.
-- Set iTerm2 to load preferences from iCloud/Preferences directory.
-  (Temporarily disable 'save changes to folder when iterm2 quits' to avoid overwrite).
 - Launch fig.app & go through setup.
 - Install apps not purchased from App Store (Affinity Photo/Designer/Sketch).
 - Install web browser extensions.
@@ -94,7 +92,6 @@ Other supported apps that I use would not benefit much from Mackup:
 
 - Less control (although specifying which apps to handle in `.cfg` is better than the reverse).
 - Zsh / Vim errors (reported) - Common pattern seems to be excluding zsh in `Mackup.cfg`! 
-- iTerm2 overwrites Mackup-created symlinks (verified).
 - Moving things away from Mackup due to errors complicates maintenance by requiring additional backup methods.
 - Mackup dev team's support list contains apps without official vendor support. 
 - Negative comments from vendors requesting removal from Mackup's support list!
@@ -104,7 +101,7 @@ All things considered, Mackup's negatives outweigh its positives.
 
 The current setup of git and symlinks works, but could scale messily and isn't compatible with Linux. Bringing a tool into play would be beneficial. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
 
-iCloud is being used for iTerm2 prefs. This with choosing Stow sets the next course of action when time allows: 
+Next course of action when time allows: 
 
-- 📝 Dotfiles: Stow and git (make Linux-safe for future proofing).
+- 📝 Dotfiles: Stow and git (make Linux-safe for sharing).
 - 📝 App prefs: iCloud (native support by app, or `ln` / Stow from iCloud to Library).

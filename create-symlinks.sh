@@ -18,5 +18,8 @@ symlink git/.gitignore_global .gitignore_global
 # Starship
 symlink starship.toml .config/starship.toml
 
+# Kitty
+symlink kitty.conf .config/kitty/kitty.conf
+
 # zsh
 symlink zsh/.zshrc .zshrc
