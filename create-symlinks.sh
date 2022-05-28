@@ -23,3 +23,4 @@ symlink kitty.conf .config/kitty/kitty.conf
 
 # zsh
 symlink zsh/.zshrc .zshrc
+symlink zsh/.zsh_plugins.txt .zsh_plugins.txt

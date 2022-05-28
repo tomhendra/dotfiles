@@ -4,7 +4,6 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/cask-fonts'
 
 # Brews
-brew 'antibody'
 brew 'bat'
 brew 'doctl'
 brew 'gh'

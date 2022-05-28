@@ -1,11 +1,14 @@
 # Fig pre block. Keep at the top of this file.
 . "$HOME/.fig/shell/zshrc.pre.zsh"
 
-# Antibody init
-source <(antibody init)
+# clone antidote if necessary
+[[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
 
-# Plugins
-antibody bundle < ${HOME}/.dotfiles/zsh/plugins.zsh
+# source antidote
+. ~/.antidote/antidote.zsh
+
+# generate and source plugins from ~/.zsh_plugins.txt
+antidote load
 
 # $PATH additions
 source ${HOME}/.dotfiles/zsh/paths.zsh
