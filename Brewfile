@@ -23,7 +23,6 @@ brew 'flyctl'
 
 # Casks
 cask 'blender'
-cask 'brave-browser'
 cask 'discord'
 cask 'docker'
 cask 'fig'
