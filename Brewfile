@@ -24,6 +24,7 @@ brew 'flyctl'
 
 # Casks
 cask 'blender'
+cask 'discord'
 cask 'docker'
 cask 'fig'
 cask 'figma'
@@ -65,6 +66,7 @@ cask 'font-roboto'
 cask 'font-inter'
 
 # Mac App Store
+mas 'AdGuard para Safari', id: 1440147259
 mas 'Be Focused Pro', id: 961632517
 mas 'Bitwarden', id: 1352778147
 mas 'Notion Web Clipper', id: 1559269364
