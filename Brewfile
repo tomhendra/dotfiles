@@ -36,12 +36,8 @@ cask 'kap'
 cask 'kitty'
 cask 'logseq'
 cask 'omnidisksweeper'
-cask 'microsoft-edge'
-cask 'notion'
 cask 'qbittorrent'
 cask 'raycast'
-cask 'signal'
-cask 'skype'
 cask 'slack'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
@@ -69,5 +65,6 @@ cask 'font-inter'
 mas 'AdGuard para Safari', id: 1440147259
 mas 'Be Focused Pro', id: 961632517
 mas 'Bitwarden', id: 1352778147
-mas 'Notion Web Clipper', id: 1559269364
+mas 'Numbers', id: 409203825
+mas 'Pages', id: 409201541
 mas 'Xcode', id: 497799835
