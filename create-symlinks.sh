@@ -15,11 +15,11 @@ symlink bat.cfg .config/bat/config
 symlink git/.gitconfig .gitconfig
 symlink git/.gitignore_global .gitignore_global
 
-# Starship
-symlink starship.toml .config/starship.toml
-
 # Kitty
 symlink kitty.conf .config/kitty/kitty.conf
+
+# Starship
+symlink starship.toml .config/starship.toml
 
 # zsh
 symlink zsh/.zshrc .zshrc

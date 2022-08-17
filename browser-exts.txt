@@ -1,4 +1,3 @@
-Notion web clipper
 React dev tools
 Testing Playground
 
