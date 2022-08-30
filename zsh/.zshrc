@@ -1,10 +1,13 @@
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+
 # clone antidote if necessary
-[[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
+if ! [[ -e ${ZDOTDIR:-~}/.antidote ]]; then
+  git clone https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+fi
 
 # source antidote
-. ~/.antidote/antidote.zsh
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
 # generate and source plugins from ~/.zsh_plugins.txt
 antidote load
