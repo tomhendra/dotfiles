@@ -1,6 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
-
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # clone antidote if necessary
 if ! [[ -e ${ZDOTDIR:-~}/.antidote ]]; then
   git clone https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
@@ -29,4 +28,4 @@ export PNPM_HOME="/Users/tom/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

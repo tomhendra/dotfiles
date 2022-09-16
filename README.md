@@ -43,7 +43,7 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 
 - Install premium fonts from iCloud backup.
 - Launch fig.app & go through setup.
-- Install apps not purchased from App Store (Affinity Photo/Designer/Sketch).
+- Install any apps not purchased from App Store or available vs Homebrew.
 - Install web browser extensions.
 - Restart computer.
 
