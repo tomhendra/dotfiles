@@ -11,6 +11,7 @@ alias pingg="echo 'tom: Pinging Google' && ping www.google.com";
 alias reloadzsh="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias balk="echo 'ಠ_ಠ' | pbcopy"
+alias strong="ᕦ(ಠ⁠_⁠ಠ)ᕤ"
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 alias sol="echo '◎' | pbcopy"
 alias stx="echo 'Ӿ' | pbcopy"
