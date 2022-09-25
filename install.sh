@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "🚀 Hello $(whoami)! Let's setup the developer environment for this Mac."
+echo "👋 Hello $(whoami)! Let's setup the developer environment for this Mac."
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -32,7 +32,7 @@ echo 'Cloning dotfiles...'
 # Create ~/Developer directory & Clone GitHub project repos into it.
 echo 'Cloning GitHub repos into Developer...'
   mkdir -p ${HOME}/Developer
-  sh ${dotfiles}/git/clone-projects.sh
+  sh ${dotfiles}/git/projects.sh
 
 # Install pnpm
 echo "installing pnpm..."
@@ -54,7 +54,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Install Xcode CLT as required by Homebrew.
 if ! xcode-select --print-path &> /dev/null; then
-  echo 'Installing Xcode CLT. Close dialog box once complete...'
+  echo 'Installing Xcode CLT. Close the dialog box once complete...'
   xcode-select --install &> /dev/null
   # Wait until the Xcode Command Line Tools are installed
   until xcode-select --print-path &> /dev/null; do
@@ -80,7 +80,7 @@ echo 'Removing quarantine attribute from Quicklook plugins...'
   xattr -d -r com.apple.quarantine ${HOME}/Library/QuickLook
 
 # Bat colour theme
-echo 'Installing theme for bat...'
+echo 'Installing colour stheme for bat...'
   mkdir -p ~/.config/bat/themes
   cp ${dotfiles}/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
   bat cache --build

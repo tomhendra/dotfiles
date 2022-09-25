@@ -3,35 +3,38 @@
 <h1>Hola 👋</h1>
 </div>
 
-**TLDR:** For all the web dev things on macOS: `curl -ssL https://git.io/tomdot | sh`
+**TL;DR:** For all the web dev things on macOS: `curl -ssL https://git.io/tomdot | sh`
 
-**Disclaimer:** Dotfiles are personal things, and as such I would advise against rolling these ones unmodified. By all means, fill your boots, but I am no shellscript expert so there most likely will be misfires. 
+**Disclaimer:** Dotfiles are personal things, and as such I would advise against rolling these ones unmodified. By all means, fill your boots, but I am no shellscript expert so there probably will be misfires. 
 
 ## What is Installed
 
 On a fresh macOS system, running `install.sh` script will handle the following:
 
-1. Xcode CLT & Homebrew.
-2. SSH keys & repos from GitHub.
-3. Homebrew packages.
-4. App Store purchases.
-5. Node.js configured via n.
-6. npm global packages.
-7. Symlinks from `~/.dotfiles`.
-8. macOS system preferences.
+1. SSH auth for GitHub.
+2. Projects from GitHub to local ~/Developer directory.
+3. Node.js using pnpm as both version & package manager.
+4. Global npm packages.
+5. Rust.
+6. Homebrew & packages.
+7. App Store purchases.
+8. Bat syntax colour theme.
+9. Symlinks from `~/.dotfiles`.
+10. macOS system preferences.
 
 ## Pre-Installation
 
 - Access iCloud in terminal: `cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/`
 - Backup premium fonts to `iCloud/Fonts` (Operator Mono & Operator Mono Nerd Font).
 - Backup any desired app preferences to `iCloud/Preferences`.
-- Ensure all desired GitHub repos are included in `~/.dotfiles/git/clone-projects.sh` to be cloned to local.
-- Ensure local `~/.dotfiles` & repos in `~/Dev` are up-to-date & pushed to GitHub.
+- Ensure all active projects are included in `~/.dotfiles/git/projects.sh` to be cloned from GitHub.
+- Ensure local `~/.dotfiles` & repos in `~/Developer` are up-to-date & pushed to GitHub.
+- Ensure `~/dotfiles/browser-exts.txt` is up-to-date.
 
 ## Installation
 
-- To perform a clean install on macOS Monterey: 
-  - Launch System Preferences & select Erase All Content and Settings.
+- To perform a clean install on macOS Monterey or later: 
+  - Launch System Preferences & select 'Erase All Content and Settings'.
 - To perform a clean install on macOS Big Sur or earlier: 
   - Enter Internet Recovery Mode by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
   - Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD' as APFS (for SSD).
@@ -42,9 +45,9 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 ## Post-Installation
 
 - Install premium fonts from iCloud backup.
-- Launch fig.app & go through setup.
-- Install any apps not purchased from App Store or available vs Homebrew.
-- Install web browser extensions.
+- Launch fig.app with `fig` in console & go through setup.
+- Install any apps not purchased from App Store or available via Homebrew.
+- Install web browser extensions from `browser-exts.txt`.
 - Restart computer.
 
 ## Credit
@@ -58,7 +61,10 @@ Inspiration comes from these very smart people with many thanks:
 - [Paul Miller](https://github.com/paulmillr/dotfiles)
 - [Zach Holman](https://github.com/holman/dotfiles)
 
-## Next Steps: Add Tooling 
+## Notes
+This setup uses Fig for zsh plugin management. If preferable to control this manually then [Antidote](https://getantidote.github.io) has you covered. 
+
+At the time of writing (25/09/22) Fig's Dotfiles feature is lacking – aliases do not appear in Fig's autocomplete.
 
 Mackup was removed from the workflow due to the following considerations. 
 
@@ -97,11 +103,11 @@ Other supported apps that I use would not benefit much from Mackup:
 - Negative comments from vendors requesting removal from Mackup's support list!
 - Dropbox file duplicate errors due to devices syncing concurrently (error handling concerns).
 
-All things considered, Mackup's negatives outweigh its positives. 
+Mackup's drawbacks outweigh its benefits. 
 
 The current setup of git and symlinks works, but could scale messily and isn't compatible with Linux. Bringing a tool into play would be beneficial. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
 
-Next course of action when time allows: 
+## Roadmap
 
 - 📝 Dotfiles: Stow and git (make Linux-safe for sharing).
 - 📝 App prefs: iCloud (native support by app, or `ln` / Stow from iCloud to Library).
