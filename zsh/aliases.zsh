@@ -74,6 +74,7 @@ alias pnt="pnpm test"
 alias pnb="pnpm build"
 alias pnlts="pnpm env use --global lts"
 alias pnlatest="pnpm env use --global latest"
+alias pndir cd $PNPM_HOME
 
 # npm
 alias ni="npm install"
