@@ -23,4 +23,3 @@ symlink starship.toml .config/starship.toml
 
 # zsh
 symlink zsh/.zshrc .zshrc
-symlink zsh/.zsh_plugins.txt .zsh_plugins.txt

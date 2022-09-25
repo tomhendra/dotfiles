@@ -1,9 +1,9 @@
 # General
 alias brewup="brew upgrade && brew cleanup && brew doctor"
 alias c="code ."
-alias cm="open -a 'Google Chrome'"
-alias br="open -a 'Brave Browser'"
-alias ff="open -a 'Firefox Developer Edition'"
+alias chrome="open -a 'Google Chrome'"
+alias brave="open -a 'Brave Browser'"
+alias firefox="open -a 'Firefox Developer Edition'"
 alias cafe="caffeinate -u -t 3600"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
@@ -11,7 +11,7 @@ alias pingg="echo 'tom: Pinging Google' && ping www.google.com";
 alias reloadzsh="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias balk="echo 'ಠ_ಠ' | pbcopy"
-alias strong="ᕦ(ಠ⁠_⁠ಠ)ᕤ"
+alias strong'ᕦ(ಠ_ಠ)ᕤ'
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 alias sol="echo '◎' | pbcopy"
 alias stx="echo 'Ӿ' | pbcopy"
