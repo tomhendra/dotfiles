@@ -1,18 +1,14 @@
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 
-# Aliases
-source ${HOME}/.dotfiles/zsh/aliases.zsh
+# $PATH variable additions
+source ${HOME}/.dotfiles/zsh/path.zsh
 
 # Environment variables
-source ${HOME}/.dotfiles/zsh/envs.zsh
+source ${HOME}/.dotfiles/zsh/vars.zsh
 
-# $PATH variables
-source ${HOME}/.dotfiles/zsh/paths.zsh
-
-# pnpm $PATH variables
-export PNPM_HOME="/Users/tom/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+# Aliases
+source ${HOME}/.dotfiles/zsh/aliases.zsh
 
 # Starship init
 eval "$(starship init zsh)"

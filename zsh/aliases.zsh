@@ -2,7 +2,6 @@
 alias brewup="brew upgrade && brew cleanup && brew doctor"
 alias c="code ."
 alias chrome="open -a 'Google Chrome'"
-alias brave="open -a 'Brave Browser'"
 alias firefox="open -a 'Firefox Developer Edition'"
 alias cafe="caffeinate -u -t 3600"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
@@ -11,15 +10,15 @@ alias pingg="echo 'tom: Pinging Google' && ping www.google.com";
 alias reloadzsh="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias balk="echo 'ಠ_ಠ' | pbcopy"
-alias strong'ᕦ(ಠ_ಠ)ᕤ'
+alias strong='ᕦ(ಠ_ಠ)ᕤ'
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
+alias wen="echo 'https://tenor.com/view/when-wen-naru-yummi-yummi-universe-gif-23030317' | pbcopy"
 alias sol="echo '◎' | pbcopy"
 alias stx="echo 'Ӿ' | pbcopy"
-alias wen="echo 'https://tenor.com/view/when-wen-naru-yummi-yummi-universe-gif-23030317' | pbcopy"
 
 # Files & Directories
 alias ..="cd .."
-alias d="cd ~/Downloads"
+alias dl="cd ${HOME}/Downloads"
 alias dv="cd ${DEVELOPER}"
 alias df="cd ${DOTFILES}"
 alias dfc="code ${DOTFILES}"
