@@ -79,6 +79,12 @@ echo 'Installing Homebrew packages, fonts and applications...'
 echo 'Removing quarantine attribute from Quicklook plugins...' 
   xattr -d -r com.apple.quarantine ${HOME}/Library/QuickLook
 
+# Bat colour theme
+echo 'Installing theme for bat...'
+  mkdir -p ~/.config/bat/themes
+  cp ${dotfiles}/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
+  bat cache --build
+
 # Create symlinks from custom dotfiles, overwriting system defaults.
 echo 'Creating symlinks from dotfiles...' 
   sh ${dotfiles}/create-symlinks.sh
