@@ -64,6 +64,7 @@ alias pni="pnpm install"
 alias pna="pnpm add"
 alias pnap="pnpm add --save-peer"
 alias pnag="pnpm add --global"
+alias dlx="pnpm dlx"
 alias pnr="pnpm remove"
 alias pnu="pnpm update --latest --interactive"
 alias pnug="pnpm update --latest --interactive --global"
@@ -73,7 +74,7 @@ alias pnt="pnpm test"
 alias pnb="pnpm build"
 alias pnlts="pnpm env use --global lts"
 alias pnlatest="pnpm env use --global latest"
-alias pndir cd $PNPM_HOME
+alias pndir="cd $PNPM_HOME"
 
 # npm
 alias ni="npm install"
