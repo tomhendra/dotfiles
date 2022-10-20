@@ -10,16 +10,17 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Generate SSH key pair for GitHub authentication.
+# Generate SSH keys for GitHub authentication
 ssh="${HOME}/.ssh"
-echo "Generating RSA token for SSH..."
-  mkdir -p ${ssh}
-  echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa" > ${ssh}/config
-  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@outlook.com"
+mkdir -p ${ssh}
+
+echo "Generating RSA token for SSH authentication..."
+  echo "Host github.com-tomhendra\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa_tomhendra\n" > ${ssh}/config
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_tomhendra -C "tom.hendra@outlook.com"
   eval "$(ssh-agent -s)"
-# Authenticate with GitHub.
-echo 'Public key copied to clipboard. Paste it into your GitHub account...'
-  pbcopy < ${ssh}/id_rsa.pub
+
+echo 'Public key copied to clipboard. Paste it into your GitHub account for tomhendra - then logout in preparation for the next key...'
+  pbcopy < ${ssh}/id_rsa_tomhendra.pub
   open 'https://github.com/account/ssh'
 
 # Define dotfiles path variable.

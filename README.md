@@ -48,6 +48,7 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 - Launch fig.app with `fig` in console & go through setup.
 - Install any apps not purchased from App Store or available via Homebrew.
 - Install web browser extensions from `browser-exts.txt`.
+- Generate SSH keys for pseudonym.
 - Restart computer.
 
 ## Credit
