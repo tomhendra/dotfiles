@@ -15,7 +15,7 @@ ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
 
 echo "Generating RSA token for SSH authentication..."
-  echo "Host github.com-tomhendra\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa_tomhendra\n" > ${ssh}/config
+  echo "Host github.com\n HostName github.com\n PreferredAuthentications publickey\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa_tomhendra\n" > ${ssh}/config
   ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_tomhendra -C "tom.hendra@outlook.com"
   eval "$(ssh-agent -s)"
 
@@ -51,7 +51,7 @@ sh ${dotfiles}/global-pkg.sh
 
 # Install Rust via rustup
 echo "installing Rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
 
 # Install Xcode CLT as required by Homebrew.
 if ! xcode-select --print-path &> /dev/null; then
