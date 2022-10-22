@@ -1,11 +1,25 @@
 #!/bin/sh
 
-Developer="${HOME}/Developer"
+username="tomhendra"
+dir="${HOME}/Developer"
 
-# Clone project repos into Dev. Use --recursive to clone submodules.
-git clone git@github.com:tomhendra/coursework.git ${Developer}/coursework
-git clone git@github.com:tomhendra/blog-content.git ${Developer}/blog-content
-git clone git@github.com:tomhendra/blog.git ${Developer}/blog
-git clone git@github.com:tomhendra/yakk.git ${Developer}/yakk
-git clone git@github.com:tomhendra/the-lab.git ${Developer}/the-lab
-git clone git@github.com:tomhendra/personal-site.git ${Developer}/personal-site
+repos_array=(
+  "coursework" 
+  "blog-content" 
+  "blog" 
+  "yakk" 
+  "the-lab" 
+  "personal-site"
+)
+
+clone_repo () {
+  repo="$1"
+  
+  git clone git@github.com:${username}/${i}.git ${dir}/${i}
+  echo "$(whoami): ${i} cloned to ${dir}/${i}"
+}
+
+for i in "${repos_array[@]}";
+do
+  clone_repo ${i}
+done
