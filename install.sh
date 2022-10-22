@@ -15,9 +15,10 @@ ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
 
 echo "Generating RSA token for SSH authentication..."
-  echo "Host github.com\n HostName github.com\n User git\n PreferredAuthentications publickey\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
+  echo "Host github.com\n HostName github.com\n User git\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
   ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@outlook.com"
   eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_rsa
 
 echo 'Public key copied to clipboard. Paste it into your GitHub account for tomhendra - then logout in preparation for the next key...'
   pbcopy < ${ssh}/id_rsa.pub
