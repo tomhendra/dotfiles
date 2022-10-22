@@ -15,12 +15,12 @@ ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
 
 echo "Generating RSA token for SSH authentication..."
-  echo "Host github.com\n HostName github.com\n PreferredAuthentications publickey\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa_tomhendra\n" > ${ssh}/config
-  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_tomhendra -C "tom.hendra@outlook.com"
+  echo "Host github.com\n HostName github.com\n PreferredAuthentications publickey\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@outlook.com"
   eval "$(ssh-agent -s)"
 
 echo 'Public key copied to clipboard. Paste it into your GitHub account for tomhendra - then logout in preparation for the next key...'
-  pbcopy < ${ssh}/id_rsa_tomhendra.pub
+  pbcopy < ${ssh}/id_rsa.pub
   open 'https://github.com/account/ssh'
 
 # Define dotfiles path variable.
