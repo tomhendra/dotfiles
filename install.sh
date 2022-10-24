@@ -34,7 +34,7 @@ echo 'Cloning dotfiles...'
 # Create ~/Developer directory & Clone GitHub project repos into it.
 echo 'Cloning GitHub repos into Developer...'
   mkdir -p ${HOME}/Developer
-  sh ${dotfiles}/git/projects.sh
+  sh ${dotfiles}/git/get_repos.sh
 
 # Install pnpm
 echo "installing pnpm..."
@@ -48,7 +48,7 @@ echo "installing Node..."
 echo 'Installing global packages...'
 # reload .zshrc to use pnpm / Node
 . ${HOME}/.zshrc
-sh ${dotfiles}/global-pkg.sh
+sh ${dotfiles}/global_pkg.sh
 
 # Install Rust via rustup
 echo "installing Rust..."
@@ -89,7 +89,7 @@ echo 'Installing colour stheme for bat...'
 
 # Create symlinks from custom dotfiles, overwriting system defaults.
 echo 'Creating symlinks from dotfiles...' 
-  sh ${dotfiles}/create-symlinks.sh
+  sh ${dotfiles}/create_symlinks.sh
 
 echo "✅ $(whoami)'s developer environment setup is complete!"
 

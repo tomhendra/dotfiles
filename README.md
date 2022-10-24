@@ -25,17 +25,18 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 ## Pre-Installation
 
 - Access iCloud in terminal: `cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/`
-- Backup premium fonts to `iCloud/Fonts` (Operator Mono & Operator Mono Nerd Font).
+- Backup premium fonts from `~/Library/Fonts` to `iCloud/Fonts` (Operator Mono & Operator Mono Nerd Font).
 - Backup any desired app preferences to `iCloud/Preferences`.
-- Ensure all active projects are included in `~/.dotfiles/git/projects.sh` to be cloned from GitHub.
+- Login to icloud.com and ensure fonts and preferences have uploaded.
+- Ensure all active projects are included in `~/.dotfiles/git/get_repos.sh` to be cloned from GitHub.
 - Ensure local `~/.dotfiles` & repos in `~/Developer` are up-to-date & pushed to GitHub.
-- Ensure `~/dotfiles/browser-exts.txt` is up-to-date.
+- Ensure `~/dotfiles/browser_exts.txt` is up-to-date.
 
 ## Installation
 
 - To perform a clean install on macOS Monterey or later: 
   - Launch System Preferences & select 'Erase All Content and Settings'.
-- To perform a clean install on macOS Big Sur or earlier: 
+- To perform a clean install on macOS Big Sur or earlier:
   - Enter Internet Recovery Mode by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
   - Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD' as APFS (for SSD).
 - Install fresh copy of macOS using on-screen prompts.
@@ -47,7 +48,7 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 - Install premium fonts from iCloud backup.
 - Launch fig.app with `fig` in console & go through setup.
 - Install any apps not purchased from App Store or available via Homebrew.
-- Install web browser extensions from `browser-exts.txt`.
+- Install web browser extensions from `browser_exts.txt`.
 - Generate SSH keys for pseudonym.
 - Restart computer.
 
