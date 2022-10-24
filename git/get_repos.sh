@@ -4,12 +4,13 @@ username="tomhendra"
 dir="${HOME}/Developer"
 
 repos_array=(
-  "coursework" 
-  "blog-content" 
   "blog" 
-  "yakk" 
-  "the-lab" 
+  "blog-content" 
+  "coursework" 
   "personal-site"
+  "templates" 
+  "the-lab" 
+  "yakk" 
 )
 
 clone_repo () {

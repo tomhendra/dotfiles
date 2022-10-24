@@ -27,10 +27,11 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 - Access iCloud in terminal: `cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/`
 - Backup premium fonts from `~/Library/Fonts` to `iCloud/Fonts` (Operator Mono & Operator Mono Nerd Font).
 - Backup any desired app preferences to `iCloud/Preferences`.
-- Login to icloud.com and ensure fonts and preferences have uploaded.
+- Login to icloud.com via a web browser and ensure fonts and preferences have uploaded.
 - Ensure all active projects are included in `~/.dotfiles/git/get_repos.sh` to be cloned from GitHub.
 - Ensure local `~/.dotfiles` & repos in `~/Developer` are up-to-date & pushed to GitHub.
 - Ensure `~/dotfiles/browser_exts.txt` is up-to-date.
+- Ensure VS Code settings sync is on.
 
 ## Installation
 
