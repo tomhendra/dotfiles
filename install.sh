@@ -14,7 +14,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
 
-read -p "🤨 Have you logged in to yourGitHub account? Press any key to confirm..."
+read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
 
 echo "🛠️ Generating RSA token for SSH authentication..."
   echo "Host github.com\n HostName github.com\n User git\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
