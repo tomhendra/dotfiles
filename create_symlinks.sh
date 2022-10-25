@@ -9,14 +9,15 @@ symlink () {
 }
 
 # bat
-symlink bat.cfg .config/bat/config
+symlink bat.conf .config/bat/config
 
 # git
 symlink git/.gitconfig .gitconfig
 symlink git/.gitignore_global .gitignore_global
 
 # Kitty
-symlink kitty.conf .config/kitty/kitty.conf
+symlink kitty/kitty.conf .config/kitty/kitty.conf
+symlink kitty/current-theme.conf .config/kitty/current-theme.conf
 
 # Starship
 symlink starship.toml .config/starship.toml

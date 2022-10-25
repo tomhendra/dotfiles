@@ -16,8 +16,7 @@ repos_array=(
 clone_repo () {
   repo="$1"
   
-  git clone git@github.com:${username}/${i}.git ${dir}/${i}
-  echo "$(whoami): ${i} cloned to ${dir}/${i}"
+  git clone git@github.com:${username}/${i}.git ${dir}/${i} && echo ${i} cloned to ${dir}/${i}"
 }
 
 for i in "${repos_array[@]}";

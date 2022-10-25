@@ -3,9 +3,10 @@
 <h1>Hola 👋</h1>
 </div>
 
-**TL;DR:** For all the web dev things on macOS: `curl -ssL https://git.io/tomdot | sh`
+**TL;DR:** For web dev things on macOS: `curl -ssL https://git.io/tomdot | sh`
 
-**Disclaimer:** Dotfiles are personal things, and as such I would advise against rolling these ones unmodified. By all means, fill your boots, but I am no shellscript expert so there probably will be misfires. 
+**Disclaimer:** Dotfiles are personal things, and as such I would advise against rolling these ones unmodified. 
+By all means, fill your boots, but I am no shellscript expert so there probably will be misfires. 
 
 ## What is Installed
 
@@ -13,43 +14,41 @@ On a fresh macOS system, running `install.sh` script will handle the following:
 
 1. SSH auth for GitHub.
 2. Projects from GitHub to local ~/Developer directory.
-3. Node.js using pnpm as both version & package manager.
-4. Global npm packages.
-5. Rust.
-6. Homebrew & packages.
-7. App Store purchases.
-8. Bat syntax colour theme.
-9. Symlinks from `~/.dotfiles`.
-10. macOS system preferences.
+3. pnpm.
+4. Node.js using pnpm the version manager.
+5. Global npm packages.
+6. Rust.
+7. Homebrew & packages.
+8. App Store purchases.
+9. Bat colour theme.
+10. Symlinks from `~/.dotfiles`.
+11. macOS system preferences.
 
 ## Pre-Installation
 
 - Access iCloud in terminal: `cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/`
 - Backup premium fonts from `~/Library/Fonts` to `iCloud/Fonts` (Operator Mono & Operator Mono Nerd Font).
 - Backup any desired app preferences to `iCloud/Preferences`.
-- Login to icloud.com via a web browser and ensure fonts and preferences have uploaded.
 - Ensure all active projects are included in `~/.dotfiles/git/get_repos.sh` to be cloned from GitHub.
 - Ensure local `~/.dotfiles` & repos in `~/Developer` are up-to-date & pushed to GitHub.
 - Ensure `~/dotfiles/browser_exts.txt` is up-to-date.
 - Ensure VS Code settings sync is on.
+- Login to icloud.com with a browser and ensure fonts and preferences have been uploaded before proceeding.
 
 ## Installation
 
-- To perform a clean install on macOS Monterey or later: 
-  - Launch System Preferences & select 'Erase All Content and Settings'.
-- To perform a clean install on macOS Big Sur or earlier:
-  - Enter Internet Recovery Mode by holding <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>R</kbd> on startup.
-  - Use Disk Utility to delete 'Macintosh - Data volume' and erase 'Macintosh HD' as APFS (for SSD).
-- Install fresh copy of macOS using on-screen prompts.
-- Login to App Store manually (`mas signin` is [broken](https://github.com/mas-cli/mas/issues/164) 🤕).
-- Run this command in terminal: `curl -ssL https://git.io/tomdot | sh`.
+- Perform a clean install of macOS. See Apple Support [here](https://support.apple.com/en-gb/guide/mac-help/mh27903/mac) and [here](https://support.apple.com/en-us/HT204904) for instructions.
+- Ensure you are logged into the App Store (`mas signin` has been [broken](https://github.com/mas-cli/mas/issues/164) for years).
+- Install password manager and login to GitHub via a browser.
+- Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up.
 
 ## Post-Installation
 
 - Install premium fonts from iCloud backup.
 - Launch fig.app with `fig` in console & go through setup.
+- Fig integration with Kitty is experimental. Follow instructions [here](https://github.com/withfig/fig/issues/26#issuecomment-1022537900) and [here](https://github.com/withfig/fig/issues/26#issuecomment-1107334176).
 - Install any apps not purchased from App Store or available via Homebrew.
-- Install web browser extensions from `browser_exts.txt`.
+- Install web browser extensions from `browser_exts.txt` (Chrome will do this via sync)
 - Generate SSH keys for pseudonym & get repos from GitHub.
 - Restart computer.
 
@@ -67,7 +66,7 @@ Inspiration comes from these very smart people with many thanks:
 ## Notes
 This setup uses Fig for zsh plugin management. If preferable to control this manually then [Antidote](https://getantidote.github.io) has you covered. 
 
-At the time of writing (25/09/22) Fig's Dotfiles feature is lacking – aliases do not appear in Fig's autocomplete.
+At the time of writing (25/10/22) Fig's Dotfiles feature is lacking – aliases added to Fig do not appear in Fig's autocomplete!
 
 Mackup was removed from the workflow due to the following considerations. 
 
@@ -106,11 +105,10 @@ Other supported apps that I use would not benefit much from Mackup:
 - Negative comments from vendors requesting removal from Mackup's support list!
 - Dropbox file duplicate errors due to devices syncing concurrently (error handling concerns).
 
-Mackup's drawbacks outweigh its benefits. 
+Conclusion -- Mackup's drawbacks outweigh its benefits. 
 
-The current setup of git and symlinks works, but could scale messily and isn't compatible with Linux. Bringing a tool into play would be beneficial. GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
+## TODO
 
-## Roadmap
-
-- 📝 Dotfiles: Stow and git (make Linux-safe for sharing).
-- 📝 App prefs: iCloud (native support by app, or `ln` / Stow from iCloud to Library).
+The current setup of git and symlinks works, but could scale messily and isn't compatible with Linux. 
+Bringing a tool into play would be beneficial. 
+GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
