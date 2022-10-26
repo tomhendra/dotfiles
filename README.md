@@ -1,60 +1,63 @@
 <div align=center>
 <img alt="Tom Hendra logo" src="https://res.cloudinary.com/tomhendra/image/upload/v1567091669/tomhendra-logo/tomhendra-logo-round-1024.png" width="100" />
-<h1>Hola 👋</h1>
+<h1>tomdot</h1>
 </div>
 
-**TL;DR:** For web dev things on macOS: `curl -ssL https://git.io/tomdot | sh`
+**TL;DR:** For web dev things on a clean macOS install: `curl -ssL https://git.io/tomdot | sh`
 
-**Disclaimer:** Dotfiles are personal things, and as such I would advise against rolling these ones unmodified. 
-By all means, fill your boots, but I am no shellscript expert so there probably will be misfires. 
+**Disclaimer:** Dotfiles are personal things, and as such I advise against rolling these ones unmodified — they are specific to my setup and will need to be tweaked for yours. 
 
-## What is Installed
+## What is tomdot?
 
-On a fresh macOS system, running `install.sh` script will handle the following:
+I am Tom and these are my dotfiles so tomdot is how they shall be known!
 
-1. SSH auth for GitHub.
-2. Projects from GitHub to local ~/Developer directory.
-3. pnpm.
-4. Node.js using pnpm the version manager.
-5. Global npm packages.
-6. Rust.
-7. Homebrew & packages.
-8. App Store purchases.
-9. Bat colour theme.
-10. Symlinks from `~/.dotfiles`.
-11. macOS system preferences.
+On a fresh macOS system, running the script will do the following:
 
-## Pre-Installation
+1. Generate SSH auth keys for GitHub.
+2. Download repos from GitHub to your local machine.
+3. Install pnpm.
+4. Install Node.js using pnpm as the version manager.
+5. Install global npm packages.
+6. Install Rust.
+7. Install Homebrew & packages.
+8. Install Mac App Store purchases.
+9. Change the Bat colour theme.
+10. Symlink config files from `~/.dotfiles` to system.
+11. Update some macOS system preferences.
 
-- Access iCloud in terminal: `cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/`
-- Backup premium fonts from `~/Library/Fonts` to `iCloud/Fonts` (Operator Mono & Operator Mono Nerd Font).
-- Backup any desired app preferences to `iCloud/Preferences`.
-- Ensure all active projects are included in `~/.dotfiles/git/get_repos.sh` to be cloned from GitHub.
-- Ensure local `~/.dotfiles` & repos in `~/Developer` are up-to-date & pushed to GitHub.
-- Ensure `~/dotfiles/browser_exts.txt` is up-to-date.
-- Ensure VS Code settings sync is on.
-- Login to icloud.com with a browser and ensure fonts and preferences have been uploaded before proceeding.
+## Preparation
+
+There is some preparation to be done before performing a clean install of macOS to ensure smooth sailing.
+
+- Backup fonts to iCloud: `mv ~/Library/Fonts ~/Library/Mobile\ Documents/com~apple~CloudDocs/Fonts`.
+- Backup any desired app preference files to iCloud.
+- Ensure all repos that you want to be cloned from GitHub are included in the `repos_array` of `~/.dotfiles/git/get_repos.sh`.
+- Ensure local `~/.dotfiles` and project repos are up-to-date & pushed to GitHub.
+- Ensure VS Code settings sync is turned on.
+- Ensure browsers are signed into and synced.
+- Ensure Bitwarden or equivalent password manager is synced.
+- Login to icloud with a browser and ensure your backed-up fonts and preferences have actually been uploaded.
 
 ## Installation
 
-- Perform a clean install of macOS. See Apple Support [here](https://support.apple.com/en-gb/guide/mac-help/mh27903/mac) and [here](https://support.apple.com/en-us/HT204904) for instructions.
-- Ensure you are logged into the App Store (`mas signin` has been [broken](https://github.com/mas-cli/mas/issues/164) for years).
-- Install password manager and login to GitHub via a browser.
-- Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up.
+1. Perform a clean install of macOS. See Apple Support articles [here](https://support.apple.com/en-gb/guide/mac-help/mh27903/mac) and [here](https://support.apple.com/en-us/HT204904) for instructions.
+2. Ensure you are logged into the App Store (`mas signin` has been [broken for years](https://github.com/mas-cli/mas/issues/164)).
+3. Install Bitwarden, enable the extension in Safari and login to GitHub.
+4. Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up!
 
 ## Post-Installation
 
-- Install premium fonts from iCloud backup.
-- Launch fig.app with `fig` in console & go through setup.
-- Fig integration with Kitty is experimental. Follow instructions [here](https://github.com/withfig/fig/issues/26#issuecomment-1022537900) and [here](https://github.com/withfig/fig/issues/26#issuecomment-1107334176).
-- Install any apps not purchased from App Store or available via Homebrew.
-- Install web browser extensions from `browser_exts.txt` (Chrome will do this via sync)
-- Generate SSH keys for pseudonym & get repos from GitHub.
+- Install fonts backed-up iCloud.
+- Launch fig with `fig` in the terminal & go through setup (Kitty integration is experimental - See [here](https://github.com/withfig/fig/issues/26#issuecomment-1022537900) and [here](https://github.com/withfig/fig/issues/26#issuecomment-1107334176)).
+- Install any apps not purchased from App Store or unavailable via Homebrew.
+- Login to Firefox & Chrome to sync extensions etc.
+- Generate SSH keys for pseudonym & get repos from GitHub via script in `~Documents/Dev/Auth`.
+- Change default browser to Firefox Developer Edition
 - Restart computer.
 
 ## Credit
 
-Inspiration comes from these very smart people with many thanks:
+The tomdot repo was cobbled together with many thanks to these very smart people:
 
 - [Dries Vints](https://github.com/driesvints/dotfiles)
 - [Kent C Dodds](https://github.com/kentcdodds/dotfiles)
