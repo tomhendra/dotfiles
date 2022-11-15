@@ -7,9 +7,6 @@
 ehthumbs.db
 Thumbs.db
 
-# VSCode
-.vscode/
-
 # npm
 npm-debug.log
 
