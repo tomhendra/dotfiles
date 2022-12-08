@@ -77,7 +77,8 @@ alias pnb="pnpm build"
 alias pnlts="pnpm env use --global lts"
 alias pnlatest="pnpm env use --global latest"
 alias pndir="cd $PNPM_HOME"
-alias pnaipt="pnpm config set auto-install-peers true"
+alias pnaip="pnpm config set auto-install-peers true"
+alias t="pnpm t"
 
 # npm
 alias ni="npm install"

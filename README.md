@@ -34,9 +34,9 @@ There is some preparation to be done before performing a clean install of macOS 
 - Ensure all repos that you want to be cloned from GitHub are included in the `repos_array` of `~/.dotfiles/git/get_repos.sh`.
 - Ensure local `~/.dotfiles` and project repos are up-to-date & pushed to GitHub.
 - Ensure VS Code settings sync is turned on.
-- Ensure browsers are signed into and synced.
+- Ensure browsers are signed into and are synced.
 - Ensure Bitwarden or equivalent password manager is synced.
-- Login to icloud with a browser and ensure your backed-up fonts and preferences have actually been uploaded.
+- Login to icloud with a browser and ensure all backed-up fonts and preferences have actually been uploaded.
 
 ## Installation
 
@@ -48,16 +48,15 @@ There is some preparation to be done before performing a clean install of macOS 
 ## Post-Installation
 
 - Install fonts backed-up iCloud.
-- Launch fig with `fig` in the terminal & go through setup (Kitty integration is experimental - See [here](https://github.com/withfig/fig/issues/26#issuecomment-1022537900) and [here](https://github.com/withfig/fig/issues/26#issuecomment-1107334176)).
+- Launch fig with `fig` in the terminal & go through setup (search for latest Kitty integration guide)
 - Install any apps not purchased from App Store or unavailable via Homebrew.
-- Login to Firefox & Chrome to sync extensions etc.
-- Generate SSH keys for pseudonym & get repos from GitHub via script in `~Documents/Dev/Auth`.
-- Change default browser to Firefox Developer Edition
+- Login to Chrome & Firefox to sync extensions etc.
+- Change default browser to Google Chrome
 - Restart computer.
 
 ## Credit
 
-The tomdot repo was cobbled together with many thanks to these very smart people:
+The tomdot repo was assembled with many thanks to these very smart people:
 
 - [Dries Vints](https://github.com/driesvints/dotfiles)
 - [Kent C Dodds](https://github.com/kentcdodds/dotfiles)

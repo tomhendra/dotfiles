@@ -8,6 +8,7 @@ repos_array=(
   "blog-content" 
   "coursework" 
   "personal-site"
+  "stitch" 
   "templates" 
   "the-lab" 
   "yakk" 
