@@ -17,8 +17,8 @@ mkdir -p ${ssh}
 read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
 
 echo "🛠️ Generating RSA token for SSH authentication..."
-  echo "Host github.com\n HostName github.com\n User git\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
-  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@outlook.com"
+  echo "Host *\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@wembleystudios.com"
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_rsa
   pbcopy < ${ssh}/id_rsa.pub
