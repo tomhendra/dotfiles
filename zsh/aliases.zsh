@@ -78,7 +78,7 @@ alias pulatest="pnpm env use --global latest"
 alias pdir="cd $PNPM_HOME"
 alias paip="pnpm config set auto-install-peers true"
 alias pt="pnpm t"
-alias pnx="pnpm nx --"
+alias pnx="pnpm nx"
 
 # npm
 alias ni="npm install"

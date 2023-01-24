@@ -4,6 +4,7 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/cask-fonts'
 
 # Brews
+brew 'azure-cli'
 brew 'bat'
 brew 'flyctl'
 brew 'gh'
