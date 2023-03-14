@@ -95,5 +95,5 @@ echo '🛠️ Creating symlinks from dotfiles...'
 echo "✅ $(whoami)'s developer environment setup is complete!"
 
 # Apply macOS system preferences from dotfiles (this will reload the shell).
-echo '🛠️ Applying System Preferences. Restart terminal when it closes...'
-  source ${dotfiles}/.macos
+# echo '🛠️ Applying System Preferences. Restart terminal when it closes...'
+#  source ${dotfiles}/.macos
