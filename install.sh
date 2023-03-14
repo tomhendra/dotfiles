@@ -36,6 +36,7 @@ echo '🛠️ Cloning dotfiles...'
 echo '🛠️ Cloning GitHub repos into Developer...'
   mkdir -p ${HOME}/Developer
   sh ${dotfiles}/git/get_repos.sh
+  # ! No such directory
 
 # Install pnpm
 echo "🛠️ Installing pnpm..."
@@ -49,6 +50,7 @@ echo "🛠️ Installing Node..."
 # Install global npm packages.
 echo '🛠️ Installing global packages...'
   sh ${dotfiles}/global_pkg.sh
+  # ! No such directory
 
 # Install Rust
 echo "🛠️ Installing Rust..."
@@ -77,20 +79,24 @@ echo '🛠️ Installing Homebrew packages, fonts and applications...'
   brew bundle --file=${dotfiles}/Brewfile
   sudo xcodebuild -license accept
   brew cleanup
+  # ! No such directory
 
 # Quicklook plugins: remove the quarantine attribute (https://github.com/sindresorhus/quick-look-plugins)
 echo '🛠️ Removing quarantine attribute from Quicklook plugins...' 
   xattr -d -r com.apple.quarantine ${HOME}/Library/QuickLook
+  # ! No such directory
 
 # Bat colour theme
 echo '🛠️ Installing colour theme for bat...'
   mkdir -p ~/.config/bat/themes
   cp ${dotfiles}/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
   bat cache --build
+# ! No such directory
 
 # Create symlinks from custom dotfiles, overwriting system defaults.
 echo '🛠️ Creating symlinks from dotfiles...' 
   sh ${dotfiles}/create_symlinks.sh
+# ! No such directory
 
 echo "✅ $(whoami)'s developer environment setup is complete!"
 
