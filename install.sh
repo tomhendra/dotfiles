@@ -30,18 +30,17 @@ dotfiles="${HOME}/.dotfiles"
 
 # Clone dotfiles repo. 
 echo '🛠️ Cloning dotfiles...'
-  git clone git@github.com:tomhendra/dotfiles.git ${dotfiles}
+ git clone git@github.com:tomhendra/dotfiles.git ${dotfiles}
 
 # Create ~/Developer directory & Clone GitHub project repos into it.
 echo '🛠️ Cloning GitHub repos into Developer...'
-  mkdir -p ${HOME}/Developer
+mkdir -p ${HOME}/Developer
   sh ${dotfiles}/git/get_repos.sh
-  # ! No such directory
 
 # Install pnpm
 echo "🛠️ Installing pnpm..."
   curl -fsSL https://get.pnpm.io/install.sh | sh -
-  source ${HOME}/.zshrc
+    source ${HOME}/.zshrc
 
 # Install node using pnpm as the version manager
 echo "🛠️ Installing Node..."
@@ -50,27 +49,29 @@ echo "🛠️ Installing Node..."
 # Install global npm packages.
 echo '🛠️ Installing global packages...'
   sh ${dotfiles}/global_pkg.sh
-  # ! No such directory
 
 # Install Rust
 echo "🛠️ Installing Rust..."
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-# Install Xcode CLT as required by Homebrew.
+ 
+# # Install Xcode CLT as required by Homebrew.
 if ! xcode-select --print-path &> /dev/null; then
   echo '🛠️ Installing Xcode CLT. Close the dialog box once complete...'
-  xcode-select --install &> /dev/null
-  # Wait until the Xcode Command Line Tools are installed
-  until xcode-select --print-path &> /dev/null; do
+    xcode-select --install &> /dev/null
+    # Wait until the Xcode Command Line Tools are installed
+    until xcode-select --print-path &> /dev/null; do
       sleep 8
-  done
-fi
+    done
+ fi
+ read -p "🤨 Has Xcode finished to install? Press any key to confirm..."
 
 # Install Homebrew.
-if test ! $(which brew); then
-  echo '🛠️ Installing Homebrew...' 
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-fi
+ if test ! $(which brew); then
+   echo '🛠️ Installing Homebrew...' 
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/tom/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+ fi
 
 # Install Homebrew packges & apps with brew bundle.
 echo '🛠️ Installing Homebrew packages, fonts and applications...'
@@ -79,24 +80,20 @@ echo '🛠️ Installing Homebrew packages, fonts and applications...'
   brew bundle --file=${dotfiles}/Brewfile
   sudo xcodebuild -license accept
   brew cleanup
-  # ! No such directory
 
 # Quicklook plugins: remove the quarantine attribute (https://github.com/sindresorhus/quick-look-plugins)
 echo '🛠️ Removing quarantine attribute from Quicklook plugins...' 
   xattr -d -r com.apple.quarantine ${HOME}/Library/QuickLook
-  # ! No such directory
 
 # Bat colour theme
 echo '🛠️ Installing colour theme for bat...'
   mkdir -p ~/.config/bat/themes
   cp ${dotfiles}/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
   bat cache --build
-# ! No such directory
 
 # Create symlinks from custom dotfiles, overwriting system defaults.
 echo '🛠️ Creating symlinks from dotfiles...' 
   sh ${dotfiles}/create_symlinks.sh
-# ! No such directory
 
 echo "✅ $(whoami)'s developer environment setup is complete!"
 

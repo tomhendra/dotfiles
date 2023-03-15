@@ -30,7 +30,6 @@ cask 'docker'
 cask 'fig'
 cask 'figma'
 cask 'firefox-developer-edition'
-cask 'gog-galaxy'
 cask 'google-chrome'
 cask 'iina'
 cask 'insomnia'
@@ -39,7 +38,6 @@ cask 'kitty'
 cask 'logseq'
 cask 'microsoft-teams'
 cask 'omnidisksweeper'
-cask 'postman'
 cask 'qbittorrent'
 cask 'raycast'
 cask 'slack'
@@ -70,6 +68,3 @@ cask 'font-inter'
 mas 'AdGuard para Safari', id: 1440147259
 mas 'Be Focused Pro', id: 961632517
 mas 'Bitwarden', id: 1352778147
-mas 'Numbers', id: 409203825
-mas 'Pages', id: 409201541
-mas 'Xcode', id: 497799835

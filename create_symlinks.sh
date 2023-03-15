@@ -24,3 +24,4 @@ symlink starship.toml .config/starship.toml
 
 # zsh
 symlink zsh/.zshrc .zshrc
+symlink zsh/.zprofile .zprofile
