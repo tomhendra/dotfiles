@@ -1,7 +1,7 @@
 #!/bin/sh
   
 # NPM global packages
-pnpm add -d expo-cli
+pnpm add -g expo-cli
 pnpm add -g fkill-cli
 pnpm add -g serve
 pnpm add -g ngrok
