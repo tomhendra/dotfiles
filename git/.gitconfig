@@ -1,6 +1,6 @@
 [user]
 	name = Tom Hendra
-	email = tom.hendra@wembleystudios.com
+	email = tom.hendra@outlook.com
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
