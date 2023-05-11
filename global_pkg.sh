@@ -1,7 +1,6 @@
 #!/bin/sh
   
 # NPM global packages
-npm i --location=global expo-cli
 npm i --location=global fkill-cli
 npm i --location=global localtunnel
 npm i --location=global ngrok
