@@ -1,12 +1,12 @@
 #!/bin/sh
   
 # NPM global packages
-pnpm add -g expo-cli
-pnpm add -g fkill-cli
-pnpm add -g serve
-pnpm add -g ngrok
-pnpm add -g nx
-pnpm add -g semantic-release-cli
-pnpm add -g typescript
-pnpm add -g wrangler
-pnpm add -g yarn
+npm i --location=global expo-cli
+npm i --location=global fkill-cli
+npm i --location=global localtunnel
+npm i --location=global ngrok
+npm i --location=global nx
+npm i --location=global semantic-release-cli
+npm i --location=global serve
+npm i --location=global typescript
+npm i --location=global wrangler

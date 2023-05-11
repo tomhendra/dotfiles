@@ -37,18 +37,29 @@ echo '🛠️ Cloning GitHub repos into Developer...'
 mkdir -p ${HOME}/Developer
   sh ${dotfiles}/git/get_repos.sh
 
-# Install pnpm
-echo "🛠️ Installing pnpm..."
-  curl -fsSL https://get.pnpm.io/install.sh | sh -
+# Install nvm
+echo "🛠️ Installing nvm..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  until nvm --version
+  do
     source ${HOME}/.zshrc
+  done
 
-# Install node using pnpm as the version manager
+# Install node
 echo "🛠️ Installing Node..."
-  pnpm env use --global lts
+  nvm install --lts
 
 # Install global npm packages.
 echo '🛠️ Installing global packages...'
   sh ${dotfiles}/global_pkg.sh
+
+# Install Yarn
+echo "🛠️ Installing Yarn..."
+  corepack prepare yarn@stable --activate
+
+# Install pnpm
+echo "🛠️ Installing pnpm..."
+  corepack prepare pnpm@latest --activate
 
 # Install Rust
 echo "🛠️ Installing Rust..."

@@ -15,15 +15,17 @@ On a fresh macOS system, running the script will do the following:
 
 1. Generate SSH auth keys for GitHub.
 2. Download repos from GitHub to your local machine.
-3. Install pnpm.
-4. Install Node.js using pnpm as the version manager.
+3. Install NVM.
+4. Install Node.js.
 5. Install global npm packages.
-6. Install Rust.
-7. Install Homebrew & packages.
-8. Install Mac App Store purchases.
-9. Change the Bat colour theme.
-10. Symlink config files from `~/.dotfiles` to system.
-11. Update some macOS system preferences.
+6. Install Yarn via corepack.
+7. Install pnpm via corepack.
+8. Install Rust.
+9. Install Homebrew & packages.
+10. Install Mac App Store purchases.
+11. Change the Bat colour theme.
+12. Symlink config files from `~/.dotfiles` to system.
+13. Update some macOS system preferences.
 
 ## Preparation
 
@@ -37,6 +39,7 @@ There is some preparation to be done before performing a clean install of macOS 
 - Ensure browsers are signed into and are synced.
 - Ensure Bitwarden or equivalent password manager is synced.
 - Login to icloud with a browser and ensure all backed-up fonts and preferences have actually been uploaded.
+- Update the NVM install script in install.sh (line 42) to latest version 
 
 ## Installation
 
