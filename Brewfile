@@ -24,6 +24,7 @@ brew 'watchman'
 # Casks
 cask 'affinity-designer'
 cask 'affinity-photo'
+cask 'android-sdk'
 cask 'blender'
 cask 'discord'
 cask 'docker'
@@ -46,6 +47,7 @@ cask 'the-unarchiver'
 cask 'visual-studio-code'
 cask 'whatsapp'
 cask 'zoom'
+cask 'zulu11' # for Androind dev see https://reactnative.dev/docs/environment-setup?guide=native&platform=android
 
 # Quicklook plugin Casks: https://github.com/sindresorhus/quick-look-plugins
 cask 'qlcolorcode' # Preview source code files with syntax highlighting
