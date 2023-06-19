@@ -9,3 +9,4 @@ npm i --location=global semantic-release-cli
 npm i --location=global serve
 npm i --location=global typescript
 npm i --location=global wrangler
+npm i --location=global @azure/static-web-apps-cli
