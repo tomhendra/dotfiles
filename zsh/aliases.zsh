@@ -12,6 +12,7 @@ alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias balk="echo 'ಠ_ಠ' | pbcopy"
 alias strong='ᕦ(ಠ_ಠ)ᕤ'
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
+alias cheer="echo '✧*｡٩(ˊᗜˋ*)و✧*｡' | pbcopy"
 alias wen="echo 'https://tenor.com/view/when-wen-naru-yummi-yummi-universe-gif-23030317' | pbcopy"
 alias sol="echo '◎' | pbcopy"
 alias stx="echo 'Ӿ' | pbcopy"
@@ -62,6 +63,7 @@ alias cbr="cargo build --release"
 alias rnm="rm -rf node_modules"
 
 # pnpm
+alias enable-pnpm="prepare pnpm@latest --activate"
 alias pi="pnpm install"
 alias pa="pnpm add"
 alias pap="pnpm add --save-peer"
