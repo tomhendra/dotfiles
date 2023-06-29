@@ -24,7 +24,7 @@ brew 'watchman'
 # Casks
 cask 'affinity-designer'
 cask 'affinity-photo'
-cask 'android-sdk'
+cask 'android-studio'
 cask 'blender'
 cask 'discord'
 cask 'docker'
