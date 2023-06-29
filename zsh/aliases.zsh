@@ -63,7 +63,7 @@ alias cbr="cargo build --release"
 alias rnm="rm -rf node_modules"
 
 # pnpm
-alias enable-pnpm="prepare pnpm@latest --activate"
+alias enable-pnpm="corepack prepare pnpm@latest --activate"
 alias pi="pnpm install"
 alias pa="pnpm add"
 alias pap="pnpm add --save-peer"
