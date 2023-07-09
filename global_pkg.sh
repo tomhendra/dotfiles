@@ -2,6 +2,7 @@
   
 # NPM global packages
 npm i -g @azure/static-web-apps-cli
+npm i -g eas-cli
 npm i -g fkill-cli
 npm i -g localtunnel
 npm i -g ngrok
