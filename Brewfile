@@ -6,6 +6,7 @@ tap 'homebrew/cask-fonts'
 # Brews
 brew 'azure-cli'
 brew 'bat'
+brew 'cocoapods'
 brew 'flyctl'
 brew 'gh'
 brew 'git'
