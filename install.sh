@@ -61,6 +61,14 @@ echo "🛠️ Installing Yarn..."
 echo "🛠️ Installing pnpm..."
   corepack prepare pnpm@latest --activate
 
+# Install Bun
+echo "🛠️ Installing Bun..."
+  curl -fsSL https://bun.sh/install | bash
+  until bun -v
+  do
+    source ${HOME}/.zshrc
+  done
+
 # Install Rust
 echo "🛠️ Installing Rust..."
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

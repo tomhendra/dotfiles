@@ -16,6 +16,7 @@ alias cheer="echo '✧*｡٩(ˊᗜˋ*)و✧*｡' | pbcopy"
 alias wen="echo 'https://tenor.com/view/when-wen-naru-yummi-yummi-universe-gif-23030317' | pbcopy"
 alias sol="echo '◎' | pbcopy"
 alias stx="echo 'Ӿ' | pbcopy"
+alias refresh-dock-icons="rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
 
 # Files & Directories
 alias ..="cd .."
