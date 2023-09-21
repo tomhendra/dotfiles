@@ -27,3 +27,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
+
+source /Users/tom/.docker/init-zsh.sh || true # Added by Docker Desktop

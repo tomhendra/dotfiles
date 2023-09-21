@@ -7,11 +7,9 @@ tap 'homebrew/cask-fonts'
 brew 'azure-cli'
 brew 'bat'
 brew 'cocoapods'
-brew 'flyctl'
 brew 'gh'
 brew 'git'
 brew 'git-delta'
-brew 'go'
 brew 'httpie'
 brew 'mas'
 brew 'python'
@@ -23,8 +21,6 @@ brew 'tree'
 brew 'watchman' 
 
 # Casks
-cask 'affinity-designer'
-cask 'affinity-photo'
 cask 'android-studio'
 cask 'blender'
 cask 'discord'
@@ -35,19 +31,17 @@ cask 'firefox-developer-edition'
 cask 'google-chrome'
 cask 'iina'
 cask 'insomnia'
-cask 'kap'
 cask 'kitty'
 cask 'logseq'
 cask 'microsoft-teams'
+cask 'microsoft-outlook'
 cask 'omnidisksweeper'
 cask 'qbittorrent'
 cask 'raycast'
 cask 'slack'
-cask 'sketch'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
 cask 'whatsapp'
-cask 'zoom'
 cask 'zulu11' # for Androind dev see https://reactnative.dev/docs/environment-setup?guide=native&platform=android
 
 # Quicklook plugin Casks: https://github.com/sindresorhus/quick-look-plugins
@@ -71,3 +65,4 @@ cask 'font-inter'
 mas 'AdGuard para Safari', id: 1440147259
 mas 'Be Focused Pro', id: 961632517
 mas 'Bitwarden', id: 1352778147
+mas 'Xcode', id: 497799835   
