@@ -99,3 +99,7 @@ alias yt="yarn test"
 alias yb="yarn build"
 alias ynuke="rm -rf node_modules/ yarn.lock"
 alias yw="yarn workspace"
+
+# Xcode
+alias simulator-erase-all-devices="sudo xcrun simctl erase all"
+alias accept-license="sudo xcodebuild -license accept"
