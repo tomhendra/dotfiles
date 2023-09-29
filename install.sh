@@ -10,11 +10,12 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
+read -p "🤨 Have you installed Xcode Command Line Tools? Press any key to confirm..."
+
 # Generate SSH keys for GitHub authentication
 ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
-
-read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
 
 echo "🛠️ Generating RSA token for SSH authentication..."
   echo "Host *\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
