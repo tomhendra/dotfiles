@@ -21,10 +21,12 @@ brew 'tree'
 brew 'watchman' 
 
 # Casks
+cask 'adguard'
 cask 'android-studio'
 cask 'blender'
 cask 'discord'
 cask 'docker'
+cask 'expo-orbit'
 cask 'fig'
 cask 'figma'
 cask 'firefox-developer-edition'
@@ -33,8 +35,8 @@ cask 'iina'
 cask 'insomnia'
 cask 'kitty'
 cask 'logseq'
-cask 'microsoft-teams'
 cask 'microsoft-outlook'
+cask 'microsoft-word'
 cask 'omnidisksweeper'
 cask 'qbittorrent'
 cask 'raycast'
@@ -62,7 +64,7 @@ cask 'font-roboto'
 cask 'font-inter'
 
 # Mac App Store
-mas 'AdGuard para Safari', id: 1440147259
+# mas 'AdGuard para Safari', id: 1440147259
 mas 'Be Focused Pro', id: 961632517
-mas 'Bitwarden', id: 1352778147
+# mas 'Bitwarden', id: 1352778147
 mas 'Xcode', id: 497799835   

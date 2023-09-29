@@ -18,14 +18,13 @@ On a fresh macOS system, running the script will do the following:
 3. Install NVM.
 4. Install Node.js.
 5. Install global npm packages.
-6. Install Yarn via corepack.
-7. Install pnpm via corepack.
-8. Install Rust.
+6. Activate Yarn via corepack.
+7. Activate pnpm via corepack.
+8. Install Bun.
 9. Install Homebrew & packages.
 10. Install Mac App Store purchases.
 11. Change the Bat colour theme.
 12. Symlink config files from `~/.dotfiles` to system.
-13. Update some macOS system preferences.
 
 ## Preparation
 
@@ -45,14 +44,14 @@ There is some preparation to be done before performing a clean install of macOS 
 
 1. Perform a clean install of macOS. See Apple Support articles [here](https://support.apple.com/en-gb/guide/mac-help/mh27903/mac) and [here](https://support.apple.com/en-us/HT204904) for instructions.
 2. Ensure you are logged into the App Store (`mas signin` has been [broken for years](https://github.com/mas-cli/mas/issues/164)).
-3. Install Bitwarden, enable the extension in Safari and login to GitHub.
+3. Install Bitwarden manually, enable the extension in Safari and login to GitHub.
 4. Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up!
 
 ## Post-Installation
 
 - Install fonts backed-up iCloud.
 - Launch fig with `fig` in the terminal & go through setup (search for latest Kitty integration guide)
-- Install any apps not purchased from App Store or unavailable via Homebrew.
+- Install any apps not purchased from App Store or unavailable via Homebrew (IdeaShare)
 - Login to Chrome & Firefox to sync extensions etc.
 - Change default browser to Google Chrome
 - Restart computer.

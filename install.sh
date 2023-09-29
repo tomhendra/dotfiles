@@ -69,10 +69,6 @@ echo "🛠️ Installing Bun..."
     source ${HOME}/.zshrc
   done
 
-# Install Rust
-echo "🛠️ Installing Rust..."
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
- 
 # # Install Xcode CLT as required by Homebrew.
 if ! xcode-select --print-path &> /dev/null; then
   echo '🛠️ Installing Xcode CLT. Close the dialog box once complete...'
