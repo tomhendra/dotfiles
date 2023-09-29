@@ -13,6 +13,18 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
 read -p "🤨 Have you installed Xcode Command Line Tools? Press any key to confirm..."
 
+# Not working for M2 + fresh install Sonoma! 
+# Install Xcode CLT as required by Homebrew.
+# if ! xcode-select --print-path &> /dev/null; then
+#   echo '🛠️ Installing Xcode CLT. Close the dialog box once complete...'
+#     xcode-select --install &> /dev/null
+#     # Wait until the Xcode Command Line Tools are installed
+#     until xcode-select --print-path &> /dev/null; do
+#       sleep 8
+#     done
+#  fi
+#  read -p "🤨 Has Xcode finished to install? Press any key to confirm..."
+
 # Generate SSH keys for GitHub authentication
 ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
@@ -23,7 +35,9 @@ echo "🛠️ Generating RSA token for SSH authentication..."
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_rsa
   pbcopy < ${ssh}/id_rsa.pub
-  read -p "📋 Public key copied to clipboard. Paste it into your GitHub account (https://github.com/account/ssh) and press any key to resume..."
+  read -p "📋 Public key copied to clipboard. Press any key enter your new ssh key on GitHub..."
+  open https://github.com/settings/keys
+  # authenticate
   ssh -T git@github.com
 
 # Define dotfiles path variable.
@@ -45,6 +59,9 @@ echo "🛠️ Installing nvm..."
   do
     source ${HOME}/.zshrc
   done
+  export NVM_DIR="$HOME/.nvm"
+  # This loads nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
 
 # Install node
 echo "🛠️ Installing Node..."
@@ -69,17 +86,6 @@ echo "🛠️ Installing Bun..."
   do
     source ${HOME}/.zshrc
   done
-
-# # Install Xcode CLT as required by Homebrew.
-if ! xcode-select --print-path &> /dev/null; then
-  echo '🛠️ Installing Xcode CLT. Close the dialog box once complete...'
-    xcode-select --install &> /dev/null
-    # Wait until the Xcode Command Line Tools are installed
-    until xcode-select --print-path &> /dev/null; do
-      sleep 8
-    done
- fi
- read -p "🤨 Has Xcode finished to install? Press any key to confirm..."
 
 # Install Homebrew.
  if test ! $(which brew); then
@@ -115,4 +121,4 @@ echo "✅ $(whoami)'s developer environment setup is complete!"
 
 # Apply macOS system preferences from dotfiles (this will reload the shell).
 # echo '🛠️ Applying System Preferences. Restart terminal when it closes...'
-#  source ${dotfiles}/.macos
+# source ${dotfiles}/.macos
