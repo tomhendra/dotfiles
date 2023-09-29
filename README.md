@@ -46,7 +46,8 @@ There is some preparation to be done before performing a clean install of macOS 
 1. Perform a clean install of macOS. See Apple Support articles [here](https://support.apple.com/en-gb/guide/mac-help/mh27903/mac) and [here](https://support.apple.com/en-us/HT204904) for instructions.
 2. Ensure you are logged into the App Store (`mas signin` has been [broken for years](https://github.com/mas-cli/mas/issues/164)).
 3. Install Bitwarden manually, enable the extension in Safari and login to GitHub.
-4. Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up!
+4. Install Xcode CLT manually, since `xcode-select --install` doesn't work on M2 + Sonama, for me at least)
+5. Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up!
 
 ## Post-Installation
 
