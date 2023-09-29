@@ -38,7 +38,8 @@ There is some preparation to be done before performing a clean install of macOS 
 - Ensure browsers are signed into and are synced.
 - Ensure Bitwarden or equivalent password manager is synced.
 - Login to icloud with a browser and ensure all backed-up fonts and preferences have actually been uploaded.
-- Update the NVM install script in install.sh (line 42) to latest version 
+- Update the NVM install script in install.sh (line 42) to latest version. 
+- Upgrade MacOS to latest version. 
 
 ## Installation
 
