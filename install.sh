@@ -13,10 +13,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
 read -p "🤨 Have you installed Xcode Command Line Tools? Press any key to confirm..."
 
-<<<<<<< Updated upstream
 # Accept Xcode license
-sudo xcodebuild -license accept
-
 sudo xcodebuild -license accept
 
 # Not working for M2 + fresh install Sonoma! 
@@ -34,12 +31,6 @@ sudo xcodebuild -license accept
 # Accept Xcode license
 sudo xcodebuild -license accept
 
-||||||| Stash base
-=======
-# Accept Xcode license
-sudo xcodebuild -license accept
-
->>>>>>> Stashed changes
 # Generate SSH keys for GitHub authentication
 ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
