@@ -119,6 +119,10 @@ echo '🛠️ Installing colour theme for bat...'
   cp ${dotfiles}/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
   bat cache --build
 
+# iOS platform environment
+echo '🛠️ Installing iOS platform for Simulator...'
+  xcodebuild -downloadPlatform iOS
+
 # Create symlinks from custom dotfiles, overwriting system defaults.
 echo '🛠️ Creating symlinks from dotfiles...' 
   sh ${dotfiles}/create_symlinks.sh
