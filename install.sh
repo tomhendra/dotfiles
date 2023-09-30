@@ -28,9 +28,6 @@ sudo xcodebuild -license accept
 #  fi
 #  read -p "🤨 Has Xcode finished to install? Press any key to confirm..."
 
-# Accept Xcode license
-sudo xcodebuild -license accept
-
 # Generate SSH keys for GitHub authentication
 ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
@@ -41,8 +38,9 @@ echo "🛠️ Generating RSA token for SSH authentication..."
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_rsa
   pbcopy < ${ssh}/id_rsa.pub
-  read -p "📋 Public key copied to clipboard. Press any key enter your new ssh key on GitHub..."
+  read -p "📋 Public key copied to clipboard. Press any key to add it to GitHub..."
   open https://github.com/settings/keys
+  read -p "🔑 Press any key to authenticate with GitHub using your new SSH key..."
   # authenticate
   ssh -T git@github.com
 
