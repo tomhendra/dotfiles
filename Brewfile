@@ -15,7 +15,6 @@ brew 'mas'
 brew 'python'
 brew 'ripgrep'
 brew 'starship'
-brew 'svn' # required for fonts
 brew 'trash-cli'
 brew 'tree'
 brew 'watchman' 
@@ -57,14 +56,7 @@ cask 'quicklook-json' # Preview JSON files
 cask 'suspicious-package' # Preview the contents of a standard Apple installer package
 cask 'webpquicklook' # Preview WebP images
 
-# Fonts
-cask 'font-lato'
-cask 'font-open-sans'
-cask 'font-roboto'
-cask 'font-inter'
-
 # Mac App Store
 # mas 'AdGuard para Safari', id: 1440147259
 mas 'Be Focused Pro', id: 961632517
-# mas 'Bitwarden', id: 1352778147
 mas 'Xcode', id: 497799835   

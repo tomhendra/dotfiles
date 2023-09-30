@@ -13,6 +13,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
 read -p "🤨 Have you installed Xcode Command Line Tools? Press any key to confirm..."
 
+# Accept Xcode license
+sudo xcodebuild -license accept
+
 # Not working for M2 + fresh install Sonoma! 
 # Install Xcode CLT as required by Homebrew.
 # if ! xcode-select --print-path &> /dev/null; then
@@ -100,7 +103,6 @@ echo '🛠️ Installing Homebrew packages, fonts and applications...'
   brew update
   brew tap homebrew/bundle
   brew bundle --file=${dotfiles}/Brewfile
-  sudo xcodebuild -license accept
   brew cleanup
 
 # Quicklook plugins: remove the quarantine attribute (https://github.com/sindresorhus/quick-look-plugins)

@@ -46,16 +46,17 @@ There is some preparation to be done before performing a clean install of macOS 
 1. Perform a clean install of macOS. See Apple Support articles [here](https://support.apple.com/en-gb/guide/mac-help/mh27903/mac) and [here](https://support.apple.com/en-us/HT204904) for instructions.
 2. Ensure you are logged into the App Store (`mas signin` has been [broken for years](https://github.com/mas-cli/mas/issues/164)).
 3. Install Bitwarden manually, enable the extension in Safari and login to GitHub.
-4. Install Xcode CLT manually, since `xcode-select --install` doesn't work on M2 + Sonama, for me at least)
+4. Install Xcode CLT manually, since `xcode-select --install` doesn't work on M2 + Sonama, for me at least.
 5. Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up!
 
 ## Post-Installation
 
-- Install fonts backed-up iCloud.
-- Launch fig with `fig` in the terminal & go through setup (search for latest Kitty integration guide)
-- Install any apps not purchased from App Store or unavailable via Homebrew (IdeaShare)
+- Install fonts backed-up to iCloud.
+- Run `fig` in Kitty.
+- Install any apps not purchased from App Store or unavailable via Homebrew (IdeaShare).
 - Login to Chrome & Firefox to sync extensions etc.
-- Change default browser to Google Chrome
+- Install Xcode Simulator.
+- Install Android studio Emulator.
 - Restart computer.
 
 ## Credit
