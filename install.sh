@@ -13,6 +13,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
 read -p "🤨 Have you installed Xcode Command Line Tools? Press any key to confirm..."
 
+<<<<<<< Updated upstream
 # Accept Xcode license
 sudo xcodebuild -license accept
 
@@ -27,6 +28,9 @@ sudo xcodebuild -license accept
 #     done
 #  fi
 #  read -p "🤨 Has Xcode finished to install? Press any key to confirm..."
+
+# Accept Xcode license
+sudo xcodebuild -license accept
 
 # Generate SSH keys for GitHub authentication
 ssh="${HOME}/.ssh"
