@@ -14,6 +14,7 @@ read -p "🤨 Have you logged in to your GitHub account? Press any key to confir
 read -p "🤨 Have you installed Xcode Command Line Tools? Press any key to confirm..."
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 # Accept Xcode license
 sudo xcodebuild -license accept
 
@@ -32,6 +33,12 @@ sudo xcodebuild -license accept
 # Accept Xcode license
 sudo xcodebuild -license accept
 
+||||||| Stash base
+=======
+# Accept Xcode license
+sudo xcodebuild -license accept
+
+>>>>>>> Stashed changes
 # Generate SSH keys for GitHub authentication
 ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
