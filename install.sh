@@ -14,8 +14,9 @@ read -p "🤨 Have you logged in to your GitHub account? Press any key to confir
 read -p "🤨 Have you installed Xcode Command Line Tools? Press any key to confirm..."
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 # Accept Xcode license
+sudo xcodebuild -license accept
+
 sudo xcodebuild -license accept
 
 # Not working for M2 + fresh install Sonoma! 
