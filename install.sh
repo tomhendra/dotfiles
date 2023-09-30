@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "👋 Hello $(whoami)! Let's setup the developer environment for this Mac."
+echo "👋 Hello $(whoami)! Let's setup the dev environment for this Mac."
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -11,7 +11,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
-read -p "🤨 Have you installed Xcode Command Line Tools? Press any key to confirm..."
+read -p "🤨 Have you installed Xcode Command Line Tools manually from https://developer.apple.com/download/all/ ? Press any key to confirm..."
 
 # Accept Xcode license
 sudo xcodebuild -license accept
@@ -28,7 +28,7 @@ sudo xcodebuild -license accept
 #  fi
 #  read -p "🤨 Has Xcode finished to install? Press any key to confirm..."
 
-# Generate SSH keys for GitHub authentication
+# Generate SSH key & authenticate with GitHub
 ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
 
@@ -41,7 +41,6 @@ echo "🛠️ Generating RSA token for SSH authentication..."
   read -p "📋 Public key copied to clipboard. Press any key to add it to GitHub..."
   open https://github.com/settings/keys
   read -p "🔑 Press any key to authenticate with GitHub using your new SSH key..."
-  # authenticate
   ssh -T git@github.com
 
 # Define dotfiles path variable.
@@ -75,12 +74,16 @@ echo "🛠️ Installing Node..."
 echo '🛠️ Installing global packages...'
   sh ${dotfiles}/global_pkg.sh
 
+# Enable corepack
+echo "🛠️ Enabling corepack..."
+  corepack enable
+
 # Install Yarn
-echo "🛠️ Installing Yarn..."
+echo "🛠️ Activating Yarn..."
   corepack prepare yarn@stable --activate
 
 # Install pnpm
-echo "🛠️ Installing pnpm..."
+echo "🛠️ Activating pnpm..."
   corepack prepare pnpm@latest --activate
 
 # Install Bun

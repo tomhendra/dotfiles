@@ -53,15 +53,17 @@ There is some preparation to be done before performing a clean install of macOS 
 
 - Install fonts backed-up to iCloud.
 - Run `fig` in Kitty.
+- Launch Raycast.
 - Install any apps not purchased from App Store or unavailable via Homebrew (IdeaShare).
-- Login to Chrome & Firefox to sync extensions etc.
+- Login to Chrome to sync extensions etc.
+- Add SSH public key to Azure DevOps
 - Install Xcode Simulator.
 - Install Android studio Emulator.
 - Restart computer.
 
 ## Credit
 
-The tomdot repo was assembled with many thanks to these very smart people:
+The tomdot repo was assembled with many thanks to these smart folks:
 
 - [Dries Vints](https://github.com/driesvints/dotfiles)
 - [Kent C Dodds](https://github.com/kentcdodds/dotfiles)
@@ -71,51 +73,10 @@ The tomdot repo was assembled with many thanks to these very smart people:
 - [Zach Holman](https://github.com/holman/dotfiles)
 
 ## Notes
-This setup uses Fig for zsh plugin management. If preferable to control this manually then [Antidote](https://getantidote.github.io) has you covered. 
+Fig is used for zsh plugin management. For manual control [Antidote](https://getantidote.github.io) has you covered. 
 
-At the time of writing (25/10/22) Fig's Dotfiles feature is lacking – aliases added to Fig do not appear in Fig's autocomplete!
-
-Mackup was removed from the workflow due to the following considerations. 
-
-There aren't many supported apps that I use for which Mackup would be useful:
-
-- Bat
-- Git
-- Docker
-- NPM
-- ripgrep
-- Starship
-- Vim
-- Yarn
-- Zsh
-
-Other supported apps that I use would not benefit much from Mackup:
-
-- Homebrew: Not much to configure
-- IINA: A media player
-- Messages: iCloud backup
-- Apple Music: iCloud backup
-- WhatsApp Web: Synced to iPhone
-
-**Benefits of Mackup**
-
-- No need to pull dotfiles repo from GitHub to apply changes locally.
-- Making changes to dotfiles is more work than running `mackup backup` in terminal. 
-- Newly installed apps just need a `mackup.cfg` entry to be backed up, if supported. 
-
-**Drawbacks of Mackup**
-
-- Less control (although specifying which apps to handle in `.cfg` is better than the reverse).
-- Zsh / Vim errors (reported) - Common pattern seems to be excluding zsh in `Mackup.cfg`! 
-- Moving things away from Mackup due to errors complicates maintenance by requiring additional backup methods.
-- Mackup dev team's support list contains apps without official vendor support. 
-- Negative comments from vendors requesting removal from Mackup's support list!
-- Dropbox file duplicate errors due to devices syncing concurrently (error handling concerns).
-
-Conclusion -- Mackup's drawbacks outweigh its benefits. 
+At the time of writing (25/10/22) Fig's Dotfile feature is lacking – aliases added to Fig do not appear in Fig's autocomplete.
 
 ## TODO
 
-The current setup of git and symlinks works, but could scale messily and isn't compatible with Linux. 
-Bringing a tool into play would be beneficial. 
-GNU Stow and Ansible are the popular choices, with Stow being more frequently recommended. 
+Consider GNU Stow or Ansible over manually symlinking for Linux compatibility.
