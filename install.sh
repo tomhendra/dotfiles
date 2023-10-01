@@ -16,7 +16,7 @@ read -p "🤨 Have you installed Xcode Command Line Tools manually from https://
 # Accept Xcode license
 sudo xcodebuild -license accept
 
-# Not working for M2 + fresh install Sonoma! 
+# Not working for M2 + fresh install Sonoma! 🙁
 # Install Xcode CLT as required by Homebrew.
 # if ! xcode-select --print-path &> /dev/null; then
 #   echo '🛠️ Installing Xcode CLT. Close the dialog box once complete...'
@@ -55,15 +55,15 @@ echo '🛠️ Cloning GitHub repos into Developer...'
 mkdir -p ${HOME}/Developer
   sh ${dotfiles}/git/get_repos.sh
 
-# Install nvm
+# Install & load nvm
 echo "🛠️ Installing nvm..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
   until nvm --version
   do
     source ${HOME}/.zshrc
   done
+echo "🛠️ Loading nvm..."
   export NVM_DIR="$HOME/.nvm"
-  # This loads nvm
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
 
 # Install node
@@ -129,6 +129,3 @@ echo '🛠️ Creating symlinks from dotfiles...'
 
 echo "✅ $(whoami)'s developer environment setup is complete!"
 
-# Apply macOS system preferences from dotfiles (this will reload the shell).
-# echo '🛠️ Applying System Preferences. Restart terminal when it closes...'
-# source ${dotfiles}/.macos
