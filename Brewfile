@@ -20,7 +20,6 @@ brew 'tree'
 brew 'watchman' 
 
 # Casks
-cask 'adguard'
 cask 'android-studio'
 cask 'blender'
 cask 'discord'
