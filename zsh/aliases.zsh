@@ -103,3 +103,10 @@ alias yw="yarn workspace"
 # Xcode
 alias simulator-erase-all-devices="sudo xcrun simctl erase all"
 alias accept-license="sudo xcodebuild -license accept"
+
+# Deno
+alias dts="deno task start"
+alias dtc="deno task check"
+alias dtb="deno task build"
+alias dtp="deno task preview"
+alias dtu="deno task update"
