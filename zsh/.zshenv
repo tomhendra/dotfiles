@@ -1,2 +1,2 @@
-export ANDROID_HOME=/Users/tom/Library/Android/sdk
-export PATH=/Users/tom/Library/Android/sdk/platform-tools:$PATH
+export ANDROID_HOME=/Users/tomhendra/Library/Android/sdk
+export PATH=/Users/tomhendra/Library/Android/sdk/platform-tools:$PATH
