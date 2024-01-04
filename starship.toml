@@ -116,6 +116,9 @@ symbol = " "
 [nodejs]
 symbol = " "
 
+[deno]
+symbol = "🦕 "
+
 [os.symbols]
 Alpaquita = " "
 Alpine = " "
