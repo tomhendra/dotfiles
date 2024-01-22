@@ -47,6 +47,9 @@ symbol = "  "
 [buf]
 symbol = " "
 
+[bun]
+symbol = " "
+
 [c]
 symbol = " "
 
