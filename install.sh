@@ -55,6 +55,18 @@ echo '🛠️ Cloning GitHub repos into Developer...'
 mkdir -p ${HOME}/Developer
   sh ${dotfiles}/git/get_repos.sh
 
+# Install Bun
+echo "🛠️ Installing Bun..."
+  curl -fsSL https://bun.sh/install | bash
+  until bun -v
+  do
+    source ${HOME}/.zshrc
+  done
+
+# Install global npm packages.
+echo '🛠️ Installing global packages with bun...'
+  sh ${dotfiles}/global_pkg.sh
+
 # Install & load nvm
 echo "🛠️ Installing nvm..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
@@ -64,15 +76,11 @@ echo "🛠️ Installing nvm..."
   done
 echo "🛠️ Loading nvm..."
   export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Install node
 echo "🛠️ Installing Node..."
   nvm install --lts
-
-# Install global npm packages.
-echo '🛠️ Installing global packages...'
-  sh ${dotfiles}/global_pkg.sh
 
 # Enable corepack
 echo "🛠️ Enabling corepack..."
@@ -85,14 +93,6 @@ echo "🛠️ Activating Yarn..."
 # Install pnpm
 echo "🛠️ Activating pnpm..."
   corepack prepare pnpm@latest --activate
-
-# Install Bun
-echo "🛠️ Installing Bun..."
-  curl -fsSL https://bun.sh/install | bash
-  until bun -v
-  do
-    source ${HOME}/.zshrc
-  done
 
 # Install Homebrew.
  if test ! $(which brew); then

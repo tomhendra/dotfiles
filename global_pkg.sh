@@ -1,13 +1,14 @@
 #!/bin/sh
   
-# NPM global packages
-npm i -g @azure/static-web-apps-cli
-npm i -g eas-cli
-npm i -g fkill-cli
-npm i -g localtunnel
-npm i -g ngrok
-npm i -g semantic-release-cli
-npm i -g sharp-cli
-npm i -g serve
-npm i -g typescript
-npm i -g wrangler
+# global packages
+bun i -g @azure/static-web-apps-cli
+bun i -g @expo/ngrok
+bun i -g eas-cli
+bun i -g fkill-cli
+bun i -g localtunnel
+bun i -g ngrok
+bun i -g semantic-release-cli
+bun i -g sharp-cli
+bun i -g serve
+bun i -g typescript
+bun i -g wrangler
