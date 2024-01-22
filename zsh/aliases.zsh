@@ -63,6 +63,22 @@ alias cbr="cargo build --release"
 # Node
 alias rnm="rm -rf node_modules"
 
+# npm
+alias ni="npm install"
+alias nr="npm remove"
+alias nd="npm run dev"
+alias ns="npm run start"
+alias nt="npm run test"
+alias nb="npm run build"
+
+# yarn
+alias yd="yarn dev"
+alias ys="yarn start"
+alias yt="yarn test"
+alias yb="yarn build"
+alias ynuke="rm -rf node_modules/ yarn.lock"
+alias yw="yarn workspace"
+
 # pnpm
 alias enable-pnpm="corepack prepare pnpm@latest --activate"
 alias pi="pnpm install"
@@ -84,29 +100,16 @@ alias paip="pnpm config set auto-install-peers true"
 alias pt="pnpm t"
 alias pnx="pnpm nx"
 
-# npm
-alias ni="npm install"
-alias nr="npm remove"
-alias nd="npm run dev"
-alias ns="npm run start"
-alias nt="npm run test"
-alias nb="npm run build"
-
-# yarn
-alias yd="yarn dev"
-alias ys="yarn start"
-alias yt="yarn test"
-alias yb="yarn build"
-alias ynuke="rm -rf node_modules/ yarn.lock"
-alias yw="yarn workspace"
-
-# Xcode
-alias simulator-erase-all-devices="sudo xcrun simctl erase all"
-alias accept-license="sudo xcodebuild -license accept"
-
 # Deno
 alias dts="deno task start"
 alias dtc="deno task check"
 alias dtb="deno task build"
 alias dtp="deno task preview"
 alias dtu="deno task update"
+
+# Bun
+alias br="bun run"
+
+# Xcode
+alias simulator-erase-all-devices="sudo xcrun simctl erase all"
+alias accept-license="sudo xcodebuild -license accept"
