@@ -26,6 +26,7 @@ alias w3="cd ${DEVELOPER}/web3"
 alias df="cd ${DOTFILES}"
 alias dfc="code ${DOTFILES}"
 alias lib="cd ${HOME}/Library"
+alias obsidian-dir="cd ${OBSIDIAN}"
 alias logseq-dir="cd ${LOGSEQ}"
 alias logseq-config="code ${LOGSEQ}/logseq/config.edn"
 alias tp="trash-put"
@@ -109,6 +110,7 @@ alias dtu="deno task update"
 
 # Bun
 alias br="bun run"
+alias brd="bun run dev"
 
 # Xcode
 alias simulator-erase-all-devices="sudo xcrun simctl erase all"
