@@ -12,13 +12,6 @@ source ${HOME}/.dotfiles/zsh/aliases.zsh
 # Starship init
 eval "$(starship init zsh)"
 
-# bun completions
-[ -s "/Users/tomhendra/.bun/_bun" ] && source "/Users/tomhendra/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # Java for React Native
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 
