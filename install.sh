@@ -11,22 +11,10 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
-read -p "🤨 Have you installed Xcode Command Line Tools manually from https://developer.apple.com/download/all/ ? Press any key to confirm..."
+read -p "🤨 Have you installed Xcode from the App Stire & the bundled Command Line Tools? Press any key to confirm..."
 
 # Accept Xcode license
 sudo xcodebuild -license accept
-
-# Not working for M2 + fresh install Sonoma! 🙁
-# Install Xcode CLT as required by Homebrew.
-# if ! xcode-select --print-path &> /dev/null; then
-#   echo '🛠️ Installing Xcode CLT. Close the dialog box once complete...'
-#     xcode-select --install &> /dev/null
-#     # Wait until the Xcode Command Line Tools are installed
-#     until xcode-select --print-path &> /dev/null; do
-#       sleep 8
-#     done
-#  fi
-#  read -p "🤨 Has Xcode finished to install? Press any key to confirm..."
 
 # Generate SSH key & authenticate with GitHub
 ssh="${HOME}/.ssh"
@@ -46,7 +34,7 @@ echo "🛠️ Generating RSA token for SSH authentication..."
 # Define dotfiles path variable.
 dotfiles="${HOME}/.dotfiles"
 
-# Clone dotfiles repo. 
+# Clone dotfiles repo.
 echo '🛠️ Cloning dotfiles...'
  git clone git@github.com:tomhendra/dotfiles.git ${dotfiles}
 
@@ -54,18 +42,6 @@ echo '🛠️ Cloning dotfiles...'
 echo '🛠️ Cloning GitHub repos into Developer...'
 mkdir -p ${HOME}/Developer
   sh ${dotfiles}/git/get_repos.sh
-
-# Install Bun
-echo "🛠️ Installing Bun..."
-  curl -fsSL https://bun.sh/install | bash
-  until bun -v
-  do
-    source ${HOME}/.zshrc
-  done
-
-# Install global npm packages.
-echo '🛠️ Installing global packages with bun...'
-  sh ${dotfiles}/global_pkg.sh
 
 # Install Node & n
 echo "🛠️ Installing Node.js + n for Node version management..."
@@ -88,6 +64,18 @@ echo "🛠️ Installing Node.js + n for Node version management..."
 # Enable corepack
 echo "🛠️ Enabling corepack for Yarn & pnpm use..."
   corepack enable
+
+# Install global npm packages.
+echo '🛠️ Installing global npm packages...'
+  sh ${dotfiles}/global_pkg.sh
+
+# Install Bun
+echo "🛠️ Installing Bun..."
+  curl -fsSL https://bun.sh/install | bash
+  until bun -v
+  do
+    source ${HOME}/.zshrc
+  done
 
 # Install Homebrew.
  if test ! $(which brew); then
