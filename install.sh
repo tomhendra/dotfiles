@@ -67,32 +67,27 @@ echo "🛠️ Installing Bun..."
 echo '🛠️ Installing global packages with bun...'
   sh ${dotfiles}/global_pkg.sh
 
-# Install & load nvm
-echo "🛠️ Installing nvm..."
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-  until nvm --version
+# Install Node & n
+echo "🛠️ Installing Node.js + n for Node version management..."
+  # make cache folder (if missing) and take ownership
+  sudo mkdir -p /usr/local/n
+  sudo chown -R $(whoami) /usr/local/n
+  # make sure the required folders exist (safe to execute even if they already exist)
+  sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+  # take ownership of Node.js install destination folders
+  sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+  # install Node.js
+  curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
+  # n install
+  npm install -g n
+  until n --version
   do
     source ${HOME}/.zshrc
   done
-echo "🛠️ Loading nvm..."
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# Install node
-echo "🛠️ Installing Node..."
-  nvm install --lts
 
 # Enable corepack
-echo "🛠️ Enabling corepack..."
+echo "🛠️ Enabling corepack for Yarn & pnpm use..."
   corepack enable
-
-# Install Yarn
-echo "🛠️ Activating Yarn..."
-  corepack prepare yarn@stable --activate
-
-# Install pnpm
-echo "🛠️ Activating pnpm..."
-  corepack prepare pnpm@latest --activate
 
 # Install Homebrew.
  if test ! $(which brew); then
@@ -118,6 +113,10 @@ echo '🛠️ Installing colour theme for bat...'
   mkdir -p ~/.config/bat/themes
   cp ${dotfiles}/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
   bat cache --build
+
+# Cocoapods
+echo '🛠️ Installing Cocoapods...'
+  sudo gem install cocoapods  
 
 # iOS platform environment
 echo '🛠️ Installing iOS platform for Simulator...'
