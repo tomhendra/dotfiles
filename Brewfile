@@ -23,17 +23,16 @@ brew 'watchman'
 # Casks
 cask 'android-studio'
 cask 'blender'
+cask 'codewhisperer'
 cask 'discord'
 cask 'docker'
 cask 'expo-orbit'
-cask 'fig'
 cask 'figma'
 cask 'firefox-developer-edition'
 cask 'google-chrome'
 cask 'iina'
 cask 'insomnia'
 cask 'kitty'
-cask 'logseq'
 cask 'obsidian'
 cask 'omnidisksweeper'
 cask 'qbittorrent'
@@ -58,4 +57,3 @@ cask 'webpquicklook' # Preview WebP images
 # Mac App Store
 # mas 'AdGuard para Safari', id: 1440147259
 mas 'Be Focused Pro', id: 961632517
-mas 'Xcode', id: 497799835   
