@@ -5,7 +5,7 @@
 
 **TL;DR:** For web dev things on a clean macOS install: `curl -ssL https://git.io/tomdot | sh`
 
-**Disclaimer:** Dotfiles are personal things, and as such I advise against rolling these ones unmodified — they are specific to my setup and will need to be tweaked for yours. 
+**Disclaimer:** Dotfiles are personal things, and as such I advise against rolling these ones unmodified — they are specific to my setup and will need to be tweaked for yours.
 
 ## What is tomdot?
 
@@ -15,16 +15,15 @@ On a fresh macOS system, tomdot will handle the following:
 
 1. Generate SSH auth keys for GitHub.
 2. Download repos from GitHub to your local machine.
-3. Install NVM.
-4. Install Node.js.
+3. Install Node.js.
+4. Install N version manager.
 5. Install global npm packages.
-6. Activate Yarn via corepack.
-7. Activate pnpm via corepack.
-8. Install Bun.
-9. Install Homebrew & packages.
-10. Install apps from the App Store.
-11. Change the Bat colour theme.
-12. Symlink config files from `~/.dotfiles` to system equivalents.
+6. Enable Corepack (for Yarn and pnpm).
+7. Install Bun.
+8. Install Homebrew & packages.
+9. Install apps from the App Store.
+10. Change the Bat colour theme.
+11. Symlink config files from `~/.dotfiles` to system equivalents.
 
 ## Preparation
 
@@ -38,8 +37,8 @@ There is some preparation to be done before performing a clean install of macOS 
 - Ensure Chrome is signed into and synced.
 - Ensure Bitwarden (or equivalent) is signed into and synced.
 - Login to icloud with a browser and ensure all backed-up fonts and preferences have actually been uploaded.
-- Update the NVM install script in install.sh (line 42) to the [latest version](https://github.com/nvm-sh/nvm#installing-and-updating). 
-- Update MacOS to the [latest version](https://support.apple.com/en-us/HT201541). 
+- Update the NVM install script in install.sh (line 42) to the [latest version](https://github.com/nvm-sh/nvm#installing-and-updating).
+- Update MacOS to the [latest version](https://support.apple.com/en-us/HT201541).
 
 ## Installation
 
@@ -53,14 +52,19 @@ There is some preparation to be done before performing a clean install of macOS 
 
 - Enable Desktop & Documents Folders in Apple menu  > System Settings > iCloud > iCloud Drive.
 - Install fonts backed-up to iCloud.
-- Run `fig` in Kitty & setup.
+- Run `cw` in Kitty to setup AWS CodeWhisperer.
 - Launch Raycast & setup.
 - Install apps unavailable via Homebrew / App Store (IdeaShare).
 - Login to Chrome & enable sync.
 - Add SSH public key to Azure DevOps.
-- Install Xcode Simulator.
 - Install Android studio Emulator.
 - Restart computer.
+
+## Notes
+
+AWS CodeWhisperer (acquired from Fig) seems to fulfil all previous zsh plugin needs.
+
+If additional plugins are required, use [Antidote](https://github.com/mattmc3/antidote).
 
 ## Credit
 
@@ -72,11 +76,6 @@ The tomdot repo was assembled with many thanks to these smart folks:
 - [Paul Irish](https://github.com/paulirish/dotfiles)
 - [Paul Miller](https://github.com/paulmillr/dotfiles)
 - [Zach Holman](https://github.com/holman/dotfiles)
-
-## Fig Notes
-Fig is used for zsh plugin management. If you are not using Fig, I recommend [Antidote](https://getantidote.github.io). 
-
-As of 25/10/22 Fig's Dotfile feature is lacking – aliases added to Fig do not appear in Fig's autocomplete.
 
 ## TODO
 
