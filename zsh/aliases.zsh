@@ -29,6 +29,7 @@ alias lib="cd ${HOME}/Library"
 alias obsidian-dir="cd ${OBSIDIAN}"
 alias logseq-dir="cd ${LOGSEQ}"
 alias logseq-config="code ${LOGSEQ}/logseq/config.edn"
+# https://github.com/andreafrancia/trash-cli
 alias tp="trash-put"
 alias te="trash-empty"
 alias tl="trash-list"
@@ -42,7 +43,7 @@ alias gd="git diff"
 alias gl="git log --oneline --decorate --color"
 alias gb="git branch"
 alias gc="git checkout"
-alias gabandon="git checkout -- ."
+alias ga="git checkout -- ."
 alias gcom="git add . && git commit -m"
 alias resolve="git add . && git commit --no-edit"
 alias amend="git add . && git commit --amend --no-edit"
@@ -113,5 +114,9 @@ alias br="bun run"
 alias brd="bun run dev"
 
 # Xcode
-alias simulator-erase-all-devices="sudo xcrun simctl erase all"
-alias accept-license="sudo xcodebuild -license accept"
+alias xc-erase-all-simulators="sudo xcrun simctl erase all"
+alias xc-accept-license="sudo xcodebuild -license accept"
+
+# Android Studio
+alias adbDark='adb shell "cmd uimode night yes"'
+alias adbLight='adb shell "cmd uimode night no"'
