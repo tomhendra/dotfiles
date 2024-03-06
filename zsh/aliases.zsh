@@ -43,10 +43,10 @@ alias gd="git diff"
 alias gl="git log --oneline --decorate --color"
 alias gb="git branch"
 alias gc="git checkout"
-alias ga="git checkout -- ."
-alias gcom="git add . && git commit -m"
-alias resolve="git add . && git commit --no-edit"
-alias amend="git add . && git commit --amend --no-edit"
+alias gabandon="git checkout -- ."
+alias gcom="git add . && git commit -am"
+alias resolve="git commit -am --no-edit"
+alias amend="git commit -am --amend --no-edit"
 alias pull="git pull"
 alias push="git push"
 alias force="git push --force"
@@ -118,5 +118,5 @@ alias xc-erase-all-simulators="sudo xcrun simctl erase all"
 alias xc-accept-license="sudo xcodebuild -license accept"
 
 # Android Studio
-alias adbDark='adb shell "cmd uimode night yes"'
-alias adbLight='adb shell "cmd uimode night no"'
+alias adbdark='adb shell "cmd uimode night yes"'
+alias adblight='adb shell "cmd uimode night no"'
