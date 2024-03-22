@@ -22,7 +22,7 @@ mkdir -p ${ssh}
 
 echo "🛠️ Generating RSA token for SSH authentication..."
   echo "Host *\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
-  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@wembleystudios.com"
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@outlook.com"
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_rsa
   pbcopy < ${ssh}/id_rsa.pub
