@@ -3,7 +3,7 @@
 username="tomhendra"
 dir="${HOME}/Developer"
 
-declare -a repos=("coursework" "tapeo" "tomhendra.dev") 
+declare -a repos=("coursework" "tomhendra.dev") 
 
 clone_repo () {
   repo="$1"

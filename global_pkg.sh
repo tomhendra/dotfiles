@@ -2,7 +2,6 @@
   
 # global packages
 npm i -g @expo/ngrok
-npm i -g bun
 npm i -g eas-cli
 npm i -g fkill-cli
 npm i -g localtunnel
