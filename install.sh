@@ -11,7 +11,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
-read -p "🤨 Have you installed Xcode from the App Stire & the bundled Command Line Tools? Press any key to confirm..."
+read -p "🤨 Have you installed Xcode from the App Store & the bundled Command Line Tools? Press any key to confirm..."
 
 # Accept Xcode license
 sudo xcodebuild -license accept
@@ -43,40 +43,6 @@ echo '🛠️ Cloning GitHub repos into Developer...'
 mkdir -p ${HOME}/Developer
   sh ${dotfiles}/git/get_repos.sh
 
-# Install Node & n
-echo "🛠️ Installing Node.js + n for Node version management..."
-  # make cache folder (if missing) and take ownership
-  sudo mkdir -p /usr/local/n
-  sudo chown -R $(whoami) /usr/local/n
-  # make sure the required folders exist (safe to execute even if they already exist)
-  sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
-  # take ownership of Node.js install destination folders
-  sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
-  # install Node.js
-  curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
-  # n install
-  npm install -g n
-  until n --version
-  do
-    source ${HOME}/.zshrc
-  done
-
-# Enable corepack
-echo "🛠️ Enabling corepack for Yarn & pnpm use..."
-  corepack enable
-
-# Install global npm packages.
-echo '🛠️ Installing global npm packages...'
-  sh ${dotfiles}/global_pkg.sh
-
-# Install Bun
-echo "🛠️ Installing Bun..."
-  curl -fsSL https://bun.sh/install | bash
-  until bun -v
-  do
-    source ${HOME}/.zshrc
-  done
-
 # Install Homebrew.
  if test ! $(which brew); then
    echo '🛠️ Installing Homebrew...' 
@@ -102,6 +68,30 @@ echo '🛠️ Installing colour theme for bat...'
   cp ${dotfiles}/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
   bat cache --build
 
+# Install Node.
+echo "🛠️ Installing Node.js..."
+  # ensure n is available after brew install
+  until n --version
+    do
+      source ${HOME}/.zshrc
+    done
+  # take ownership of n
+  sudo chown -R $(whoami) /usr/local/n
+  # make sure the required folders exist (safe to execute even if they already exist)
+  sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+  # take ownership of Node.js install destination folders
+  sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+  # install Node.js
+  sudo n lts
+
+# Install global npm packages
+echo '🛠️ Installing global npm packages...'
+  sh ${dotfiles}/global_pkg.sh
+
+# Enable corepack
+echo "🛠️ Enabling corepack for Yarn & pnpm use..."
+  corepack enable
+
 # Cocoapods
 echo '🛠️ Installing Cocoapods...'
   sudo gem install cocoapods  
@@ -115,4 +105,3 @@ echo '🛠️ Creating symlinks from dotfiles...'
   sh ${dotfiles}/create_symlinks.sh
 
 echo "✅ $(whoami)'s developer environment setup is complete!"
-

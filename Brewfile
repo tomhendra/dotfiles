@@ -1,18 +1,17 @@
 # Taps
-tap 'homebrew/cask'
 tap 'homebrew/cask-versions'
 tap 'homebrew/cask-fonts'
 
 # Brews
-brew 'azure-cli'
 brew 'bat'
-brew 'cocoapods'
 brew 'flyctl'
 brew 'gh'
 brew 'git'
 brew 'git-delta'
 brew 'httpie'
 brew 'mas'
+brew 'n'
+brew 'oven-sh/bun/bun'
 brew 'python'
 brew 'ripgrep'
 brew 'starship'

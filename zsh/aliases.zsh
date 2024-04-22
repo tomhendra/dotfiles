@@ -111,7 +111,7 @@ alias dtu="deno task update"
 
 # Bun
 alias br="bun run"
-alias brd="bun run dev"
+alias bd="bun run dev"
 
 # Xcode
 alias xc-erase-all-simulators="sudo xcrun simctl erase all"
