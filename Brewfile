@@ -4,6 +4,7 @@ tap 'homebrew/cask-fonts'
 
 # Brews
 brew 'bat'
+brew 'cocoapods'
 brew 'flyctl'
 brew 'gh'
 brew 'git'

@@ -92,10 +92,6 @@ echo '🛠️ Installing global npm packages...'
 echo "🛠️ Enabling corepack for Yarn & pnpm use..."
   corepack enable
 
-# Cocoapods
-echo '🛠️ Installing Cocoapods...'
-  sudo gem install cocoapods  
-
 # iOS platform environment
 echo '🛠️ Installing iOS platform for Simulator...'
   xcodebuild -downloadPlatform iOS
