@@ -70,19 +70,18 @@ echo '🛠️ Installing colour theme for bat...'
 
 # Install Node.
 echo "🛠️ Installing Node.js..."
-  # ensure n is available after brew install
-  until n --version
-    do
-      source ${HOME}/.zshrc
-    done
+  # make cache folder (if missing) and take ownership
+  sudo mkdir -p /usr/local/n
   # take ownership of n
   sudo chown -R $(whoami) /usr/local/n
   # make sure the required folders exist (safe to execute even if they already exist)
   sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
   # take ownership of Node.js install destination folders
   sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
-  # install Node.js
-  sudo n lts
+  # install Node.js LTS
+  curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
+  # install n
+  npm install -g n
 
 # Install global npm packages
 echo '🛠️ Installing global npm packages...'
