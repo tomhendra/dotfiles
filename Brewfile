@@ -41,7 +41,7 @@ cask 'slack'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
 cask 'whatsapp'
-cask 'zulu17' # for Androind dev see https://reactnative.dev/docs/environment-setup?guide=native&platform=android
+cask 'zulu@17' # for Androind dev see https://reactnative.dev/docs/environment-setup?guide=native&platform=android
 
 # Quicklook plugin Casks: https://github.com/sindresorhus/quick-look-plugins
 cask 'qlcolorcode' # Preview source code files with syntax highlighting
