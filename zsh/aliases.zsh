@@ -17,6 +17,7 @@ alias wen="echo 'https://tenor.com/view/when-wen-naru-yummi-yummi-universe-gif-2
 alias sol="echo '◎' | pbcopy"
 alias stx="echo 'Ӿ' | pbcopy"
 alias refresh-dock-icons="rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
+alias ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
 
 # Files & Directories
 alias ..="cd .."
