@@ -1,185 +1,46 @@
-# Don't print a new line at the start of the prompt
-add_newline = false
-
-# # Replace the "❯" symbol in the prompt with "➜"
-# [character] # The name of the module we are configuring is "character"
-# success_symbol = "[▶](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
-
-# Symbols
-[battery]
-full_symbol = "🔋 "
-charging_symbol = "🔌 "
-discharging_symbol = "🪫 "
-
-[character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
-vimcmd_symbol = "[<](bold green)"
-
-[git_commit]
-tag_symbol = " tag "
-
-# [git_status]
-# ahead = ">"ls
-# behind = "<"
-# diverged = "<>"
-# renamed = "r"
-# deleted = "x"
-
-# Git status
-[git_status]
-conflicted = "="	# This branch has merge conflicts. Defauklt: =
-ahead	= "⇡"	# The format of ahead. ${count} shows commit count. Default: ⇡
-behind= "⇣"	# The format of behind. ${count} shows commit count. Default: ⇣
-diverged = "⑂"	# The format of diverged. {ahead_count} & ${behind_count} show commit count. Default: ⇕
-untracked =	"?"	# The format of untracked. Default: ?
-stashed =	"✓"	# The format of stashed. Default: $
-modified = "!"	# The format of modified. Default: !
-staged = "+"	# The format of staged. Default: +
-renamed	= "»"	# The format of renamed. Default: »
-deleted	= "✗"	# The format of deleted. Default: ✘
-style	= "bold red"	# The style for the module. Default: bold red
-disabled = false # Disables the git_status module.
-
-[aws]
-symbol = "  "
-
-[buf]
-symbol = " "
-
-[bun]
-symbol = " "
-
-[c]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$python\
+$character"""
 
 [directory]
-read_only = " 󰌾"
+style = "blue"
 
-[docker_context]
-symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
 
 [git_branch]
-symbol = " "
+format = "[$branch]($style)"
+style = "#737aa2"
 
-[golang]
-symbol = " "
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
 
-[guix_shell]
-symbol = " "
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "#737aa2"
 
-[haskell]
-symbol = " "
-
-[haxe]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[hostname]
-ssh_symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[lua]
-symbol = " "
-
-[memory_usage]
-symbol = "󰍛 "
-
-[meson]
-symbol = "󰔷 "
-
-[nim]
-symbol = "󰆥 "
-
-[nix_shell]
-symbol = " "
-
-[nodejs]
-symbol = " "
-
-[deno]
-symbol = "🦕 "
-
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = "󰍲 "
-
-[package]
-symbol = "󰏗 "
-
-[pijul_channel]
-symbol = " "
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
 
 [python]
-symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[ruby]
-symbol = " "
-
-[rust]
-symbol = " "
-
-[scala]
-symbol = " "
+format = "[$virtualenv]($style) "
+style = "#737aa2"
