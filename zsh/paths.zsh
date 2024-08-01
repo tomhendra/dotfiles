@@ -1,16 +1,13 @@
 # prepend: path=('/home/some/bin' $path)
 # append: path+=('/home/some/bin')
 
-# old...
-# path+=('node_modules/.bin:vendor/bin' $path)
-# path+=('/usr/local/sbin' $path)
-
 # Use project specific binaries before global ones
 path=(
-    "${ANDROID_HOME}/platform-tools"
     'node_modules/.bin'
     'vendor/bin'
     '/usr/local/sbin'
+    "${ANDROID_HOME}/platform-tools"
+    "${HOME}/.local/share/solana/install/active_release/bin"
     $path
 )
 
