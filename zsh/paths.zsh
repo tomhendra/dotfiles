@@ -3,6 +3,7 @@
 
 # Use project specific binaries before global ones
 path=(
+   "$PNPM_HOME"
     'node_modules/.bin'
     'vendor/bin'
     '/usr/local/sbin'
@@ -10,6 +11,7 @@ path=(
     "${HOME}/.local/share/solana/install/active_release/bin"
     $path
 )
+
 
 # Export PATH to sub-processes (make it inherited by child processes)
 export PATH
