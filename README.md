@@ -52,7 +52,7 @@ There is some preparation to be done before performing a clean install of macOS 
 
 - Enable Desktop & Documents Folders in Apple menu  > System Settings > iCloud > iCloud Drive.
 - Install fonts backed-up to iCloud.
-- Run `cw` in Kitty to setup AWS CodeWhisperer.
+- Run `cw` in Kitty to setup AWS Q.
 - Launch Raycast & setup.
 - Install apps unavailable via Homebrew / App Store (IdeaShare).
 - Login to Chrome & enable sync.
@@ -62,7 +62,7 @@ There is some preparation to be done before performing a clean install of macOS 
 
 ## Notes
 
-AWS CodeWhisperer (acquired from Fig) seems to fulfil all previous zsh plugin needs.
+AWS Q (acquired from Fig) seems to fulfil all previous zsh plugin needs.
 
 If additional plugins are required, use [Antidote](https://github.com/mattmc3/antidote).
 
