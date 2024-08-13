@@ -1,6 +1,5 @@
 # General
 alias brewup="brew upgrade && brew cleanup && brew doctor"
-alias c="code ."
 alias chrome="open -a 'Google Chrome'"
 alias firefox="open -a 'Firefox Developer Edition'"
 alias cafe="caffeinate -u -t 3600"
@@ -19,17 +18,26 @@ alias stx="echo 'Ӿ' | pbcopy"
 alias refresh-dock-icons="rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
 alias ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
 
+# Zed
+alias zed="open -a /Applications/Zed.app"
+alias z="zed ."
+alias dfz="zed ${DOTFILES}"
+
+# VS Code
+alias c="code ."
+alias dfc="code ${DOTFILES}"
+alias lgsc="code ${LOGSEQ}/logseq/config.edn"
+
 # Files & Directories
 alias ..="cd .."
 alias dl="cd ${HOME}/Downloads"
 alias dv="cd ${DEVELOPER}"
 alias w3="cd ${DEVELOPER}/web3"
 alias df="cd ${DOTFILES}"
-alias dfc="code ${DOTFILES}"
 alias lib="cd ${HOME}/Library"
 alias obsidian-dir="cd ${OBSIDIAN}"
 alias logseq-dir="cd ${LOGSEQ}"
-alias logseq-config="code ${LOGSEQ}/logseq/config.edn"
+
 # https://github.com/andreafrancia/trash-cli
 alias tp="trash-put"
 alias te="trash-empty"
