@@ -58,12 +58,6 @@ echo '🛠️ Installing Homebrew brews & casks...'
   brew bundle --file=${dotfiles}/Brewfile
   brew cleanup
 
-# bat colour theme
-echo '🛠️ Installing colour theme for bat...'
-  mkdir -p ~/.config/bat/themes
-  cp ${dotfiles}/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
-  bat cache --build
-
 # Node.js
 echo "🛠️ Installing Node.js..."
   # pnpm
@@ -79,6 +73,11 @@ echo '🛠️ Installing global Node.js dependencies...'
 # iOS platform environment
 echo '🛠️ Installing iOS platform for Simulator...'
   xcodebuild -downloadPlatform iOS
+
+# bat colour theme
+echo '🛠️ Creating directory for bat theme...'
+  mkdir -p ~/.config/bat/themes
+  bat cache --build
 
 # symlinks from custom dotfiles, overwrite system defaults
 echo '🛠️ Creating symlinks from dotfiles...' 
