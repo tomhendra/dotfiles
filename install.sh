@@ -45,7 +45,7 @@ mkdir -p ${HOME}/Developer
 
 # Homebrew
  if test ! $(which brew); then
-   echo '🛠️ Installing Homebrew...' 
+   echo '🛠️ Installing Homebrew...'
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/tom/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -77,10 +77,11 @@ echo '🛠️ Installing iOS platform for Simulator...'
 # bat colour theme
 echo '🛠️ Creating directory for bat theme...'
   mkdir -p ~/.config/bat/themes
+  cp ~/.dotfiles/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
   bat cache --build
 
 # symlinks from custom dotfiles, overwrite system defaults
-echo '🛠️ Creating symlinks from dotfiles...' 
+echo '🛠️ Creating symlinks from dotfiles...'
   sh ${dotfiles}/create_symlinks.sh
 
 echo "✅ $(whoami)'s developer environment setup is complete!"

@@ -7,6 +7,7 @@ path=(
     'node_modules/.bin'
     'vendor/bin'
     '/usr/local/sbin'
+    "${ANDROID_HOME}/emulator"
     "${ANDROID_HOME}/platform-tools"
     "${HOME}/.local/share/solana/install/active_release/bin"
     $path
