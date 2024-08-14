@@ -4,22 +4,23 @@ alias chrome="open -a 'Google Chrome'"
 alias firefox="open -a 'Firefox Developer Edition'"
 alias cafe="caffeinate -u -t 3600"
 alias copyssh="pbcopy < ${HOME}/.ssh/id_rsa.pub"
-alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
-alias pingg="echo 'tom: Pinging Google' && ping www.google.com";
 alias reloadzsh="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias balk="echo 'ಠ_ಠ' | pbcopy"
 alias strong='ᕦ(ಠ_ಠ)ᕤ'
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 alias cheer="echo '✧*｡٩(ˊᗜˋ*)و✧*｡' | pbcopy"
-alias wen="echo 'https://tenor.com/view/when-wen-naru-yummi-yummi-universe-gif-23030317' | pbcopy"
 alias sol="echo '◎' | pbcopy"
 alias stx="echo 'Ӿ' | pbcopy"
 alias refresh-dock-icons="rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
-alias ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
+
+# Network
+alias pingg="echo 'tom: Pinging Google' && ping www.google.com";
+alias myip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
+alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 
 # Zed
-alias zed="open -a /Applications/Zed.app"
+alias zed="open -a Zed.app"
 alias z="zed ."
 alias dfz="zed ${DOTFILES}"
 
@@ -38,7 +39,7 @@ alias lib="cd ${HOME}/Library"
 alias obsidian-dir="cd ${OBSIDIAN}"
 alias logseq-dir="cd ${LOGSEQ}"
 
-# https://github.com/andreafrancia/trash-cli
+# trash-cli
 alias tp="trash-put"
 alias te="trash-empty"
 alias tl="trash-list"
@@ -73,6 +74,17 @@ alias cbr="cargo build --release"
 
 # Node
 alias rnm="rm -rf node_modules"
+
+# Deno
+alias dts="deno task start"
+alias dtc="deno task check"
+alias dtb="deno task build"
+alias dtp="deno task preview"
+alias dtu="deno task update"
+
+# Bun
+alias br="bun run"
+alias bd="bun run dev"
 
 # pnpm
 alias pi="pnpm install"
@@ -109,17 +121,6 @@ alias yt="yarn test"
 alias yb="yarn build"
 alias ynuke="rm -rf node_modules/ yarn.lock"
 alias yw="yarn workspace"
-
-# Deno
-alias dts="deno task start"
-alias dtc="deno task check"
-alias dtb="deno task build"
-alias dtp="deno task preview"
-alias dtu="deno task update"
-
-# Bun
-alias br="bun run"
-alias bd="bun run dev"
 
 # Xcode
 alias xc-erase-all-simulators="sudo xcrun simctl erase all"

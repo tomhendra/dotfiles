@@ -14,7 +14,7 @@ brew 'ripgrep'
 brew 'starship'
 brew 'trash-cli'
 brew 'tree'
-brew 'watchman' 
+brew 'watchman'
 
 # Casks
 cask 'amazon-q'
