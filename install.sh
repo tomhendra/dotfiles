@@ -77,7 +77,7 @@ echo '🛠️ Installing iOS platform for Simulator...'
 # bat colour theme
 echo '🛠️ Creating directory for bat theme...'
   mkdir -p ~/.config/bat/themes
-  cp ~/.dotfiles/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
+  cp ~/.dotfiles/bat/Enki-Tokyo-night.tmTheme ~/.config/bat/themes/Enki-Tokyo-Night.tmTheme
   bat cache --build
 
 # symlinks from custom dotfiles, overwrite system defaults

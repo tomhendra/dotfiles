@@ -9,7 +9,7 @@ symlink () {
 }
 
 # bat
-symlink bat.conf .config/bat/config
+symlink bat/bat.conf .config/bat/config
 
 # git
 symlink git/.gitconfig .gitconfig
