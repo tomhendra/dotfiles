@@ -1,10 +1,33 @@
 # Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 
-# Source configuration files
-for config_file in "${HOME}/.dotfiles/zsh"/{vars,paths,aliases}.zsh; do
-    source "$config_file"
-done
+# environment variables
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
+export DEVELOPER="${HOME}/Developer"
+export DOTFILES="${HOME}/.dotfiles"
+export LOGSEQ="${HOME}/Library/Mobile Documents/iCloud~com~logseq~logseq/Documents"
+export OBSIDIAN="${HOME}/Library/Mobile Documents/iCloud~md~obsidian/Documents/"
+export PNPM_HOME="${HOME}/Library/pnpm"
+export ANDROID_HOME="${HOME}/Library/Android/sdk"
+
+# path configurations
+typeset -U path  # Ensures unique entries in PATH
+
+path=(
+    "$PNPM_HOME"
+    "./node_modules/.bin"
+    "./vendor/bin"
+    "$ANDROID_HOME/emulator"
+    "$ANDROID_HOME/platform-tools"
+    "$HOME/.local/share/solana/install/active_release/bin"
+    "/usr/local/sbin"
+    $path
+)
+
+export PATH
+
+# aliases
+source "${HOME}/.dotfiles/zsh/aliases.zsh"
 
 # Starship init
 eval "$(starship init zsh)"
