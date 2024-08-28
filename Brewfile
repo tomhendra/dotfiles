@@ -1,6 +1,7 @@
 # Brews
 brew 'bat'
 brew 'cocoapods'
+brew 'dotnet'
 brew 'fastlane'
 brew 'flyctl'
 brew 'gh'

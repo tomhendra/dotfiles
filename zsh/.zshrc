@@ -10,6 +10,10 @@ export OBSIDIAN="${HOME}/Library/Mobile Documents/iCloud~md~obsidian/Documents/"
 export PNPM_HOME="${HOME}/Library/pnpm"
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
 
+# Start SSH agent & add all SSH keys
+eval "$(ssh-agent -s)"
+ssh-add -A 2>/dev/null
+
 # path configurations
 typeset -U path  # Ensures unique entries in PATH
 
@@ -19,6 +23,7 @@ path=(
     "./vendor/bin"
     "$ANDROID_HOME/emulator"
     "$ANDROID_HOME/platform-tools"
+    "$HOME/.dotnet/tools"
     "$HOME/.local/share/solana/install/active_release/bin"
     "/usr/local/sbin"
     $path
