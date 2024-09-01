@@ -74,6 +74,8 @@ alias cbr="cargo build --release"
 
 # Node
 alias rnm="rm -rf node_modules"
+alias nodelts="pnpm env use --global lts"
+alias nodelatest="pnpm env use --global latest"
 
 # Deno
 alias dts="deno task start"
@@ -87,6 +89,7 @@ alias br="bun run"
 alias bd="bun run dev"
 
 # pnpm
+alias pnewversion="curl -fsSL https://get.pnpm.io/install.sh | sh -"
 alias pi="pnpm install"
 alias pa="pnpm add"
 alias pap="pnpm add --save-peer"
@@ -99,8 +102,7 @@ alias pd="pnpm dev"
 alias ps="pnpm start"
 alias pt="pnpm test"
 alias pb="pnpm build"
-alias pults="pnpm env use --global lts"
-alias pulatest="pnpm env use --global latest"
+
 alias pdir="cd $PNPM_HOME"
 alias paip="pnpm config set auto-install-peers true"
 alias pt="pnpm t"
