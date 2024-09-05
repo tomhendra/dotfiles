@@ -47,24 +47,33 @@ alias tr="trash-restore"
 alias trm="trash-rm"
 
 # Git
+# Status
 alias gs="git status -sb"
-alias gst="git status"
+alias gsf="git status"
+# Diff and log
 alias gd="git diff"
 alias gl="git log --oneline --decorate --color"
+# Branch and checkout
 alias gb="git branch"
 alias gc="git checkout"
-alias gabandon="git checkout -- ."
-alias gcom="git add . && git commit -am"
-alias resolve="git commit -am --no-edit"
-alias amend="git commit -am --amend --no-edit"
+# Resetting and cleaning
+alias reset-soft="git checkout -- ."
+alias reset-hard="git reset --hard HEAD"
+alias reset-dangerous="git clean -fd && git reset --hard HEAD"
+# Committing
+alias com="git add . && git commit -m"
+alias resolve="git commit --no-edit"
+alias amend="git commit --amend --no-edit"
+# Syncing
 alias pull="git pull"
 alias push="git push"
-alias force="git push --force"
-alias dangerously-reset="git clean -df && git reset --hard"
+alias push-force="git push --force"
+# Stashing
 alias pop="git stash pop"
 alias stash="git stash -u"
+# Misc
 alias unstage="git restore --staged ."
-alias wip="commit wip"
+alias wip="git add . && git commit -m 'WIP'"
 
 # Cargo
 alias cc="cargo check"
@@ -74,8 +83,8 @@ alias cbr="cargo build --release"
 
 # Node
 alias rnm="rm -rf node_modules"
-alias nodelts="pnpm env use --global lts"
-alias nodelatest="pnpm env use --global latest"
+alias node-lts="pnpm env use --global lts"
+alias node-latest="pnpm env use --global latest"
 
 # Deno
 alias dts="deno task start"
@@ -102,7 +111,6 @@ alias pd="pnpm dev"
 alias ps="pnpm start"
 alias pt="pnpm test"
 alias pb="pnpm build"
-
 alias pdir="cd $PNPM_HOME"
 alias paip="pnpm config set auto-install-peers true"
 alias pt="pnpm t"
@@ -125,8 +133,8 @@ alias ynuke="rm -rf node_modules/ yarn.lock"
 alias yw="yarn workspace"
 
 # Xcode
-alias xc-erase-all-simulators="sudo xcrun simctl erase all"
-alias xc-accept-license="sudo xcodebuild -license accept"
+alias xcode-erase-all-simulators="sudo xcrun simctl erase all"
+alias xccode-accept-license="sudo xcodebuild -license accept"
 
 # Android Studio
 alias adbdark='adb shell "cmd uimode night yes"'
