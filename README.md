@@ -37,7 +37,7 @@ There is some preparation to be done before performing a clean install of macOS 
 - Ensure Chrome is signed into and synced.
 - Ensure Bitwarden (or equivalent) is signed into and synced.
 - Login to icloud with a browser and ensure all backed-up fonts and preferences have actually been uploaded.
-- Update the NVM install script in install.sh (line 42) to the [latest version](https://github.com/nvm-sh/nvm#installing-and-updating).
+- Update the pnpm install script in install.sh (line 85) is [up-to-date](https://pnpm.io/installation#on-posix-systems).
 - Update MacOS to the [latest version](https://support.apple.com/en-us/HT201541).
 
 ## Installation
@@ -45,7 +45,7 @@ There is some preparation to be done before performing a clean install of macOS 
 1. Perform a clean install of macOS. See Apple Support articles [here](https://support.apple.com/en-gb/guide/mac-help/mh27903/mac) and [here](https://support.apple.com/en-us/HT204904) for instructions.
 2. Ensure you are logged into the App Store (`mas signin` has been [broken for years](https://github.com/mas-cli/mas/issues/164)).
 3. Install Bitwarden manually, enable the extension in Safari and login to GitHub.
-4. Install Xcode CLT [manually](https://developer.apple.com/download/all/), since `xcode-select --install` doesn't work on M2 + fresh install of Sonama, for me at least.
+4. Install Xcode + CLT [manually](https://developer.apple.com/download/all/), since `xcode-select --install` doesn't work on M2 + fresh install of Sonama, for me at least.
 5. Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up!
 
 ## Post-Installation
