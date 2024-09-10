@@ -30,15 +30,17 @@ cask 'iina'
 cask 'insomnia'
 cask 'kitty'
 cask 'ledger-live'
+cask 'microsoft-word'
+cask 'microsoft-excel'
 cask 'obsidian'
 cask 'omnidisksweeper'
 cask 'qbittorrent'
 cask 'raycast'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
-cask 'whatsapp'
+cask 'zed'
 cask 'zulu@17' # https://docs.expo.dev/workflow/android-studio-emulator/#install-dependencies
 
 # Mac App Store
-# mas 'AdGuard para Safari', id: 1440147259
+mas 'AdGuard para Safari', id: 1440147259
 mas 'Be Focused Pro', id: 961632517

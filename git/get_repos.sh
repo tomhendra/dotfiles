@@ -3,11 +3,11 @@
 username="tomhendra"
 dir="${HOME}/Developer"
 
-declare -a repos=("coursework" "tomhendra.dev") 
+declare -a repos=("courses" "tomhendra.dev" "tomkit")
 
 clone_repo () {
   repo="$1"
-  
+
   git clone git@github.com:${username}/${i}.git ${dir}/${i} && echo "${i} cloned to ${dir}/${i}"
 }
 
