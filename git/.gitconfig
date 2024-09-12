@@ -30,3 +30,5 @@
 
 [diff]
   colorMoved = default
+[maintenance]
+	repo = /Users/tomhendra/.zsh_plugins/znap
