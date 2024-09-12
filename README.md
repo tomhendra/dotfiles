@@ -20,7 +20,7 @@ On a fresh macOS system, tomdot will handle the following:
 5. Install global Node.js packages.
 6. Install Bun.
 7. Install Homebrew & packages.
-8. Install [Znap](https://github.com/marlonrichert/zsh-snap) for Zsh plugins.
+8. Install [Antidote](https://github.com/mattmc3/antidote) for zsh plugins.
 9. Install apps from the App Store.
 10. Symlink config files from `~/.dotfiles` to system equivalents.
 
