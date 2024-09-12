@@ -1,7 +1,4 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-
-# environment variables
+# Environment variables
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export DEVELOPER="${HOME}/Developer"
 export DOTFILES="${HOME}/.dotfiles"
@@ -9,13 +6,12 @@ export LOGSEQ="${HOME}/Library/Mobile Documents/iCloud~com~logseq~logseq/Documen
 export OBSIDIAN="${HOME}/Library/Mobile Documents/iCloud~md~obsidian/Documents/"
 export PNPM_HOME="${HOME}/Library/pnpm"
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
-export ZNAP="${HOME}/.zsh_plugins/znap"
 
 # Start SSH agent & add all SSH keys
 eval "$(ssh-agent -s)"
 ssh-add -A 2>/dev/null
 
-# path configurations
+# Path configurations
 typeset -U path  # Ensures unique entries in PATH
 
 path=(
@@ -32,11 +28,21 @@ path=(
 
 export PATH
 
-# aliases
-source "${HOME}/.dotfiles/zsh/aliases.zsh"
+# Aliases
+source "${DOTFILES}/zsh/zsh_aliases.zsh"
 
 # Starship init
 eval "$(starship init zsh)"
+
+# Lazy-load antidote and generate the static load file only when needed
+ZSH_PLUGINS=${HOME}/.zsh_plugins
+if [[ ! ${ZSH_PLUGINS}.zsh -nt ${ZSH_PLUGINS}.txt ]]; then
+  (
+    source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+    antidote bundle <${DOTFILES}/zsh/zsh_plugins.txt >${zsh_plugins}.zsh
+  )
+fi
+source ${zsh_plugins}.zsh
 
 # bun completions
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
@@ -48,12 +54,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-# Download Znap, if it's not there yet.
-[[ -r ${ZNAP}/znap.zsh ]] ||
-    git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git ${ZNAP}
-source ${ZNAP}/znap.zsh  # Start Znap
-
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
