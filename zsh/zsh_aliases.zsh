@@ -19,15 +19,15 @@ alias pingg="echo 'tom: Pinging Google' && ping www.google.com";
 alias myip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 
-# Zed
-alias zed="open -a Zed.app"
-alias z="zed ."
-alias dfz="zed ${DOTFILES}"
-
 # VS Code
 alias c="code ."
 alias dfc="code ${DOTFILES}"
 alias lgsc="code ${LOGSEQ}/logseq/config.edn"
+
+# Zed
+alias zed="open -a Zed.app"
+alias z="zed ."
+alias dfz="zed ${DOTFILES}"
 
 # Files & Directories
 alias ..="cd .."
