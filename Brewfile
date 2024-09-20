@@ -18,6 +18,7 @@ brew 'tree'
 brew 'watchman'
 
 # Casks
+cask 'amazon-q'
 cask 'android-studio'
 cask 'blender'
 cask 'discord'
