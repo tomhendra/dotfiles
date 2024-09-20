@@ -25,3 +25,6 @@ symlink starship.toml .config/starship.toml
 # zsh
 symlink zsh/.zshrc .zshrc
 symlink zsh/.zprofile .zprofile
+
+# vscode
+symlink vscode/custom.css .config/vscode/custom.css

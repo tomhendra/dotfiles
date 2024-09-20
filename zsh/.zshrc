@@ -1,3 +1,6 @@
+# Amazon Q pre block. Keep at the top of this file.
+# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+
 # Environment variables
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export DEVELOPER="${HOME}/Developer"
@@ -34,7 +37,7 @@ source "${DOTFILES}/zsh/zsh_aliases.zsh"
 # Starship init
 eval "$(starship init zsh)"
 
-# Lazy-load antidote and generate the static load file only when needed
+Lazy-load antidote and generate the static load file only when needed
 ZSH_PLUGINS=${HOME}/.zsh_plugins
 if [[ ! ${ZSH_PLUGINS}.zsh -nt ${ZSH_PLUGINS}.txt ]]; then
   (
@@ -54,3 +57,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# Amazon Q post block. Keep at the bottom of this file.
+# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"

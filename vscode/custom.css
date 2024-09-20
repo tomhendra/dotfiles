@@ -1,0 +1,54 @@
+/* https://www.youtube.com/watch?v=9_I0bySQoCs&t=87s */
+/* https://github.com/glennraya/vscode-settings-json/blob/main/custom-vscode.css */
+
+/* File explorer action buttons (...) */
+.monaco-workbench .part.sidebar .title-actions .actions-container {
+  display: none;
+}
+
+/* File Explorer Item Label */
+.monaco-tree .monaco-tree-row .label-name,
+.monaco-list .monaco-list-row
+.monaco-icon-label .label-name {
+    font-family: 'Operator Mono', monospace !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+
+/* Title bar search*/
+.monaco-workbench .part.titlebar>.titlebar-container>.titlebar-center>.window-title>.command-center .action-item.command-center-center {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Title bar back and forward icons */
+.action-item.menu-entry {
+  display: none !important;
+}
+
+/* Title bar search Label */
+.search-label {
+  font-family: 'Operator Mono' !important;
+  font-size: 14px !important;
+  display: block;
+}
+
+/* Title bar search icon */
+.search-icon {
+  display: none !important;
+}
+
+/* Command Palette */
+.quick-input-widget {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, .15) !important;
+  padding: 10px 10px 18px 10px !important;
+}
+
+/* Command palette text input */
+.quick-input-filter .monaco-inputbox {
+  font-family: "Operator Mono" !important;
+  font-size: 14px !important;
+  padding: 2px !important;
+  margin-bottom: 4px !important;
+  margin-bottom: 16px !important;
+}
