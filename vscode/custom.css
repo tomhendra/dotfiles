@@ -26,7 +26,7 @@
   display: none !important;
 }
 
-/* Override .hide class for .command-center when opening Command Palette  */
+/* Override .hide class added to .command-center when opening Command Palette  */
 .monaco-workbench .part.titlebar>.titlebar-container>.titlebar-center>.window-title>.command-center.hide {
   visibility: visible;
 }
@@ -35,7 +35,6 @@
 .search-label {
   font-size: 13px !important;
 }
-
 
 /* Title bar search icon */
 .search-icon {
@@ -50,7 +49,7 @@
 
 /* Command Palette */
 .quick-input-widget {
-  top: 12% !important;
+  /* top: 10% !important; */
   box-shadow: 0px 8px 20px rgba(0, 0, 0, .15) !important;
   border: 1px solid rgba(0, 0, 0, .15) !important;
   padding: 10px 10px 18px 10px !important;
