@@ -49,7 +49,7 @@
 
 /* Command Palette */
 .quick-input-widget {
-  /* top: 10% !important; */
+  /* top: 8% !important; */
   box-shadow: 0px 8px 20px rgba(0, 0, 0, .15) !important;
   border: 1px solid rgba(0, 0, 0, .15) !important;
   padding: 10px 10px 18px 10px !important;
@@ -59,7 +59,7 @@
 .quick-input-filter .monaco-inputbox {
   font-family: "Operator Mono" !important;
   font-size: 14px !important;
-  padding: 2px !important;
+  /* padding: 2px !important; */
   margin-bottom: 4px !important;
   margin-bottom: 16px !important;
 }
