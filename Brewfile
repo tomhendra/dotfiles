@@ -36,11 +36,11 @@ cask 'microsoft-excel'
 cask 'obsidian'
 cask 'omnidisksweeper'
 cask 'onedrive'
+cask 'postman'
 cask 'qbittorrent'
 cask 'raycast'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
-cask 'zed'
 cask 'zulu@17' # https://docs.expo.dev/workflow/android-studio-emulator/#install-dependencies
 
 # Mac App Store

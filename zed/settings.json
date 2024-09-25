@@ -1,28 +1,28 @@
 {
-  "features": {
-    "inline_completion_provider": "supermaven"
-  },
-  "assistant": {
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-20240620"
-    },
-    "version": "2"
-  },
-  "theme": "Gruvbox Dark",
-  "ui_font_size": 15,
-  "buffer_font_family": "Zed Plex Mono",
-  "buffer_font_size": 13,
-  "project_panel": {
-    "dock": "right"
-  },
-  "lsp": {
-    "biome": {
-      "settings": {
-        "require_config_file": true
-      }
-    }
-  },
-  "formatter": "auto",
-  "format_on_save": "on"
+	"features": {
+		"inline_completion_provider": "supermaven"
+	},
+	"assistant": {
+		"default_model": {
+			"provider": "zed.dev",
+			"model": "claude-3-5-sonnet-20240620"
+		},
+		"version": "2"
+	},
+	"theme": "Gruvbox Dark",
+	"ui_font_size": 15,
+	"buffer_font_family": "Zed Plex Mono",
+	"buffer_font_size": 13,
+	"project_panel": {
+		"dock": "right"
+	},
+	"lsp": {
+		"biome": {
+			"settings": {
+				"require_config_file": true
+			}
+		}
+	},
+	"formatter": "auto",
+	"format_on_save": "on"
 }
