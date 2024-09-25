@@ -1,7 +1,7 @@
 # Amazon Q pre block. Keep at the top of this file.
-# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-
-# Environment variables
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+# Amazon Q pre block. Keep at the top of this file.
+# # Environment variables
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export DEVELOPER="${HOME}/Developer"
 export DOTFILES="${HOME}/.dotfiles"
@@ -37,15 +37,15 @@ source "${DOTFILES}/zsh/zsh_aliases.zsh"
 # Starship init
 eval "$(starship init zsh)"
 
-Lazy-load antidote and generate the static load file only when needed
-ZSH_PLUGINS=${HOME}/.zsh_plugins
-if [[ ! ${ZSH_PLUGINS}.zsh -nt ${ZSH_PLUGINS}.txt ]]; then
-  (
-    source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
-    antidote bundle <${DOTFILES}/zsh/zsh_plugins.txt >${zsh_plugins}.zsh
-  )
-fi
-source ${zsh_plugins}.zsh
+# Lazy-load antidote and generate the static load file only when needed
+# ZSH_PLUGINS=${HOME}/.zsh_plugins
+# if [[ ! ${ZSH_PLUGINS}.zsh -nt ${ZSH_PLUGINS}.txt ]]; then
+#   (
+#     source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+#     antidote bundle <${DOTFILES}/zsh/zsh_plugins.txt >${zsh_plugins}.zsh
+#   )
+# fi
+# source ${zsh_plugins}.zsh
 
 # bun completions
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
@@ -59,4 +59,7 @@ esac
 # pnpm end
 
 # Amazon Q post block. Keep at the bottom of this file.
-# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+#
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
