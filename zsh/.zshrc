@@ -1,6 +1,11 @@
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 # Amazon Q pre block. Keep at the top of this file.
+
+# default language
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # # Environment variables
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export DEVELOPER="${HOME}/Developer"
