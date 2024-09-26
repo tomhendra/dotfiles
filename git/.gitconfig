@@ -12,6 +12,7 @@
 	editor = code --wait
 	excludesfile = /Users/Tom/.gitignore_global
 	pager = delta
+	ui = en
 
 [commit]
 	template = /Users/Tom/.stCommitMsg
