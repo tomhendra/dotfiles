@@ -1,5 +1,4 @@
 # Brews
-brew 'antidote'
 brew 'bat'
 brew 'cocoapods'
 brew 'fastlane'
@@ -14,6 +13,7 @@ brew 'python'
 brew 'ripgrep'
 brew 'starship'
 brew 'trash-cli'
+brew 'tursodatabase/tap/turso'
 brew 'tree'
 brew 'watchman'
 
