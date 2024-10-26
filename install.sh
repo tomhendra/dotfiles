@@ -25,8 +25,9 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Prompt for GitHub login & Xcode installation
-read -p "🤨 Have you logged in to your GitHub account? Press any key to confirm..."
-read -p "🤨 Have you installed Xcode from the App Store & the bundled Command Line Tools? Press any key to confirm..."
+osascript -e 'display dialog "🤨 Have you logged in to your GitHub account?" buttons {"YES"}'
+osascript -e 'display dialog "🤨 Have you installed Xcode from the App Store & the bundled Command Line Tools?" buttons {"YES"}'
+osascript -e 'display dialog "🤨 Have you run the system update to be certain CLT is totally up-to-date?" buttons {"YES"}'
 
 # Check if Xcode Command Line Tools are installed
 if ! xcode-select -p &> /dev/null; then
@@ -47,9 +48,11 @@ ssh-agent -s > "${HOME}/.ssh-agent-info"
 source "${HOME}/.ssh-agent-info"
 ssh-add ~/.ssh/id_rsa
 pbcopy < ${ssh}/id_rsa.pub
-read -p "📋 Public key copied to clipboard. Press any key to add it to GitHub..."
+
+osascript -e 'display dialog "📋 Public key copied to clipboard. Press OK to add it to GitHub..." buttons {"OK"}'
 open https://github.com/settings/keys
-read -p "🔑 Press any key after you've added the SSH key to your GitHub account..."
+osascript -e 'display dialog "🔑 Press OK after you have added the SSH key to your GitHub account..." buttons {"OK"}'
+
 ssh -T git@github.com || error_exit "Failed to authenticate with GitHub"
 
 # Define dotfiles path variable
@@ -91,9 +94,14 @@ pnpm env use -g lts || error_exit "Failed to install Node.js LTS"
 echo '🛠️ Installing global Node.js dependencies...'
 sh ${dotfiles}/global_pkg.sh || error_exit "Failed to install global Node.js packages"
 
-# iOS platform environment
-echo '🛠️ Installing iOS platform for Simulator...'
-xcodebuild -downloadPlatform iOS || error_exit "Failed to download iOS platform"
+# config Starship
+cp ${dotfiles}/starship.toml ${HOME}/.config
+
+# config bat
+mkdir -p "$(bat --config-dir)/themes"
+cp ${dotfiles}/bat/themes/Enki-Tokyo-Night.tmTheme "$(bat --config-dir)/themes"
+cp ${dotfiles}/bat/bat.conf "$(bat --config-dir)"
+bat cache --build
 
 # Symlinks from custom dotfiles, overwrite system defaults
 echo '🛠️ Creating symlinks from dotfiles...'
