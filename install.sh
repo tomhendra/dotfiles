@@ -86,7 +86,7 @@ curl -fsSL https://get.pnpm.io/install.sh | sh - || error_exit "Failed to instal
 [ -f "${HOME}/.zshrc" ] && source "${HOME}/.zshrc"
 # Node LTS
 pnpm env use -g lts || error_exit "Failed to install Node.js LTS"
-# Deno
+
 # Global packages
 echo '🛠️ Installing global Node.js dependencies...'
 sh ${dotfiles}/global_pkg.sh || error_exit "Failed to install global Node.js packages"
