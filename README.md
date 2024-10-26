@@ -41,8 +41,9 @@ There is some preparation to be done before performing a clean install of macOS 
 
 1. Perform a clean install of macOS. See Apple Support article [here](https://support.apple.com/en-gb/guide/mac-help/mchl7676b710/15.0/mac/15.0) for instructions.
 2. Ensure you are logged into the App Store (`mas signin` has been [broken for years](https://github.com/mas-cli/mas/issues/164)).
-3. Install Xcode + CLT [manually](https://developer.apple.com/download/all/), since `xcode-select --install` doesn't work on M2 + fresh install of Sequoia, for me at least.
-4. Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up!
+3. Install Xcode + CLT [manually](https://developer.apple.com/download/all/) to avoid Homebrew errors
+4. Run Software update from system settings to ensure CLT is the latest version
+5. Run `curl -ssL https://git.io/tomdot | sh` in the terminal and buckle up!
 
 ## Post-Installation
 

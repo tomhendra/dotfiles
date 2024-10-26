@@ -13,6 +13,7 @@ export LOGSEQ="${HOME}/Library/Mobile Documents/iCloud~com~logseq~logseq/Documen
 export OBSIDIAN="${HOME}/Library/Mobile Documents/iCloud~md~obsidian/Documents/"
 export PNPM_HOME="${HOME}/Library/pnpm"
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
+export BAT_CONFIG_PATH="${HOME}/.config/bat/bat.conf"
 
 # Start SSH agent & add all SSH keys
 eval "$(ssh-agent -s)"
