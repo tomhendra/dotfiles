@@ -15,9 +15,9 @@ alias stx="echo 'Ӿ' | pbcopy"
 alias refresh-dock-icons="rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
 
 # Network
-alias pingg="echo 'tom: Pinging Google' && ping www.google.com";
-alias myip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
+alias ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+alias pingoo="echo 'tom: Pinging Google' && ping www.google.com"
 
 # VS Code
 alias c="code ."
@@ -105,8 +105,8 @@ alias pag="pnpm add --global"
 alias dlx="pnpm dlx"
 alias pr="pnpm remove"
 alias pu="pnpm update --interactive"
-alias pgu="pnpm update --global --interactive"
-alias psu="pnpm self-update"
+alias pug="pnpm update --global --interactive"
+alias pus="pnpm self-update"
 alias pd="pnpm dev"
 alias ps="pnpm start"
 alias pt="pnpm test"
