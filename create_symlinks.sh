@@ -22,6 +22,9 @@ symlink kitty/current-theme.conf .config/kitty/current-theme.conf
 # Starship
 symlink starship.toml .config/starship.toml
 
+# Ghostty
+symlink ghostty/config .config/ghostty/config
+
 # zsh
 symlink zsh/.zshrc .zshrc
 symlink zsh/.zprofile .zprofile

@@ -14,6 +14,7 @@ export OBSIDIAN="${HOME}/Library/Mobile Documents/iCloud~md~obsidian/Documents/"
 export PNPM_HOME="${HOME}/Library/pnpm"
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
 export BAT_CONFIG_PATH="${HOME}/.config/bat/bat.conf"
+export GHOSTTY_CONFIG_PATH="${HOME}/.config/ghostty/config"
 
 # Start SSH agent & add all SSH keys
 eval "$(ssh-agent -s)"
