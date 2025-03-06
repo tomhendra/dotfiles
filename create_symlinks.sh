@@ -24,6 +24,7 @@ symlink starship.toml .config/starship.toml
 
 # Ghostty
 symlink ghostty/config .config/ghostty/config
+symlink ghostty/themes .config/ghostty/themes
 
 # zsh
 symlink zsh/.zshrc .zshrc
