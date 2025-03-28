@@ -16,8 +16,12 @@ config-file = "themes/tokyo-night-storm"
 
 # Window
 title = Ghostty 👻
+macos-titlebar-style = tabs
 window-padding-x = 16
-window-padding-y = 0,8
-window-width = 118
+window-padding-y = 8
+window-width = 115
 window-height = 52
 macos-titlebar-style = transparent
+
+# Other
+copy-on-select = clipboard
