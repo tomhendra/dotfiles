@@ -82,6 +82,10 @@ brew tap homebrew/bundle
 brew bundle --file=${dotfiles}/Brewfile || error_exit "Failed to install Homebrew packages"
 brew cleanup
 
+# Rust
+echo "🛠️ Installing Rust..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh || error_exit "Failed to install Rust"
+
 # Node.js
 echo "🛠️ Installing Node.js..."
 # pnpm
