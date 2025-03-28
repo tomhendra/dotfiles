@@ -25,6 +25,7 @@ typeset -U path  # Ensures unique entries in PATH
 
 path=(
     "$PNPM_HOME"
+    "$HOME/.cargo/bin"
     "./node_modules/.bin"
     "./vendor/bin"
     "$ANDROID_HOME/emulator"
