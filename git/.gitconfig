@@ -9,7 +9,7 @@
 	required = true
 
 [core]
-	editor = code --wait
+	editor = cursor --wait
 	excludesfile = /Users/Tom/.gitignore_global
 	pager = delta
 	ui = en
