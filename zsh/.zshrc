@@ -25,13 +25,12 @@ typeset -U path  # Ensures unique entries in PATH
 
 path=(
     "$PNPM_HOME"
-    "$HOME/.cargo/bin"
     "./node_modules/.bin"
     "./vendor/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.local/share/solana/install/active_release/bin"
     "$ANDROID_HOME/emulator"
     "$ANDROID_HOME/platform-tools"
-    "$HOME/.dotnet/tools"
-    "$HOME/.local/share/solana/install/active_release/bin"
     "/usr/local/sbin"
     $path
 )

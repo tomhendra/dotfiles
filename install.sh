@@ -85,6 +85,18 @@ brew cleanup
 # Rust
 echo "🛠️ Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh || error_exit "Failed to install Rust"
+. "$HOME/.cargo/env"
+
+# Solana
+echo "🛠️ Installing Solana..."
+sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)" || error_exit "Failed to install Solana"
+source ~/.zshrc
+
+# Anchor
+echo "🛠️ Installing Anchor..."
+cargo install --git https://github.com/coral-xyz/anchor avm --force
+avm --version
+avm install latest
 
 # Node.js
 echo "🛠️ Installing Node.js..."
