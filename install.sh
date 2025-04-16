@@ -114,10 +114,10 @@ sh ${dotfiles}/global_pkg.sh || error_exit "Failed to install global Node.js pac
 cp ${dotfiles}/starship.toml ${HOME}/.config
 
 # config bat
-mkdir -p "$(bat --config-dir)/themes"
-cp ${dotfiles}/bat/themes/Enki-Tokyo-Night.tmTheme "$(bat --config-dir)/themes"
-cp ${dotfiles}/bat/bat.conf "$(bat --config-dir)"
-bat cache --build
+# mkdir -p "$(bat --config-dir)/themes"
+# cp ${dotfiles}/bat/themes/Enki-Tokyo-Night.tmTheme "$(bat --config-dir)/themes"
+# cp ${dotfiles}/bat/bat.conf "$(bat --config-dir)"
+# bat cache --build
 
 # Symlinks from custom dotfiles, overwrite system defaults
 echo '🛠️ Creating symlinks from dotfiles...'
