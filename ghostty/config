@@ -6,13 +6,8 @@ font-style-italic = Book Italic
 font-style-bold-italic = Medium Italic
 font-size = 14
 
-# Tokyo Night Storm color palette
-background = 24283b
-foreground = a9b1d6
-cursor-color = c0caf5
-
 # Themes
-config-file = "themes/tokyo-night-storm"
+theme = gruvboxdark
 
 # Window
 title = Ghostty 👻
