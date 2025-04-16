@@ -1,10 +1,9 @@
 # Text
-font-family = Operator Mono
-font-style = Book
+font-family = Zed Plex Mono
 font-style-bold = Medium
 font-style-italic = Book Italic
 font-style-bold-italic = Medium Italic
-font-size = 14
+font-size = 13
 
 # Themes
 theme = gruvboxdark
