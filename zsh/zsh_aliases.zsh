@@ -75,7 +75,8 @@ alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="git add . && git commit -m 'WIP'"
 
-# Cargo
+# Rust
+alias rb="rustup doc --book"
 alias cc="cargo check"
 alias cr="cargo run"
 alias cb="cargo build"
