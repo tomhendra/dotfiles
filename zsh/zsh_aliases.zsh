@@ -20,9 +20,9 @@ alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias pingoo="echo 'tom: Pinging Google' && ping www.google.com"
 
 # VS Code
-alias c="cursor ."
-alias dfc="cursor ${DOTFILES}"
-alias lgsc="cursor ${LOGSEQ}/logseq/config.edn"
+alias c="code ."
+alias dfc="code ${DOTFILES}"
+alias lgsc="code ${LOGSEQ}/logseq/config.edn"
 
 # Zed
 alias zed="open -a Zed.app"
