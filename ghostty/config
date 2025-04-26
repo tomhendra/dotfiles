@@ -1,12 +1,18 @@
 # Text
-font-family = Zed Plex Mono
+font-family = Operator Mono
+font-style = Book
 font-style-bold = Medium
 font-style-italic = Book Italic
 font-style-bold-italic = Medium Italic
-font-size = 13
+font-size = 14
+
+# Tokyo Night Storm color palette
+background = 24283b
+foreground = a9b1d6
+cursor-color = c0caf5
 
 # Themes
-theme = gruvboxdark
+config-file = "themes/tokyo-night-storm"
 
 # Window
 title = Ghostty 👻
