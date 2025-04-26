@@ -15,20 +15,15 @@ symlink bat/bat.conf .config/bat/bat.conf
 symlink git/.gitconfig .gitconfig
 symlink git/.gitignore_global .gitignore_global
 
-# Kitty
-symlink kitty/kitty.conf .config/kitty/kitty.conf
-symlink kitty/current-theme.conf .config/kitty/current-theme.conf
-
 # Starship
 symlink starship.toml .config/starship.toml
 
 # Ghostty
-symlink ghostty/config .config/ghostty/config
-symlink ghostty/themes .config/ghostty/themes
+symlink ghostty .config/ghostty
 
 # zsh
 symlink zsh/.zshrc .zshrc
 symlink zsh/.zprofile .zprofile
 
 # vscode
-symlink vscode/custom.css .config/vscode/custom.css
+# symlink vscode/custom.css .config/vscode/custom.css
