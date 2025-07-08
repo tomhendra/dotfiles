@@ -40,7 +40,6 @@ cask 'raycast'
 cask 'supabase/tap/supabase'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
-cask 'windsurf'
 cask 'zed'
 cask 'zulu@17' # https://docs.expo.dev/workflow/android-studio-emulator/#install-dependencies
 
