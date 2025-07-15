@@ -19,10 +19,13 @@ alias ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias pingoo="echo 'tom: Pinging Google' && ping www.google.com"
 
+# Kiro
+alias k="kiro ."
+alias dfk="kiro ${DOTFILES}"
+
 # VS Code
 alias c="code ."
 alias dfc="code ${DOTFILES}"
-alias lgsc="code ${LOGSEQ}/logseq/config.edn"
 
 # Zed
 alias zed="open -a Zed.app"
@@ -37,7 +40,6 @@ alias w3="cd ${DEVELOPER}/web3"
 alias df="cd ${DOTFILES}"
 alias lib="cd ${HOME}/Library"
 alias obsidian-dir="cd ${OBSIDIAN}"
-alias logseq-dir="cd ${LOGSEQ}"
 
 # trash-cli
 alias tp="trash-put"

@@ -5,11 +5,10 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# # Environment variables
+# Environment variables
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export DEVELOPER="${HOME}/Developer"
 export DOTFILES="${HOME}/.dotfiles"
-export LOGSEQ="${HOME}/Library/Mobile Documents/iCloud~com~logseq~logseq/Documents"
 export OBSIDIAN="${HOME}/Library/Mobile Documents/iCloud~md~obsidian/Documents/"
 export PNPM_HOME="${HOME}/Library/pnpm"
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
@@ -56,6 +55,3 @@ esac
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
-
-# Added by Windsurf
-export PATH="/Users/tomhendra/.codeium/windsurf/bin:$PATH"
