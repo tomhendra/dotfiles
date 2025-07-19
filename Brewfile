@@ -1,5 +1,6 @@
 # Brews
 brew 'bat'
+brew 'bruno'
 brew 'cocoapods'
 brew 'fastlane'
 brew 'flyctl'
