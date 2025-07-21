@@ -23,7 +23,6 @@ cask 'android-studio'
 cask 'apidog'
 cask 'blender'
 cask 'discord'
-cask 'docker'
 cask 'expo-orbit'
 cask 'figma'
 cask 'firefox'
@@ -41,7 +40,6 @@ cask 'raycast'
 cask 'supabase/tap/supabase'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
-cask 'zed'
 cask 'zulu@17' # https://docs.expo.dev/workflow/android-studio-emulator/#install-dependencies
 
 # Mac App Store
