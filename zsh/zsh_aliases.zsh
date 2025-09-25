@@ -101,6 +101,7 @@ alias br="bun run"
 alias bd="bun run dev"
 
 # pnpm
+alias pnpx="pnpm dlx"
 alias pi="pnpm install"
 alias pa="pnpm add"
 alias pap="pnpm add --save-peer"
