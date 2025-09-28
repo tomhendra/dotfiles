@@ -23,6 +23,7 @@ ssh-add -A 2>/dev/null
 typeset -U path  # Ensures unique entries in PATH
 
 path=(
+    "$HOME/.rbenv/bin"
     "$PNPM_HOME"
     "./node_modules/.bin"
     "./vendor/bin"
@@ -35,6 +36,9 @@ path=(
 )
 
 export PATH
+
+# Ruby version management init
+eval "$(rbenv init -)"
 
 # Aliases
 source "${DOTFILES}/zsh/zsh_aliases.zsh"
