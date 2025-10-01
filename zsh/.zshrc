@@ -27,7 +27,6 @@ path=(
     "$PNPM_HOME"
     "./node_modules/.bin"
     "./vendor/bin"
-    "$HOME/.cargo/bin"
     "$HOME/.local/share/solana/install/active_release/bin"
     "$ANDROID_HOME/emulator"
     "$ANDROID_HOME/platform-tools"
