@@ -15,8 +15,8 @@ command -v osascript >/dev/null 2>&1 || error_exit "osascript is required but no
 
 echo "👋 Hello $(whoami)! Let's setup the dev environment for this Mac."
 
-# Close any open System Preferences panes
-osascript -e 'tell application "System Preferences" to quit'
+# Close any open System Settings/Preferences panes
+osascript -e 'tell application "System Settings" to quit' 2>/dev/null || osascript -e 'tell application "System Preferences" to quit' 2>/dev/null || true
 
 # Ask for the administrator password upfront
 sudo -v
@@ -42,7 +42,11 @@ ssh="${HOME}/.ssh"
 mkdir -p ${ssh}
 
 echo "🛠️ Generating RSA token for SSH authentication..."
-echo "Host *\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
+
+# Only create SSH config if it doesn't exist
+if [ ! -f "${ssh}/config" ]; then
+    echo "Host *\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
+fi
 
 # Only generate SSH key if it doesn't exist
 if [ ! -f "${ssh}/id_rsa" ]; then
@@ -67,8 +71,12 @@ ssh -T git@github.com || error_exit "Failed to authenticate with GitHub"
 dotfiles="${HOME}/.dotfiles"
 
 # Clone dotfiles repo
-echo '🛠️ Cloning dotfiles...'
-git clone git@github.com:tomhendra/dotfiles.git ${dotfiles} || error_exit "Failed to clone dotfiles repository"
+if [ ! -d "${dotfiles}" ]; then
+    echo '🛠️ Cloning dotfiles...'
+    git clone git@github.com:tomhendra/dotfiles.git ${dotfiles} || error_exit "Failed to clone dotfiles repository"
+else
+    echo "⚠️  Dotfiles directory already exists, skipping clone"
+fi
 
 # Create ~/Developer directory & clone GitHub project repos into it
 echo '🛠️ Cloning GitHub repos into Developer...'
@@ -92,7 +100,7 @@ brew cleanup
 
 # Rust
 echo "🛠️ Installing Rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh || error_exit "Failed to install Rust"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || error_exit "Failed to install Rust"
 . "$HOME/.cargo/env"
 
 # Solana
