@@ -43,10 +43,18 @@ mkdir -p ${ssh}
 
 echo "🛠️ Generating RSA token for SSH authentication..."
 echo "Host *\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@outlook.com"
-ssh-agent -s > "${HOME}/.ssh-agent-info"
-source "${HOME}/.ssh-agent-info"
-ssh-add ~/.ssh/id_rsa
+
+# Only generate SSH key if it doesn't exist
+if [ ! -f "${ssh}/id_rsa" ]; then
+    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@outlook.com"
+    ssh-agent -s > "${HOME}/.ssh-agent-info"
+    source "${HOME}/.ssh-agent-info"
+    ssh-add ~/.ssh/id_rsa
+else
+    echo "⚠️  SSH key already exists, skipping generation"
+    ssh-add ~/.ssh/id_rsa 2>/dev/null || true
+fi
+
 pbcopy < ${ssh}/id_rsa.pub
 
 osascript -e 'display dialog "📋 Public key copied to clipboard. Press OK to add it to GitHub..." buttons {"OK"}'
@@ -90,7 +98,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh || error_exit "Fa
 # Solana
 echo "🛠️ Installing Solana..."
 sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)" || error_exit "Failed to install Solana"
-source ~/.zshrc
+# Note: Solana will be available after next shell session
 
 # Anchor
 echo "🛠️ Installing Anchor..."
@@ -120,6 +128,7 @@ echo '🛠️ Installing global Node.js dependencies...'
 sh ${dotfiles}/global_pkg.sh || error_exit "Failed to install global Node.js packages"
 
 # config Starship
+mkdir -p ${HOME}/.config
 cp ${dotfiles}/starship.toml ${HOME}/.config
 
 # config bat
