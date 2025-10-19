@@ -10,7 +10,6 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export DEVELOPER="${HOME}/Developer"
 export DOTFILES="${HOME}/.dotfiles"
 export OBSIDIAN="${HOME}/Library/Mobile Documents/iCloud~md~obsidian/Documents/"
-export PNPM_HOME="${HOME}/Library/pnpm"
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
 export BAT_CONFIG_PATH="${HOME}/.config/bat/bat.conf"
 export GHOSTTY_CONFIG_PATH="${HOME}/.config/ghostty/config"
@@ -24,7 +23,6 @@ typeset -U path  # Ensures unique entries in PATH
 
 path=(
     "$HOME/.rbenv/bin"
-    "$PNPM_HOME"
     "./node_modules/.bin"
     "./vendor/bin"
     "$HOME/.local/share/solana/install/active_release/bin"
@@ -48,13 +46,11 @@ eval "$(starship init zsh)"
 # bun completions
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
 
-# pnpm
-export PNPM_HOME="/Users/tomhendra/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+
+# fnm
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+  eval "`fnm env`"
+fi

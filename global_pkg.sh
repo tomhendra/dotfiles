@@ -1,14 +1,13 @@
 #!/bin/sh
 
 # global packages
-pnpm add -g @expo/ngrok
-pnpm add -g eas-cli
-pnpm add -g fkill-cli
-pnpm add -g localtunnel
-pnpm add -g ngrok
-pnpm add -g semantic-release-cli
-pnpm add -g sharp-cli
-pnpm add -g serve
-pnpm add -g typescript
-pnpm add -g wrangler
-pnpm add -g yarn
+npm install -g @expo/ngrok
+npm install -g eas-cli
+npm install -g fkill-cli
+npm install -g localtunnel
+npm install -g ngrok
+npm install -g semantic-release-cli
+npm install -g sharp-cli
+npm install -g serve
+npm install -g typescript
+npm install -g wrangler
