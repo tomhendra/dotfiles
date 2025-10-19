@@ -15,13 +15,16 @@ On a fresh macOS system, tomdot will handle the following:
 
 1. Generate SSH auth keys for GitHub.
 2. Download repos from GitHub to your local machine.
-3. Install pnpm as the global package & Node environment manager.
-4. Install Node.js LTS [via pnpm](https://pnpm.io/cli/env).
-5. Install global Node.js packages.
-6. Install Bun.
-7. Install Homebrew & packages.
-8. Install apps from the App Store.
-9. Symlink config files from `~/.dotfiles` to system equivalents.
+3. Install Homebrew & packages via Brewfile.
+4. Install fnm (Fast Node Manager) for Node.js version management.
+5. Install Node.js 22 via fnm.
+6. Enable Corepack for pnpm/yarn per-project management.
+7. Install global Node.js packages via npm.
+8. Install Rust, Solana, and Anchor toolchains.
+9. Install apps from the App Store via mas-cli.
+10. Configure bat, Starship, and other CLI tools.
+11. Symlink config files from `~/.dotfiles` to system equivalents.
+12. Apply modern macOS system preferences (optional).
 
 ## Preparation
 
@@ -34,7 +37,7 @@ There is some preparation to be done before performing a clean install of macOS 
 - Ensure VS Code is signed into and synced.
 - Ensure Chrome is signed into and synced.
 - Login to iCloud with a browser and ensure all backed-up fonts and preferences have actually been uploaded.
-- Update the pnpm install script in install.sh (line 85) is [up-to-date](https://pnpm.io/installation#on-posix-systems).
+- Update the fnm version in Brewfile if needed (check [fnm releases](https://github.com/Schniz/fnm/releases)).
 - Update MacOS to the [latest version](https://support.apple.com/en-us/HT201541).
 
 ## Installation
