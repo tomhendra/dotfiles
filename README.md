@@ -3,7 +3,7 @@
 <h1>tomdot</h1>
 </div>
 
-**TL;DR:** For web dev things on a clean macOS install: `curl -ssL https://git.io/tomdot | sh`
+**TL;DR:** Run on a clean macOS install: `curl -ssL https://git.io/tomdot | sh`
 
 **Disclaimer:** Dotfiles are personal things, and as such I advise against rolling these ones unmodified — they are specific to my setup and will likely need to be tweaked for yours.
 
