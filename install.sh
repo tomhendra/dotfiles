@@ -100,11 +100,20 @@ avm install latest
 
 # Node.js
 echo "🛠️ Installing Node.js..."
-# pnpm
-curl -fsSL https://get.pnpm.io/install.sh | sh - || error_exit "Failed to install pnpm"
-[ -f "${HOME}/.zshrc" ] && source "${HOME}/.zshrc"
-# Node LTS
-pnpm env use -g lts || error_exit "Failed to install Node.js LTS"
+# fnm is already installed via Homebrew in the Brewfile
+# Source the fnm environment
+export PATH="/opt/homebrew/bin:${PATH}"
+eval "$(fnm env --use-on-cd)"
+# Install Node.js 22
+fnm install 22 || error_exit "Failed to install Node.js 22"
+fnm use 22
+fnm default 22
+
+# Enable Corepack for pnpm/yarn management
+echo "🛠️ Enabling Corepack..."
+corepack enable || error_exit "Failed to enable Corepack"
+corepack enable pnpm
+corepack enable yarn
 
 # Global packages
 echo '🛠️ Installing global Node.js dependencies...'

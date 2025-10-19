@@ -86,8 +86,14 @@ alias cbr="cargo build --release"
 
 # Node
 alias rnm="rm -rf node_modules"
-alias node-lts="pnpm env use --global lts"
-alias node-latest="pnpm env use --global latest"
+alias node-lts="fnm install --lts && fnm use lts-latest"
+alias node-latest="fnm install latest && fnm use latest"
+
+# fnm
+alias fnm-list="fnm list"
+alias fnm-ls="fnm list"
+alias fnm-use="fnm use"
+alias fnm-install="fnm install"
 
 # Deno
 alias dts="deno task start"
