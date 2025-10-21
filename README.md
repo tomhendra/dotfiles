@@ -20,7 +20,7 @@ On a fresh macOS system, tomdot will handle the following:
 5. Install Node.js 22 via fnm.
 6. Enable Corepack for pnpm/yarn per-project management.
 7. Install global Node.js packages via npm.
-8. Install Rust, Solana, and Anchor toolchains.
+8. Install Rust
 9. Install apps from the App Store via mas-cli.
 10. Configure bat, Starship, and other CLI tools.
 11. Symlink config files from `~/.dotfiles` to system equivalents.
