@@ -55,7 +55,7 @@ if [ ! -f "${ssh}/id_rsa" ]; then
     source "${HOME}/.ssh-agent-info"
     ssh-add ~/.ssh/id_rsa
 else
-    echo "⚠️  SSH key already exists, skipping generation"
+    echo "⚠️ SSH key already exists, skipping generation"
     ssh-add ~/.ssh/id_rsa 2>/dev/null || true
 fi
 
@@ -75,7 +75,7 @@ if [ ! -d "${dotfiles}" ]; then
     echo '🛠️ Cloning dotfiles...'
     git clone git@github.com:tomhendra/dotfiles.git ${dotfiles} || error_exit "Failed to clone dotfiles repository"
 else
-    echo "⚠️  Dotfiles directory already exists, skipping clone"
+    echo "⚠️ Dotfiles directory already exists, skipping clone"
 fi
 
 # Create ~/Developer directory & clone GitHub project repos into it
@@ -103,16 +103,16 @@ echo "🛠️ Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || error_exit "Failed to install Rust"
 . "$HOME/.cargo/env"
 
-# Solana
-echo "🛠️ Installing Solana..."
-sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)" || error_exit "Failed to install Solana"
-# Note: Solana will be available after next shell session
+# # Solana
+# echo "🛠️ Installing Solana..."
+# sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)" || error_exit "Failed to install Solana"
+# # Note: Solana will be available after next shell session
 
-# Anchor
-echo "🛠️ Installing Anchor..."
-cargo install --git https://github.com/coral-xyz/anchor avm --force
-avm --version
-avm install latest
+# # Anchor
+# echo "🛠️ Installing Anchor..."
+# cargo install --git https://github.com/coral-xyz/anchor avm --force
+# avm --version
+# avm install latest
 
 # Node.js
 echo "🛠️ Installing Node.js..."
