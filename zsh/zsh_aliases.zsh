@@ -55,48 +55,39 @@ alias tl="trash-list"
 alias tr="trash-restore"
 alias trm="trash-rm"
 
-# Git
-# Status
+# Git Status
 alias gs="git status -sb"
 alias gsf="git status"
-# Diff and log
+# Git diff and log
 alias gd="git diff"
 alias gl="git log --oneline --decorate --color"
-# Branch and checkout
+# Git branch and checkout
 alias gb="git branch"
 alias gc="git checkout"
-# Resetting and cleaning
+# Git resetting and cleaning
 alias reset-soft="git checkout -- ."
 alias reset-hard="git reset --hard HEAD"
 alias reset-dangerous="git clean -fd && git reset --hard HEAD"
-# Committing
+# Git commits
 alias com="git add . && git commit -m"
 alias resolve="git commit --no-edit"
 alias amend="git commit --amend --no-edit"
-# Syncing
+# Git syncing
 alias pull="git pull"
 alias push="git push"
 alias push-force="git push --force"
-# Stashing
+# Git stashing
 alias pop="git stash pop"
 alias stash="git stash -u"
-# Misc
+# Git misc
 alias unstage="git restore --staged ."
 alias wip="git add . && git commit -m 'WIP'"
-
-# Rust
-alias rb="rustup doc --book"
-alias cc="cargo check"
-alias cr="cargo run"
-alias cb="cargo build"
-alias cbr="cargo build --release"
 
 # Node
 alias rnm="rm -rf node_modules"
 alias node-lts="fnm install --lts && fnm use lts-latest"
 alias node-latest="fnm install latest && fnm use latest"
-
-# fnm
+# Node fnm
 alias fnm-list="fnm list"
 alias fnm-ls="fnm list"
 alias fnm-use="fnm use"
@@ -110,44 +101,78 @@ alias dtp="deno task preview"
 alias dtu="deno task update"
 
 # Bun
+alias bx="bunx"
+alias bi="bun install"
+alias ba="bun add"
+alias bad="bun add --dev"
+alias bag="bun add --global"
+alias brm="bun remove"
+alias bu="bun update"
+alias bo="bun outdated"
 alias br="bun run"
 alias bd="bun run dev"
-
-# pnpm
-alias pnpx="pnpm dlx"
-alias pi="pnpm install"
-alias pa="pnpm add"
-alias pap="pnpm add --save-peer"
-alias pag="pnpm add --global"
-alias dlx="pnpm dlx"
-alias pr="pnpm remove"
-alias pu="pnpm update --interactive"
-alias pug="pnpm update --global --interactive"
-alias pus="pnpm self-update"
-alias pd="pnpm dev"
-alias ps="pnpm start"
-alias pt="pnpm test"
-alias pb="pnpm build"
-alias pdir="cd $PNPM_HOME"
-alias paip="pnpm config set auto-install-peers true"
-alias pt="pnpm t"
-alias pnx="pnpm nx"
+alias bs="bun run start"
+alias bt="bun run test"
+alias bb="bun run build"
+alias bus="bun upgrade"
+alias bdir="cd $BUN_INSTALL"
 
 # npm
+alias nx="npx"
 alias ni="npm install"
-alias nr="npm remove"
+alias na="npm install"
+alias nad="npm install --save-dev"
+alias nag="npm install --global"
+alias nrm="npm uninstall"
+alias nu="npm update"
+alias no="npm outdated"
 alias nd="npm run dev"
 alias ns="npm run start"
 alias nt="npm run test"
 alias nb="npm run build"
 
+# pnpm
+alias px="pnpm dlx"
+alias pi="pnpm install"
+alias pa="pnpm add"
+alias pad="pnpm add --dev"
+alias pap="pnpm add --save-peer"
+alias pag="pnpm add --global"
+alias prm="pnpm remove"
+alias pu="pnpm update --interactive"
+alias pug="pnpm update --global --interactive"
+alias po="pnpm outdated"
+alias pd="pnpm dev"
+alias ps="pnpm start"
+alias pt="pnpm test"
+alias pb="pnpm build"
+alias paip="pnpm config set auto-install-peers true"
+alias pus="corepack use pnpm@latest"
+alias pdir="cd $PNPM_HOME"
+
 # yarn
+alias yx="yarn dlx"
+alias yi="yarn install"
+alias ya="yarn add"
+alias yad="yarn add --dev"
+alias yag="yarn global add"
+alias yrm="yarn remove"
+alias yu="yarn upgrade-interactive"
+alias yo="yarn outdated"
 alias yd="yarn dev"
 alias ys="yarn start"
 alias yt="yarn test"
 alias yb="yarn build"
 alias ynuke="rm -rf node_modules/ yarn.lock"
 alias yw="yarn workspace"
+alias yus="corepack use yarn@latest"
+
+# Rust
+alias rb="rustup doc --book"
+alias cc="cargo check"
+alias cr="cargo run"
+alias cb="cargo build"
+alias cbr="cargo build --release"
 
 # Xcode
 alias xcode-erase-all-simulators="sudo xcrun simctl erase all"
