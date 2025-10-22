@@ -115,7 +115,7 @@ alias bs="bun run start"
 alias bt="bun run test"
 alias bb="bun run build"
 alias bus="bun upgrade"
-alias bdir="cd $BUN_INSTALL"
+alias bdir="echo '${HOME}/.bun/install/global'"
 
 # npm
 alias nx="npx"
@@ -130,6 +130,7 @@ alias nd="npm run dev"
 alias ns="npm run start"
 alias nt="npm run test"
 alias nb="npm run build"
+alias ndir="npm config get prefix"
 
 # pnpm
 alias px="pnpm dlx"
@@ -148,7 +149,7 @@ alias pt="pnpm test"
 alias pb="pnpm build"
 alias paip="pnpm config set auto-install-peers true"
 alias pus="corepack use pnpm@latest"
-alias pdir="cd $PNPM_HOME"
+alias pdir="pnpm root -g"
 
 # yarn
 alias yx="yarn dlx"
@@ -166,6 +167,7 @@ alias yb="yarn build"
 alias ynuke="rm -rf node_modules/ yarn.lock"
 alias yw="yarn workspace"
 alias yus="corepack use yarn@latest"
+alias ydir="yarn global dir"
 
 # Rust
 alias rb="rustup doc --book"
