@@ -11,6 +11,7 @@ export DEVELOPER="${HOME}/Developer"
 export DOTFILES="${HOME}/.dotfiles"
 export OBSIDIAN="${HOME}/Library/Mobile Documents/iCloud~md~obsidian/Documents/"
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
+export ANDROID_NDK="${ANDROID_HOME}/ndk/27.1.12297006"
 export BAT_CONFIG_PATH="${HOME}/.config/bat/bat.conf"
 export GHOSTTY_CONFIG_PATH="${HOME}/.config/ghostty/config"
 
