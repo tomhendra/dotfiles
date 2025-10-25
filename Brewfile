@@ -2,6 +2,7 @@
 brew 'bat'
 brew 'bruno'
 brew 'cocoapods'
+brew 'docker'
 brew 'fastlane'
 brew 'flyctl'
 brew 'fnm'

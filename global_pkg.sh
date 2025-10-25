@@ -4,6 +4,7 @@
 npm install -g @expo/ngrok
 npm install -g eas-cli
 npm install -g fkill-cli
+npm install -g keel
 npm install -g localtunnel
 npm install -g ngrok
 npm install -g semantic-release-cli
