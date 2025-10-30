@@ -1,152 +1,182 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e  # Exit immediately if a command exits with a non-zero status
 set -u  # Treat unset variables as an error when substituting
 
-# Define error message function
-error_exit() {
-    echo -e "\033[1;31m🚨 Error: $1\033[0m" >&2
+# Tomdot - Enhanced macOS development environment installer
+# Uses the new resilient installation framework with Rock.js-inspired UI
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Initialize state and logging early
+export TOMDOT_STATE_DIR="${HOME}/.tomdot_install_state"
+export TOMDOT_STATE_FILE="${TOMDOT_STATE_DIR}/state.json"
+export TOMDOT_BACKUP_DIR="${TOMDOT_STATE_DIR}/backups"
+export TOMDOT_LOG_FILE="${TOMDOT_STATE_DIR}/install.log"
+
+# Source the tomdot installation framework components
+if [[ -f "${SCRIPT_DIR}/lib/tomdot_installer.sh" ]]; then
+    source "${SCRIPT_DIR}/lib/tomdot_installer.sh"
+else
+    echo "Error: tomdot installation framework not found at ${SCRIPT_DIR}/lib/tomdot_installer.sh"
+    echo "Please ensure the lib/ directory is present with the required framework files."
     exit 1
+fi
+
+# Verify all framework components are loaded
+if ! declare -f tomdot_install >/dev/null 2>&1; then
+    echo "Error: tomdot_installer.sh functions not properly loaded"
+    exit 1
+fi
+
+if ! declare -f ui_start_section >/dev/null 2>&1; then
+    echo "Error: tomdot_ui.sh functions not properly loaded"
+    exit 1
+fi
+
+# Cleanup function for trap handler
+cleanup() {
+    local exit_code=$?
+
+    # Stop any running spinners
+    if [[ -n "${TOMDOT_SPINNER_PID:-}" ]]; then
+        kill "$TOMDOT_SPINNER_PID" 2>/dev/null || true
+        wait "$TOMDOT_SPINNER_PID" 2>/dev/null || true
+    fi
+
+    # Log cleanup
+    if [[ $exit_code -ne 0 ]]; then
+        tomdot_log "ERROR" "Installation interrupted with exit code: $exit_code"
+        echo
+        echo "Installation was interrupted. You can resume later with:"
+        echo "  $0 --resume"
+        echo
+        echo "Or check the log file for details:"
+        echo "  cat $TOMDOT_LOG_FILE"
+    fi
+
+    exit $exit_code
 }
 
+# Set up trap handler for cleanup
+trap cleanup EXIT INT TERM
+
 # Check for required tools
-command -v git >/dev/null 2>&1 || error_exit "git is required but not installed"
-command -v osascript >/dev/null 2>&1 || error_exit "osascript is required but not installed"
+command -v git >/dev/null 2>&1 || { echo "Error: git is required but not installed" >&2; exit 1; }
+command -v python3 >/dev/null 2>&1 || { echo "Error: python3 is required but not installed" >&2; exit 1; }
 
-echo "👋 Hello $(whoami)! Let's setup the dev environment for this Mac."
+# Parse command line arguments
+TOMDOT_MODE="install"
+TOMDOT_STEP=""
 
-# Close any open System Settings/Preferences panes
-osascript -e 'tell application "System Settings" to quit' 2>/dev/null || osascript -e 'tell application "System Preferences" to quit' 2>/dev/null || true
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --step)
+            TOMDOT_MODE="step"
+            TOMDOT_STEP="$2"
+            shift 2
+            ;;
+        --resume)
+            TOMDOT_MODE="resume"
+            shift
+            ;;
+        --help|-h)
+            echo "Usage: $0 [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --step STEP    Run individual installation step"
+            echo "                 Available steps: ssh, homebrew, packages, languages, symlinks"
+            echo "  --resume       Resume installation from failure point"
+            echo "  --help, -h     Show this help message"
+            echo ""
+            echo "Examples:"
+            echo "  $0                    # Full installation"
+            echo "  $0 --step ssh         # Run SSH setup only"
+            echo "  $0 --resume           # Resume from failure"
+            echo ""
+            echo "Entry point compatibility:"
+            echo "  curl -ssL https://git.io/tomdot | sh"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Use --help for usage information"
+            exit 1
+            ;;
+    esac
+done
 
-# Ask for the administrator password upfront
-sudo -v
+# Main execution logic with enhanced error handling
+main() {
+    # Initialize state and logging
+    tomdot_init_state
 
-# Keep alive: update existing `sudo` time stamp until script has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+    # Log installation start
+    tomdot_log "INFO" "Starting tomdot installation (mode: $TOMDOT_MODE)"
 
-# Prompt for GitHub login & Xcode installation
-osascript -e 'display dialog "🤨 Have you logged in to your GitHub account?" buttons {"YES"}'
-osascript -e 'display dialog "🤨 Have you installed Xcode from the App Store & the bundled Command Line Tools?" buttons {"YES"}'
-osascript -e 'display dialog "🤨 Have you run the system update to be certain CLT is totally up-to-date?" buttons {"YES"}'
+    case "$TOMDOT_MODE" in
+        "step")
+            if [[ -z "$TOMDOT_STEP" ]]; then
+                echo "Error: --step requires a step name"
+                echo "Available steps: ssh, homebrew, packages, languages, symlinks"
+                exit 1
+            fi
 
-# Check if Xcode Command Line Tools are installed
-if ! xcode-select -p &> /dev/null; then
-    error_exit "Xcode Command Line Tools not found. Please install them and try again."
-fi
+            tomdot_log "INFO" "Running individual step: $TOMDOT_STEP"
 
-# Accept Xcode license
-sudo xcodebuild -license accept
+            # Validate prerequisites for individual steps
+            if ! tomdot_check_prerequisites; then
+                echo "Prerequisites validation failed. Please resolve issues before continuing."
+                exit 1
+            fi
 
-# Generate SSH key & authenticate with GitHub
-ssh="${HOME}/.ssh"
-mkdir -p ${ssh}
+            tomdot_run_step "$TOMDOT_STEP"
+            ;;
+        "resume")
+            tomdot_log "INFO" "Resuming installation from previous state"
 
-echo "🛠️ Generating RSA token for SSH authentication..."
+            if ! tomdot_can_resume; then
+                echo "No previous installation found to resume. Starting fresh installation..."
+                tomdot_install
+            else
+                tomdot_resume
+            fi
+            ;;
+        "install")
+            tomdot_log "INFO" "Starting full installation"
 
-# Only create SSH config if it doesn't exist
-if [ ! -f "${ssh}/config" ]; then
-    echo "Host *\n PreferredAuthentications publickey\n UseKeychain yes\n IdentityFile ${ssh}/id_rsa\n" > ${ssh}/config
-fi
+            # Validate prerequisites before starting
+            if ! tomdot_check_prerequisites; then
+                echo "Prerequisites validation failed. Please resolve issues before continuing."
+                exit 1
+            fi
 
-# Only generate SSH key if it doesn't exist
-if [ ! -f "${ssh}/id_rsa" ]; then
-    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "tom.hendra@outlook.com"
-    ssh-agent -s > "${HOME}/.ssh-agent-info"
-    source "${HOME}/.ssh-agent-info"
-    ssh-add ~/.ssh/id_rsa
-else
-    echo "⚠️ SSH key already exists, skipping generation"
-    ssh-add ~/.ssh/id_rsa 2>/dev/null || true
-fi
+            tomdot_install
+            ;;
+    esac
 
-pbcopy < ${ssh}/id_rsa.pub
+    local exit_code=$?
 
-osascript -e 'display dialog "📋 Public key copied to clipboard. Press OK to add it to GitHub..." buttons {"OK"}'
-open https://github.com/settings/keys
-osascript -e 'display dialog "🔑 Press OK after you have added the SSH key to your GitHub account..." buttons {"OK"}'
+    if [[ $exit_code -eq 0 ]]; then
+        tomdot_log "INFO" "Installation completed successfully"
 
-ssh -T git@github.com || error_exit "Failed to authenticate with GitHub"
+        # Run final validation
+        echo
+        ui_start_section "Final Validation"
+        if tomdot_validate_installation; then
+            printf "${C_DIM}│${C_RESET} ${C_GREEN}✅ All validations passed${C_RESET}\n"
+            printf "${C_DIM}│${C_RESET}\n"
+        else
+            printf "${C_DIM}│${C_RESET} ${C_YELLOW}⚠️  Some validations failed${C_RESET}\n"
+            printf "${C_DIM}│${C_RESET}\n"
+        fi
+    else
+        tomdot_log "ERROR" "Installation failed with exit code: $exit_code"
+    fi
 
-# Define dotfiles path variable
-dotfiles="${HOME}/.dotfiles"
+    return $exit_code
+}
 
-# Clone dotfiles repo
-if [ ! -d "${dotfiles}" ]; then
-    echo '🛠️ Cloning dotfiles...'
-    git clone git@github.com:tomhendra/dotfiles.git ${dotfiles} || error_exit "Failed to clone dotfiles repository"
-else
-    echo "⚠️ Dotfiles directory already exists, skipping clone"
-fi
-
-# Create ~/Developer directory & clone GitHub project repos into it
-echo '🛠️ Cloning GitHub repos into Developer...'
-mkdir -p ${HOME}/Developer
-sh ${dotfiles}/git/get_repos.sh || error_exit "Failed to clone GitHub repositories"
-
-# Homebrew
-if test ! $(which brew); then
-    echo '🛠️ Installing Homebrew...'
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || error_exit "Failed to install Homebrew"
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> "${HOME}/.zprofile"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-# Homebrew packages & apps with brew bundle.
-echo '🛠️ Installing Homebrew brews & casks...'
-brew update
-brew tap homebrew/bundle
-brew bundle --file=${dotfiles}/Brewfile || error_exit "Failed to install Homebrew packages"
-brew cleanup
-
-# Rust
-echo "🛠️ Installing Rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || error_exit "Failed to install Rust"
-. "$HOME/.cargo/env"
-
-# # Solana
-# echo "🛠️ Installing Solana..."
-# sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)" || error_exit "Failed to install Solana"
-# # Note: Solana will be available after next shell session
-
-# # Anchor
-# echo "🛠️ Installing Anchor..."
-# cargo install --git https://github.com/coral-xyz/anchor avm --force
-# avm --version
-# avm install latest
-
-# Node.js
-echo "🛠️ Installing Node.js..."
-# fnm is already installed via Homebrew in the Brewfile
-# Source the fnm environment
-export PATH="/opt/homebrew/bin:${PATH}"
-eval "$(fnm env --use-on-cd)"
-# Install Node.js 22
-fnm install 22 || error_exit "Failed to install Node.js 22"
-fnm use 22
-fnm default 22
-
-# Enable Corepack for pnpm/yarn management
-echo "🛠️ Enabling Corepack..."
-corepack enable || error_exit "Failed to enable Corepack"
-corepack enable pnpm
-corepack enable yarn
-
-# Global packages
-echo '🛠️ Installing global Node.js dependencies...'
-sh ${dotfiles}/global_pkg.sh || error_exit "Failed to install global Node.js packages"
-
-# config Starship
-mkdir -p ${HOME}/.config
-cp ${dotfiles}/starship.toml ${HOME}/.config
-
-# config bat
-mkdir -p "$(bat --config-dir)/themes"
-cp ${dotfiles}/bat/themes/Enki-Tokyo-Night.tmTheme "$(bat --config-dir)/themes"
-cp ${dotfiles}/bat/bat.conf "$(bat --config-dir)"
-bat cache --build
-
-# Symlinks from custom dotfiles, overwrite system defaults
-echo '🛠️ Creating symlinks from dotfiles...'
-sh ${dotfiles}/create_symlinks.sh || error_exit "Failed to create symlinks"
-
-echo "✅ $(whoami)'s developer environment setup is complete!"
+# Execute main function
+main "$@"

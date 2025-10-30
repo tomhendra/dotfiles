@@ -8,9 +8,12 @@ tomdot/
 ├── .kiro/                   # Kiro IDE configuration
 ├── README.md                # Main documentation
 ├── SETUP-CHECKLIST.md       # Step-by-step setup guide
-├── install.sh               # Main installation script
-├── create_symlinks.sh       # Creates symlinks to dotfiles
-├── delete_symlinks.sh       # Removes symlinks
+├── install.sh               # Enhanced main installation script
+├── lib/
+│   ├── tomdot_installer.sh  # Core installation engine
+│   ├── tomdot_ui.sh        # Rock.js-inspired CLI framework
+│   ├── tomdot_utils.sh     # Consolidated helper utilities
+│   └── delete_symlinks.sh  # TeX Live symlink cleanup utility
 ├── .macos                   # macOS system preferences
 ├── Brewfile                 # Homebrew package definitions
 ├── global_pkg.sh            # Global Node.js packages
@@ -54,7 +57,7 @@ tomdot/
 
 ## Symlink Strategy
 
-The `create_symlinks.sh` script creates symbolic links from `~/.dotfiles/` to their expected locations in the home directory:
+The installation system creates symbolic links from `~/.dotfiles/` to their expected locations in the home directory:
 
 - `~/.dotfiles/zsh/.zshrc` → `~/.zshrc`
 - `~/.dotfiles/git/.gitconfig` → `~/.gitconfig`
