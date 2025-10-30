@@ -749,42 +749,7 @@ tomdot_resolve_conflicts() {
     esac
 }
 
-# Validate successful installation
-tomdot_validate_installation() {
-    local validation_errors=()
-
-    # Check if key files exist
-    local expected_files=(
-        "$HOME/.zshrc"
-        "$HOME/.gitconfig"
-    )
-
-    for file in "${expected_files[@]}"; do
-        if [[ ! -f "$file" ]]; then
-            validation_errors+=("Missing file: $file")
-        fi
-    done
-
-    # Check if key tools are available
-    local expected_tools=("brew" "git" "node" "rustc")
-
-    for tool in "${expected_tools[@]}"; do
-        if ! tomdot_command_exists "$tool"; then
-            validation_errors+=("Missing tool: $tool")
-        fi
-    done
-
-    if [[ ${#validation_errors[@]} -gt 0 ]]; then
-        tomdot_log "ERROR" "Installation validation failed"
-        for error in "${validation_errors[@]}"; do
-            tomdot_log "ERROR" "$error"
-        done
-        return 1
-    fi
-
-    tomdot_log "INFO" "Installation validation passed"
-    return 0
-}
+# Validate successful installation - see enhanced version below
 
 # =============================================================================
 # RECOVERY AND ROLLBACK FUNCTIONS
@@ -1328,50 +1293,54 @@ tomdot_validate_installation() {
     local validation_errors=()
     local validation_warnings=()
 
-    ui_start_section "Validating Installation"
+    printf "${C_DIM}│${C_RESET} ${C_CYAN}◇${C_RESET} Validating installation...\n"
 
     # Check key files exist
     local expected_files=(
         "$HOME/.zshrc"
         "$HOME/.gitconfig"
         "$HOME/.config/ghostty/config"
+        "$HOME/.config/bat/bat.conf"
+        "$HOME/.config/starship.toml"
     )
 
     for file in "${expected_files[@]}"; do
-        printf "${C_DIM}│${C_RESET} Checking file: %s... " "$(basename "$file")"
         if tomdot_validate_operation "file_exists" "$file"; then
-            printf "${C_GREEN}✅${C_RESET}\n"
+            :  # Silent success
         else
-            printf "${C_RED}❌${C_RESET}\n"
+            printf "${C_DIM}│${C_RESET} ${C_RED}◇${C_RESET} File %s missing\n" "$(basename "$file")"
             validation_errors+=("Missing file: $file")
         fi
     done
 
     # Check key tools are available
-    local expected_tools=("brew" "git" "node" "rustc")
+    local expected_tools=("brew" "git" "node")
 
     for tool in "${expected_tools[@]}"; do
-        printf "${C_DIM}│${C_RESET} Checking tool: %s... " "$tool"
         if tomdot_validate_operation "command_available" "$tool"; then
-            printf "${C_GREEN}✅${C_RESET}\n"
+            :  # Silent success
         else
-            printf "${C_RED}❌${C_RESET}\n"
+            printf "${C_DIM}│${C_RESET} ${C_RED}◇${C_RESET} Tool %s missing\n" "$tool"
             validation_errors+=("Missing tool: $tool")
         fi
     done
 
-    # Check symlinks
+    # Check symlinks - all symlinks created during installation
     local expected_symlinks=(
-        "$HOME/.zshrc"
+        "$HOME/.config/bat/bat.conf"
         "$HOME/.gitconfig"
+        "$HOME/.gitignore_global"
+        "$HOME/.config/starship.toml"
+        "$HOME/.config/ghostty"
+        "$HOME/.zshrc"
+        "$HOME/.zprofile"
     )
 
     for symlink in "${expected_symlinks[@]}"; do
-        printf "${C_DIM}│${C_RESET} Checking symlink: %s... " "$(basename "$symlink")"
         if tomdot_validate_operation "symlink_valid" "$symlink"; then
-            printf "${C_GREEN}✅${C_RESET}\n"
+            :  # Silent success
         else
-            printf "${C_YELLOW}⚠️${C_RESET}\n"
+            printf "${C_DIM}│${C_RESET} ${C_YELLOW}◇${C_RESET} Symlink %s issue\n" "$(basename "$symlink")"
             validation_warnings+=("Symlink issue: $symlink")
         fi
     done

@@ -29,11 +29,28 @@ fi
 TOMDOT_SPINNER_PID=""
 TOMDOT_SPINNER_MESSAGE=""
 
+# UI state management variables
+TOMDOT_UI_NEXT_STEPS_SHOWN=false
+TOMDOT_UI_IN_SECTION=false
+
 # Start a section with diamond symbol and connecting line
 ui_start_section() {
     local section_title="$1"
+
+    # Skip starting a new section if we're already in one (prevents nesting)
+    if [[ "$TOMDOT_UI_IN_SECTION" == "true" ]]; then
+        return 0
+    fi
+
     printf "${C_DIM}◇${C_RESET} %s\n" "$section_title"
     printf "${C_DIM}│${C_RESET}\n"
+
+    TOMDOT_UI_IN_SECTION=true
+}
+
+# End a section and reset section state
+ui_end_section() {
+    TOMDOT_UI_IN_SECTION=false
 }
 
 # Show progress step with visual hierarchy
@@ -84,9 +101,9 @@ ui_spinner_start() {
 ui_spinner_stop() {
     local result="${1:-success}"
 
-    if [[ -n "$TOMDOT_SPINNER_PID" ]]; then
-        kill "$TOMDOT_SPINNER_PID" 2>/dev/null
-        wait "$TOMDOT_SPINNER_PID" 2>/dev/null
+    if [[ -n "${TOMDOT_SPINNER_PID:-}" ]]; then
+        kill "$TOMDOT_SPINNER_PID" 2>/dev/null || true
+        wait "$TOMDOT_SPINNER_PID" 2>/dev/null || true
         TOMDOT_SPINNER_PID=""
     fi
 
@@ -134,6 +151,11 @@ ui_bordered_box() {
     shift
     local lines=("$@")
 
+    # Check if this is a "Next steps" box and if it's already been shown
+    if [[ "$title" == "Next steps" && "$TOMDOT_UI_NEXT_STEPS_SHOWN" == "true" ]]; then
+        return 0  # Skip showing duplicate next steps
+    fi
+
     echo
     # Rock.js style box - simple and clean
     printf "${C_DIM}┌─ %s${C_RESET}\n" "$title"
@@ -145,6 +167,11 @@ ui_bordered_box() {
 
     printf "${C_DIM}│${C_RESET}\n"
     printf "${C_DIM}└${C_RESET}\n"
+
+    # Mark next steps as shown if this was a next steps box
+    if [[ "$title" == "Next steps" ]]; then
+        TOMDOT_UI_NEXT_STEPS_SHOWN=true
+    fi
 }
 
 # Show overall progress with Rock.js styling
@@ -179,13 +206,26 @@ ui_show_progress() {
 # Welcome header for tomdot installation
 ui_welcome_header() {
     clear
+    local username=$(whoami)
     echo
-    printf "Welcome to ${C_CYAN}tomdot${C_RESET}!\n"
+    printf "Hello ${username}, welcome to ${C_CYAN}tomdot${C_RESET}!\n"
     echo
+}
+
+# Reset UI state (useful for testing or restarting flows)
+ui_reset_state() {
+    TOMDOT_UI_NEXT_STEPS_SHOWN=false
+    TOMDOT_UI_IN_SECTION=false
+}
+
+# Check if next steps have been shown
+ui_next_steps_shown() {
+    [[ "$TOMDOT_UI_NEXT_STEPS_SHOWN" == "true" ]]
 }
 
 # Export main UI functions
 export -f ui_start_section
+export -f ui_end_section
 export -f ui_progress_step
 export -f ui_spinner_start
 export -f ui_spinner_stop
@@ -193,3 +233,9 @@ export -f ui_question
 export -f ui_bordered_box
 export -f ui_show_progress
 export -f ui_welcome_header
+export -f ui_reset_state
+export -f ui_next_steps_shown
+
+# Export UI state variables
+export TOMDOT_UI_NEXT_STEPS_SHOWN
+export TOMDOT_UI_IN_SECTION
