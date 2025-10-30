@@ -143,16 +143,19 @@ resilient_execute_step() {
     local step_id="$1"
     local step_function="$2"
     local step_description="${3:-$step_id}"
+    local add_connector="${4:-true}"
 
     # Skip if already completed
     if resilient_is_completed "$step_id"; then
         printf "${C_DIM}◇ %s${C_RESET}\n" "$step_description"
+        [[ "$add_connector" == "true" ]] && printf "${C_DIM}│${C_RESET}\n"
         return 0
     fi
 
     # Check if function exists
     if ! declare -f "$step_function" >/dev/null 2>&1; then
         printf "${C_RED}◇ %s ${C_DIM}(function not found)${C_RESET}\n" "$step_description"
+        [[ "$add_connector" == "true" ]] && printf "${C_DIM}│${C_RESET}\n"
         resilient_save_step "$step_id" "failed"
         return 1
     fi
@@ -176,12 +179,14 @@ resilient_execute_step() {
 
             # Success - clear line and show success
             printf "\r${C_GREEN}◇${C_RESET} %s\n" "$step_description"
+            [[ "$add_connector" == "true" ]] && printf "${C_DIM}│${C_RESET}\n"
             resilient_save_step "$step_id" "completed" "$duration"
             return 0
         else
             if [[ $attempt -lt $RESILIENT_MAX_RETRIES ]]; then
                 # Show retry
                 printf "\r${C_YELLOW}◇${C_RESET} %s ${C_DIM}(retry %d/%d)${C_RESET}\n" "$step_description" "$attempt" "$RESILIENT_MAX_RETRIES"
+                [[ "$add_connector" == "true" ]] && printf "${C_DIM}│${C_RESET}\n"
                 sleep "$RESILIENT_RETRY_DELAY"
             fi
         fi
@@ -191,6 +196,7 @@ resilient_execute_step() {
 
     # All attempts failed
     printf "\r${C_RED}◇${C_RESET} %s ${C_DIM}(failed)${C_RESET}\n" "$step_description"
+    [[ "$add_connector" == "true" ]] && printf "${C_DIM}│${C_RESET}\n"
     resilient_save_step "$step_id" "failed"
     return 1
 }
@@ -203,13 +209,12 @@ resilient_show_progress() {
         return
     fi
 
-    echo
-
     local completed=0
     local failed=0
     local total=${#steps[@]}
 
     # Show each step with Rock.js style
+    local step_count=0
     for step_id in "${steps[@]}"; do
         local status=$(resilient_get_step_status "$step_id")
 
@@ -226,6 +231,12 @@ resilient_show_progress() {
                 printf "${C_DIM}◇ %s${C_RESET}\n" "$step_id"
                 ;;
         esac
+
+        # Add connecting line except for the last step
+        ((step_count++))
+        if [[ $step_count -lt $total ]]; then
+            printf "${C_DIM}│${C_RESET}\n"
+        fi
     done
 
     echo
@@ -234,7 +245,7 @@ resilient_show_progress() {
     if [[ $completed -eq $total ]]; then
         printf "${C_GREEN}Success${C_RESET} 🎉.\n"
     elif [[ $failed -gt 0 ]]; then
-        printf "${C_YELLOW}Completed with errors${C_RESET} ${C_DIM}(%d/%d successful)${C_RESET}.\n" "$completed" "$total"
+        printf "${C_YELLOW}Completed with errors${C_RESET} ${C_DIM}(%d/%d successful)${C_RESET}\n" "$completed" "$total"
     else
         printf "${C_CYAN}In progress${C_RESET} ${C_DIM}(%d/%d completed)${C_RESET}.\n" "$completed" "$total"
     fi
@@ -247,6 +258,7 @@ resilient_show_box() {
     local lines=("$@")
 
     echo
+    # Rock.js style box - simple and clean
     printf "${C_DIM}┌─ %s${C_RESET}\n" "$title"
     printf "${C_DIM}│${C_RESET}\n"
 
