@@ -43,6 +43,7 @@ cleanup() {
     if [[ -n "${TOMDOT_SPINNER_PID:-}" ]]; then
         kill "$TOMDOT_SPINNER_PID" 2>/dev/null || true
         wait "$TOMDOT_SPINNER_PID" 2>/dev/null || true
+        TOMDOT_SPINNER_PID=""
     fi
 
     # Log cleanup
@@ -112,6 +113,9 @@ main() {
     # Initialize state and logging
     tomdot_init_state
 
+    # Initialize UI state management
+    ui_reset_state
+
     # Log installation start
     tomdot_log "INFO" "Starting tomdot installation (mode: $TOMDOT_MODE)"
 
@@ -161,15 +165,28 @@ main() {
     if [[ $exit_code -eq 0 ]]; then
         tomdot_log "INFO" "Installation completed successfully"
 
-        # Run final validation
-        echo
-        ui_start_section "Final Validation"
+        # Run final validation as part of main flow (no separate section)
+        printf "${C_DIM}│${C_RESET} ${C_CYAN}◇${C_RESET} Running final validation...\n"
         if tomdot_validate_installation; then
-            printf "${C_DIM}│${C_RESET} ${C_GREEN}✅ All validations passed${C_RESET}\n"
             printf "${C_DIM}│${C_RESET}\n"
+            printf "${C_GREEN}✓ All validations passed${C_RESET}\n"
+            echo
+
+            # Show next steps only once at the very end (state management prevents duplicates)
+            if ! ui_next_steps_shown; then
+                echo "Installation complete! To activate your new shell configuration:"
+                echo "  source .zshrc"
+                echo
+                echo "Then explore your development environment:"
+                echo "  cd ~/Developer"
+                echo "  git status"
+                echo
+                TOMDOT_UI_NEXT_STEPS_SHOWN=true
+            fi
         else
-            printf "${C_DIM}│${C_RESET} ${C_YELLOW}⚠️  Some validations failed${C_RESET}\n"
             printf "${C_DIM}│${C_RESET}\n"
+            printf "${C_YELLOW}⚠️  Some validations failed${C_RESET}\n"
+            echo
         fi
     else
         tomdot_log "ERROR" "Installation failed with exit code: $exit_code"

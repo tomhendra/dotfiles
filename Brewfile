@@ -1,6 +1,6 @@
 # Brews
 brew 'bat'
-brew 'bruno'
+brew 'bruno-cli'
 brew 'cocoapods'
 brew 'docker'
 brew 'fastlane'
@@ -40,7 +40,7 @@ cask 'obsidian'
 cask 'omnidisksweeper'
 cask 'onedrive'
 cask 'raycast'
-cask 'supabase/tap/supabase'
+# cask 'supabase/tap/supabase'  # Temporarily disabled - tap unavailable
 cask 'the-unarchiver'
 cask 'visual-studio-code'
 cask 'zulu@17' # https://docs.expo.dev/workflow/android-studio-emulator/#install-dependencies

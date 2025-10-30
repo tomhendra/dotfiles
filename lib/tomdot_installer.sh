@@ -215,24 +215,21 @@ tomdot_execute_step() {
 
     # Skip if already completed
     if tomdot_is_step_completed "$step_name"; then
-        ui_progress_step "$step_description" "completed"
+        printf "${C_GREEN}◇${C_RESET} %s ${C_DIM}(already completed)${C_RESET}\n" "$step_description"
+        printf "${C_DIM}│${C_RESET}\n"
         return 0
     fi
 
     # Check if function exists
     if ! declare -f "$step_function" >/dev/null 2>&1; then
         local error_msg="Function '$step_function' not found"
-        ui_progress_step "$step_description" "failed"
+        printf "${C_RED}◇${C_RESET} %s ${C_RED}✗${C_RESET}\n" "$step_description"
         tomdot_save_step_state "$step_name" "failed" "$error_msg"
         echo "ERROR: $error_msg" | tee -a "$TOMDOT_LOG_FILE"
         return 1
     fi
 
-    # Create backup before step execution (for steps that modify configs)
-    if [[ "$step_name" == "symlinks" ]]; then
-        echo "Creating backup before $step_name..." | tee -a "$TOMDOT_LOG_FILE"
-        tomdot_backup_existing_configs
-    fi
+    # No backup needed - original install.sh didn't have backups
 
     # Mark step as started
     tomdot_save_step_state "$step_name" "started"
@@ -241,48 +238,54 @@ tomdot_execute_step() {
     local last_error=""
 
     while [[ $attempt -le $TOMDOT_MAX_RETRIES ]]; do
-        ui_spinner_start "$step_description"
+        # Show simple progress indicator
+        printf "${C_DIM}│${C_RESET}\n"
+        printf "${C_CYAN}◇${C_RESET} %s...\n" "$step_description"
 
-        # Execute the step function and capture output
+        # Execute the step function directly - NO BACKGROUND PROCESSES
         local exit_code=0
         local step_output
         step_output=$("$step_function" 2>&1) || exit_code=$?
 
-        # Log the output
-        echo "$step_output" | tee -a "$TOMDOT_LOG_FILE"
+        # Show the output with proper UI formatting
+        if [[ -n "$step_output" ]]; then
+            # Format each line with the connector
+            echo "$step_output" | while IFS= read -r line; do
+                printf "${C_DIM}│${C_RESET} %s\n" "$line"
+            done | tee -a "$TOMDOT_LOG_FILE"
+        fi
 
         if [[ $exit_code -eq 0 ]]; then
             # Validate the step completion
-            if tomdot_validate_step "$step_name" 2>&1 | tee -a "$TOMDOT_LOG_FILE"; then
-                ui_spinner_stop "success"
+            local validation_output
+            validation_output=$(tomdot_validate_step "$step_name" 2>&1)
+            if [[ $? -eq 0 ]]; then
+                # Format validation output with connectors
+                if [[ -n "$validation_output" ]]; then
+                    echo "$validation_output" | while IFS= read -r line; do
+                        printf "${C_DIM}│${C_RESET} %s\n" "$line"
+                    done | tee -a "$TOMDOT_LOG_FILE"
+                fi
+                printf "${C_GREEN}◇${C_RESET} %s ${C_GREEN}✓${C_RESET}\n" "$step_description"
+                printf "${C_DIM}│${C_RESET}\n"
                 tomdot_save_step_state "$step_name" "completed"
                 return 0
             else
-                ui_spinner_stop "failed"
                 last_error="Step completed but validation failed"
                 exit_code=1
             fi
         else
-            ui_spinner_stop "failed"
-            last_error="Exit code: $exit_code. Output: $(echo "$step_output" | tail -n 3 | tr '\n' ' ')"
+            last_error="Exit code: $exit_code"
         fi
 
         # Handle failure
         if [[ $exit_code -ne 0 ]]; then
             if [[ $attempt -lt $TOMDOT_MAX_RETRIES ]]; then
-                ui_progress_step "$step_description (retry $attempt/$TOMDOT_MAX_RETRIES)" "in_progress"
+                printf "${C_YELLOW}◇${C_RESET} %s ${C_YELLOW}⚠${C_RESET} ${C_DIM}(retry $attempt/$TOMDOT_MAX_RETRIES)${C_RESET}\n" "$step_description"
                 sleep "$TOMDOT_RETRY_DELAY"
             else
-                # All attempts failed - offer rollback for critical steps
-                if [[ "$step_name" == "symlinks" || "$step_name" == "ssh_setup" ]]; then
-                    echo "Step '$step_name' failed after $TOMDOT_MAX_RETRIES attempts" | tee -a "$TOMDOT_LOG_FILE"
-                    echo "Would you like to rollback this step? (y/N): "
-                    read -r rollback_choice
-                    if [[ "$rollback_choice" =~ ^[Yy]$ ]]; then
-                        echo "Rolling back step '$step_name'..." | tee -a "$TOMDOT_LOG_FILE"
-                        tomdot_rollback_step "$step_name"
-                    fi
-                fi
+                printf "${C_RED}◇${C_RESET} %s ${C_RED}✗${C_RESET}\n" "$step_description"
+                printf "${C_DIM}│${C_RESET}\n"
             fi
         fi
 
@@ -327,8 +330,17 @@ EOF
 
         echo "SSH key generated successfully"
     else
-        echo "SSH key already exists, adding to agent..."
-        ssh-add "$ssh_key" 2>/dev/null || true
+        echo "SSH key already exists"
+
+        # Test if SSH key is already working with GitHub
+        if ssh -T git@github.com -o ConnectTimeout=5 -o StrictHostKeyChecking=no 2>&1 | grep -q "successfully authenticated"; then
+            echo "SSH key already configured and working with GitHub"
+            return 0
+        fi
+
+        echo "Adding existing SSH key to agent..."
+        # Try to add key without prompting for passphrase if possible
+        ssh-add -K "$ssh_key" 2>/dev/null || ssh-add "$ssh_key" 2>/dev/null || true
     fi
 
     # Copy public key to clipboard
@@ -424,7 +436,7 @@ install_packages() {
     brew update
 
     echo "Installing Homebrew bundle..."
-    brew tap homebrew/bundle
+    # Note: homebrew/bundle is now built into Homebrew, no need to tap
 
     if ! brew bundle --file="$brewfile"; then
         echo "Failed to install packages from Brewfile"
@@ -542,8 +554,8 @@ create_symlinks() {
     create_symlink "bat/bat.conf" ".config/bat/bat.conf"
     create_symlink "git/.gitconfig" ".gitconfig"
     create_symlink "git/.gitignore_global" ".gitignore_global"
-    create_symlink "starship.toml" ".config/starship.toml"
     create_symlink "ghostty" ".config/ghostty"
+    create_symlink "starship.toml" ".config/starship.toml"
     create_symlink "zsh/.zshrc" ".zshrc"
     create_symlink "zsh/.zprofile" ".zprofile"
 
@@ -563,7 +575,6 @@ create_symlinks() {
     fi
 
     # Clone GitHub repositories
-    echo "Cloning GitHub repositories..."
     if [[ -f "${dotfiles_dir}/git/get_repos.sh" ]]; then
         mkdir -p "${HOME}/Developer"
         if ! sh "${dotfiles_dir}/git/get_repos.sh"; then
@@ -572,7 +583,6 @@ create_symlinks() {
         fi
     fi
 
-    echo "Symlinks created successfully"
     return 0
 }
 
@@ -588,15 +598,35 @@ tomdot_install() {
 
     ui_welcome_header
 
-    # Installation questions (matching simple_rock_demo.sh style)
-    ui_start_section "What is your development environment?"
-    printf "${C_DIM}│${C_RESET} ${C_DIM}macOS with Homebrew${C_RESET}\n"
+    # Show prerequisite information
+    ui_start_section "Prerequisites Check"
+    printf "${C_DIM}│${C_RESET} ${C_DIM}Before we begin, please ensure:${C_RESET}\n"
+    printf "${C_DIM}│${C_RESET} ${C_DIM}• You are logged into the App Store${C_RESET}\n"
+    printf "${C_DIM}│${C_RESET} ${C_DIM}• Xcode + Command Line Tools are installed${C_RESET}\n"
+    printf "${C_DIM}│${C_RESET} ${C_DIM}• macOS is updated to the latest version${C_RESET}\n"
     printf "${C_DIM}│${C_RESET}\n"
 
-    ui_start_section "Ready to set up your dotfiles?"
-    printf "${C_DIM}│${C_RESET} ${C_DIM}Press enter to continue${C_RESET}\n"
+    # Run prerequisite validation
+    if ! tomdot_check_prerequisites; then
+        printf "${C_DIM}│${C_RESET} ${C_RED}Prerequisites validation failed!${C_RESET}\n"
+        printf "${C_DIM}│${C_RESET} ${C_DIM}Please resolve the issues above before continuing.${C_RESET}\n"
+        printf "${C_DIM}│${C_RESET}\n"
+        return 1
+    fi
+
+    printf "${C_DIM}│${C_RESET} ${C_GREEN}✓ Prerequisites validated${C_RESET}\n"
+    printf "${C_DIM}│${C_RESET}\n"
+
+    ui_end_section
+
+    ui_start_section "Ready to setup your macOS environment?"
+    printf "${C_DIM}│${C_RESET}   Press enter to continue\n"
     read -r
     printf "${C_DIM}│${C_RESET}\n"
+    printf "${C_DIM}│${C_RESET} ${C_GREEN}✓${C_RESET} ${C_DIM}Starting installation...${C_RESET}\n"
+    printf "${C_DIM}│${C_RESET}\n"
+
+    ui_end_section
 
     # Execute installation steps
     tomdot_execute_step "ssh_setup" "install_ssh_setup" "Set up SSH keys and GitHub authentication"
@@ -605,18 +635,8 @@ tomdot_install() {
     tomdot_execute_step "languages" "install_languages" "Install Node.js and Rust toolchains"
     tomdot_execute_step "symlinks" "create_symlinks" "Create dotfiles symlinks"
 
-    # Show final progress
-    ui_show_progress "${steps[@]}"
-
-    # Next steps box
-    local next_steps=(
-        "source ~/.zshrc"
-        "cd ~/Developer"
-        "git status"
-    )
-
-    ui_bordered_box "Next steps" "${next_steps[@]}"
-    echo
+    # End the installation section properly
+    ui_end_section
 }
 
 # Resume installation from failure point
@@ -640,7 +660,12 @@ tomdot_resume() {
     local completed_steps=$(tomdot_get_state "completed_steps")
     local failed_steps=$(tomdot_get_state "failed_steps")
 
-    ui_welcome_header
+    clear
+    local username=$(whoami)
+    echo
+    printf "Hello ${username}, welcome back to ${C_CYAN}tomdot${C_RESET}!\n"
+    echo
+
     ui_start_section "Resuming installation"
     printf "${C_DIM}│${C_RESET} ${C_DIM}Installation ID: $installation_id${C_RESET}\n"
     printf "${C_DIM}│${C_RESET} ${C_DIM}Started: $started_at${C_RESET}\n"
@@ -657,16 +682,7 @@ tomdot_resume() {
         printf "${C_DIM}│${C_RESET} ${C_GREEN}All steps have been completed successfully${C_RESET}\n"
         printf "${C_DIM}│${C_RESET}\n"
 
-        # Show final progress
-        ui_show_progress "${steps[@]}"
-
-        # Next steps box
-        local next_steps=(
-            "source ~/.zshrc"
-            "cd ~/Developer"
-            "git status"
-        )
-        ui_bordered_box "Next steps" "${next_steps[@]}"
+        # All steps already completed
         return 0
     fi
 
@@ -703,18 +719,7 @@ tomdot_resume() {
         fi
     done
 
-    # Show final progress
-    ui_show_progress "${steps[@]}"
-
-    # Next steps box
-    local next_steps=(
-        "source ~/.zshrc"
-        "cd ~/Developer"
-        "git status"
-    )
-
-    ui_bordered_box "Next steps" "${next_steps[@]}"
-    echo
+    # Resume completed
 }
 
 # Run individual installation step
@@ -1024,10 +1029,18 @@ tomdot_validate_packages() {
 }
 
 tomdot_validate_languages() {
-    # Check Rust
+    # Check Rust - source environment if needed
     if ! command -v rustc >/dev/null 2>&1; then
-        echo "Validation failed: Rust not found"
-        return 1
+        # Try sourcing Rust environment
+        if [[ -f "$HOME/.cargo/env" ]]; then
+            source "$HOME/.cargo/env"
+        fi
+
+        # Check again after sourcing
+        if ! command -v rustc >/dev/null 2>&1; then
+            echo "Validation failed: Rust not found"
+            return 1
+        fi
     fi
 
     # Check Node.js
