@@ -41,11 +41,11 @@
 # Full environment setup (fresh macOS)
 curl -ssL https://git.io/tomdot | sh
 
-# Create symlinks
-./create_symlinks.sh
+# Create symlinks (built into install.sh)
+./install.sh --step symlinks
 
 # Delete symlinks
-./delete_symlinks.sh
+./lib/delete_symlinks.sh
 
 # Apply macOS settings
 ./.macos
