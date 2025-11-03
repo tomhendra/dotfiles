@@ -1338,7 +1338,7 @@ tomdot_validate_installation() {
         "$HOME/.gitconfig"
         "$HOME/.gitignore_global"
         "$HOME/.config/starship.toml"
-        "$HOME/.config/ghostty"
+        "$HOME/.config/ghostty/config"
         "$HOME/.zshrc"
         "$HOME/.zprofile"
     )
