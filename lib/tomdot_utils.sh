@@ -7,6 +7,9 @@
 TOMDOT_LIB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${TOMDOT_LIB_DIR}/tomdot_ui.sh"
 
+# Ensure HOME is set (defensive programming)
+: "${HOME:?HOME environment variable is not set}"
+
 # Configuration
 if [[ -z "${TOMDOT_BACKUP_DIR:-}" ]]; then
     readonly TOMDOT_BACKUP_DIR="${HOME}/.tomdot_install_state/backups"
@@ -26,29 +29,32 @@ readonly VALIDATION_DEBUG=4
 readonly ROLLBACK_TIMEOUT=60
 readonly BACKUP_RETENTION_DAYS=30
 
-# Configuration file mappings
-declare -A CONFIG_MAPPINGS=(
-    ["zsh/.zshrc"]="$HOME/.zshrc"
-    ["zsh/.zprofile"]="$HOME/.zprofile"
-    ["zsh/zsh_aliases.zsh"]="$HOME/.zsh_aliases"
-    ["git/.gitconfig"]="$HOME/.gitconfig"
-    ["git/.gitignore_global"]="$HOME/.gitignore_global"
-    ["ghostty/config"]="$HOME/.config/ghostty/config"
-    ["bat/bat.conf"]="$HOME/.config/bat/config"
-    ["starship.toml"]="$HOME/.config/starship.toml"
-)
+# Configuration file mappings - bash 3.2 compatible
+# Format: "source_path:target_path" pairs
+get_config_mappings() {
+    cat <<EOF
+zsh/.zshrc:${HOME}/.zshrc
+zsh/.zprofile:${HOME}/.zprofile
+zsh/zsh_aliases.zsh:${HOME}/.zsh_aliases
+git/.gitconfig:${HOME}/.gitconfig
+git/.gitignore_global:${HOME}/.gitignore_global
+ghostty/config:${HOME}/.config/ghostty/config
+bat/bat.conf:${HOME}/.config/bat/config
+starship.toml:${HOME}/.config/starship.toml
+EOF
+}
 
-# Configuration types for intelligent handling
-declare -A CONFIG_TYPES=(
-    [".zshrc"]="shell"
-    [".zprofile"]="shell"
-    [".zsh_aliases"]="shell"
-    [".gitconfig"]="git"
-    [".gitignore_global"]="text"
-    ["config"]="text"
-    ["starship.toml"]="toml"
-    ["bat.conf"]="text"
-)
+# Configuration types for intelligent handling - bash 3.2 compatible
+get_config_type() {
+    local filename="$1"
+    case "$filename" in
+        .zshrc|.zprofile|.zsh_aliases) echo "shell" ;;
+        .gitconfig) echo "git" ;;
+        .gitignore_global|config|bat.conf) echo "text" ;;
+        starship.toml) echo "toml" ;;
+        *) echo "text" ;;
+    esac
+}
 
 # =============================================================================
 # CORE UTILITY FUNCTIONS
@@ -505,9 +511,8 @@ tomdot_detect_conflicts() {
     local dotfiles_dir="${1:-$HOME/.dotfiles}"
     local conflicts=()
 
-    for source_rel in "${!CONFIG_MAPPINGS[@]}"; do
+    while IFS=: read -r source_rel target_file; do
         local source_file="$dotfiles_dir/$source_rel"
-        local target_file="${CONFIG_MAPPINGS[$source_rel]}"
 
         if [[ -f "$target_file" && -f "$source_file" ]]; then
             local status=$(tomdot_check_config_status "$source_file" "$target_file")
@@ -515,7 +520,7 @@ tomdot_detect_conflicts() {
                 conflicts+=("$target_file")
             fi
         fi
-    done
+    done < <(get_config_mappings)
 
     if [[ ${#conflicts[@]} -gt 0 ]]; then
         tomdot_log "WARNING" "Configuration conflicts detected: ${conflicts[*]}"
@@ -606,9 +611,8 @@ tomdot_deploy_all_configs() {
 
     ui_start_section "Deploying Configuration Files"
 
-    for source_rel in "${!CONFIG_MAPPINGS[@]}"; do
+    while IFS=: read -r source_rel target_file; do
         local source_file="$dotfiles_dir/$source_rel"
-        local target_file="${CONFIG_MAPPINGS[$source_rel]}"
 
         if [[ ! -f "$source_file" ]]; then
             tomdot_log "WARNING" "Source file not found: $source_file"
@@ -623,7 +627,7 @@ tomdot_deploy_all_configs() {
         else
             printf "${C_DIM}│${C_RESET} ${C_GREEN}✅ Success: %s${C_RESET}\n" "$(basename "$target_file")"
         fi
-    done
+    done < <(get_config_mappings)
 
     if [[ ${#failed_configs[@]} -gt 0 ]]; then
         tomdot_log "ERROR" "Configuration deployment failed for: ${failed_configs[*]}"
@@ -640,8 +644,7 @@ tomdot_validate_configs() {
 
     ui_start_section "Validating Configuration Files"
 
-    for source_rel in "${!CONFIG_MAPPINGS[@]}"; do
-        local target_file="${CONFIG_MAPPINGS[$source_rel]}"
+    while IFS=: read -r source_rel target_file; do
         local config_name=$(basename "$target_file")
 
         printf "${C_DIM}│${C_RESET} Checking %s... " "$config_name"
@@ -691,7 +694,7 @@ tomdot_validate_configs() {
             printf "${C_RED}❌ %s${C_RESET}\n" "$validation_result"
             validation_errors+=("$target_file: $validation_result")
         fi
-    done
+    done < <(get_config_mappings)
 
     if [[ ${#validation_errors[@]} -gt 0 ]]; then
         tomdot_log "ERROR" "Configuration validation failed:"
@@ -1033,17 +1036,21 @@ tomdot_show_system_info() {
 # ERROR HANDLING AND RETRY LOGIC
 # =============================================================================
 
-# Error categories and their properties
-declare -A TOMDOT_ERROR_CATEGORIES=(
-    ["network"]="Network connectivity or download issues"
-    ["permission"]="File system permissions or access rights"
-    ["dependency"]="Missing dependencies or prerequisites"
-    ["configuration"]="Configuration file or setting issues"
-    ["system"]="System compatibility or resource issues"
-    ["user"]="User input or authentication issues"
-    ["critical"]="Critical system errors requiring immediate attention"
-    ["recoverable"]="Temporary issues that can be retried"
-)
+# Error categories and their properties - bash 3.2 compatible
+get_error_category_description() {
+    local category="$1"
+    case "$category" in
+        network) echo "Network connectivity or download issues" ;;
+        permission) echo "File system permissions or access rights" ;;
+        dependency) echo "Missing dependencies or prerequisites" ;;
+        configuration) echo "Configuration file or setting issues" ;;
+        system) echo "System compatibility or resource issues" ;;
+        user) echo "User input or authentication issues" ;;
+        critical) echo "Critical system errors requiring immediate attention" ;;
+        recoverable) echo "Temporary issues that can be retried" ;;
+        *) echo "Unknown error category" ;;
+    esac
+}
 
 # Categorize error based on message and context
 tomdot_categorize_error() {

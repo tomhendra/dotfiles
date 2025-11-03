@@ -1,13 +1,55 @@
 #!/usr/bin/env bash
 
 set -e  # Exit immediately if a command exits with a non-zero status
-set -u  # Treat unset variables as an error when substituting
 
 # Tomdot - Enhanced macOS development environment installer
-# Uses the new resilient installation framework with Rock.js-inspired UI
+# This script can be run directly OR piped from curl
+
+# Colors for output
+C_CYAN='\033[0;36m'
+C_RED='\033[0;31m'
+C_GREEN='\033[0;32m'
+C_RESET='\033[0m'
+
+# Bootstrap function - clones repo if needed when run via curl
+bootstrap_tomdot() {
+    local dotfiles_dir="${HOME}/.dotfiles"
+
+    # If we're being piped (no SCRIPT_DIR), clone the repo first
+    if [[ ! -d "$dotfiles_dir" ]]; then
+        echo -e "${C_CYAN}Bootstrapping tomdot...${C_RESET}"
+        echo "Cloning dotfiles repository to $dotfiles_dir"
+
+        # Clone the repo
+        if ! git clone https://github.com/tomhendra/dotfiles.git "$dotfiles_dir"; then
+            echo -e "${C_RED}Error: Failed to clone dotfiles repository${C_RESET}"
+            echo "Please ensure you have git installed and internet connectivity."
+            exit 1
+        fi
+
+        echo -e "${C_GREEN}Repository cloned successfully${C_RESET}"
+        echo "Running installer from $dotfiles_dir/install.sh"
+        echo ""
+
+        # Now run the actual installer from the cloned repo
+        cd "$dotfiles_dir"
+        exec bash "$dotfiles_dir/install.sh" "$@"
+    fi
+}
 
 # Get the directory where this script is located
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Handle both bash and sh execution (for curl piping)
+if [[ -n "${BASH_SOURCE:-}" ]]; then
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+elif [[ "$0" != "bash" && "$0" != "sh" && "$0" != "-bash" && "$0" != "-sh" ]]; then
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+else
+    # Being piped from curl - bootstrap first
+    bootstrap_tomdot "$@"
+    exit $?
+fi
+
+set -u  # Treat unset variables as an error when substituting (after BASH_SOURCE check)
 
 # Initialize state and logging early
 export TOMDOT_STATE_DIR="${HOME}/.tomdot_install_state"
