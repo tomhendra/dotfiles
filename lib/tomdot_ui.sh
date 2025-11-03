@@ -3,27 +3,25 @@
 # Tomdot UI Framework - Rock.js-inspired CLI styling
 # Exact styling from simple_rock_demo.sh preserved
 
-# Simple colors that work everywhere
-if [[ -z "${C_CYAN:-}" ]]; then
-    if [[ -t 1 ]]; then
-        C_CYAN='\033[36m'
-        C_GREEN='\033[32m'
-        C_RED='\033[31m'
-        C_YELLOW='\033[33m'
-        C_DIM='\033[2m'
-        C_RESET='\033[0m'
-    else
-        C_CYAN=''
-        C_GREEN=''
-        C_RED=''
-        C_YELLOW=''
-        C_DIM=''
-        C_RESET=''
-    fi
-
-    # Export for use in other scripts
-    export C_CYAN C_GREEN C_RED C_YELLOW C_DIM C_RESET
+# Simple colors that work everywhere - initialize unconditionally for bash 3.2 compatibility
+if [[ -t 1 ]]; then
+    C_CYAN='\033[36m'
+    C_GREEN='\033[32m'
+    C_RED='\033[31m'
+    C_YELLOW='\033[33m'
+    C_DIM='\033[2m'
+    C_RESET='\033[0m'
+else
+    C_CYAN=''
+    C_GREEN=''
+    C_RED=''
+    C_YELLOW=''
+    C_DIM=''
+    C_RESET=''
 fi
+
+# Export for use in other scripts
+export C_CYAN C_GREEN C_RED C_YELLOW C_DIM C_RESET
 
 # Spinner state variables
 TOMDOT_SPINNER_PID=""
