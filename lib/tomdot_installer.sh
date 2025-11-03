@@ -328,13 +328,13 @@ EOF
         eval "$(ssh-agent -s)"
         ssh-add "$ssh_key"
 
-        echo "SSH key generated successfully"
+        echo "✅ SSH key generated successfully"
     else
-        echo "SSH key already exists"
+        echo "✅ SSH key already exists"
 
         # Test if SSH key is already working with GitHub
         if ssh -T git@github.com -o ConnectTimeout=5 -o StrictHostKeyChecking=no 2>&1 | grep -q "successfully authenticated"; then
-            echo "SSH key already configured and working with GitHub"
+            echo "✅ SSH key already configured and working with GitHub"
             return 0
         fi
 
@@ -346,36 +346,55 @@ EOF
     # Copy public key to clipboard
     if command -v pbcopy >/dev/null 2>&1; then
         pbcopy < "${ssh_key}.pub"
-        echo "Public key copied to clipboard"
+        echo ""
+        echo "📋 SSH public key copied to clipboard"
     fi
 
-    # Interactive GitHub setup
+    # Interactive GitHub setup with clear instructions
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "🔑 GitHub SSH Key Setup Required"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
     echo "Please add the SSH key to your GitHub account:"
-    echo "1. The public key has been copied to your clipboard"
-    echo "2. Go to https://github.com/settings/keys"
-    echo "3. Click 'New SSH key' and paste the key"
-    echo "4. Press Enter when done..."
+    echo ""
+    echo "  1. Go to https://github.com/settings/keys"
+    echo "  2. Click 'New SSH key'"
+    echo "  3. Paste (Cmd+V) the key from your clipboard"
+    echo "  4. Give it a title (e.g., 'MacBook Pro')"
+    echo "  5. Click 'Add SSH key'"
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "Press Enter when you've added the key to continue..."
     read -r
 
     # Test GitHub connection
     local max_attempts=3
     local attempt=1
 
+    echo ""
+    echo "Testing GitHub SSH connection..."
+
     while [[ $attempt -le $max_attempts ]]; do
         if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
-            echo "GitHub SSH authentication successful"
+            echo "✅ GitHub SSH authentication successful!"
             return 0
         else
             if [[ $attempt -lt $max_attempts ]]; then
-                echo "GitHub authentication failed, attempt $attempt/$max_attempts"
-                echo "Please ensure the SSH key is added to GitHub and try again..."
+                echo "❌ GitHub authentication failed (attempt $attempt/$max_attempts)"
+                echo ""
+                echo "Please ensure the SSH key is added to GitHub and try again."
+                echo "Press Enter to retry..."
                 read -r
             fi
         fi
         ((attempt++))
     done
 
-    echo "Failed to authenticate with GitHub after $max_attempts attempts"
+    echo ""
+    echo "❌ Failed to authenticate with GitHub after $max_attempts attempts"
+    echo "You may need to add the SSH key manually later."
     return 1
 }
 
@@ -554,7 +573,8 @@ create_symlinks() {
     create_symlink "bat/bat.conf" ".config/bat/bat.conf"
     create_symlink "git/.gitconfig" ".gitconfig"
     create_symlink "git/.gitignore_global" ".gitignore_global"
-    create_symlink "ghostty" ".config/ghostty"
+    create_symlink "ghostty/config" ".config/ghostty/config"
+    create_symlink "ghostty/themes" ".config/ghostty/themes"
     create_symlink "starship.toml" ".config/starship.toml"
     create_symlink "zsh/.zshrc" ".zshrc"
     create_symlink "zsh/.zprofile" ".zprofile"
@@ -817,7 +837,7 @@ tomdot_backup_existing_configs() {
         "${HOME}/.zprofile"
         "${HOME}/.config/starship.toml"
         "${HOME}/.config/bat/bat.conf"
-        "${HOME}/.config/ghostty"
+        "${HOME}/.config/ghostty/config"
         "${HOME}/.ssh/config"
     )
 
@@ -913,7 +933,7 @@ tomdot_rollback_symlinks() {
         "${HOME}/.zprofile"
         "${HOME}/.config/starship.toml"
         "${HOME}/.config/bat/bat.conf"
-        "${HOME}/.config/ghostty"
+        "${HOME}/.config/ghostty/config"
     )
 
     # Remove symlinks and restore from backups
