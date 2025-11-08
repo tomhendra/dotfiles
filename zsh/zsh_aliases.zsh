@@ -6,6 +6,7 @@ alias cafe="caffeinate -u -t 3600"
 alias sshcopy="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias reloadzsh="source ${HOME}/.zshrc"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
+alias gimme="echo '༼ つ ◕_◕ ༽つ' | pbcopy"
 alias disapprove="echo 'ಠ_ಠ' | pbcopy"
 alias strong='ᕦ(ಠ_ಠ)ᕤ'
 alias rage="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
