@@ -27,8 +27,8 @@ alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias pingoo="echo 'tom: Pinging Google' && ping www.google.com"
 
 # Kiro
-alias k="kiro ."
-alias dfk="kiro ${DOTFILES}"
+alias k="open -a Kiro ."
+alias dfk="open -a Kiro ${DOTFILES}"
 
 # VS Code
 alias c="code ."

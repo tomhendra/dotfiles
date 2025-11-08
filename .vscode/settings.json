@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["tomdot"]
+  "cSpell.words": [
+    "tomdot"
+  ],
+  "kiroAgent.configureMCP": "Disabled"
 }
