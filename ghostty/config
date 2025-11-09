@@ -25,4 +25,4 @@ macos-titlebar-style = transparent
 
 # Other
 copy-on-select = clipboard
-keybind = shift+enter=text:\x1b\r
+keybind = shift+enter=text:\n
