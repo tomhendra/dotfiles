@@ -132,6 +132,7 @@ alias nug="npm update -g"
 alias nr="npm run"
 alias nd="npm run dev"
 alias ns="npm run start"
+alias nsr npm rnu start -- --reset-cache
 alias nt="npm run test"
 alias nb="npm run build"
 alias ndir="npm config get prefix"
