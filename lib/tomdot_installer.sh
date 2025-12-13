@@ -432,6 +432,45 @@ install_homebrew() {
     fi
 }
 
+install_fonts() {
+    local fonts_dir="${HOME}/Library/Fonts"
+    local temp_dir="/tmp/zed-mono-install"
+    local zip_url="https://github.com/zed-industries/zed-fonts/releases/download/1.2.0/zed-mono-1.2.0.zip"
+
+    # Check if Extended fonts already installed
+    if ls "$fonts_dir"/zed-mono-extended*.ttf >/dev/null 2>&1; then
+        echo "Zed Mono Extended fonts already installed"
+        return 0
+    fi
+
+    echo "Installing Zed Mono Extended fonts..."
+
+    # Clean up and create temp directory
+    rm -rf "$temp_dir"
+    mkdir -p "$temp_dir"
+
+    # Download fonts
+    if ! curl -sL "$zip_url" -o "$temp_dir/zed-mono.zip"; then
+        echo "Failed to download Zed Mono fonts"
+        return 1
+    fi
+
+    # Extract
+    if ! unzip -q "$temp_dir/zed-mono.zip" -d "$temp_dir"; then
+        echo "Failed to extract Zed Mono fonts"
+        return 1
+    fi
+
+    # Install only Extended variants
+    cp "$temp_dir"/zed-mono-extended*.ttf "$fonts_dir/"
+
+    # Cleanup
+    rm -rf "$temp_dir"
+
+    echo "Zed Mono Extended fonts installed successfully"
+    return 0
+}
+
 install_packages() {
     local dotfiles_dir="${HOME}/.dotfiles"
     local brewfile="${dotfiles_dir}/Brewfile"
@@ -614,6 +653,7 @@ tomdot_install() {
         "ssh_setup"
         "homebrew"
         "packages"
+        "fonts"
         "languages"
         "symlinks"
     )
@@ -654,6 +694,7 @@ tomdot_install() {
     tomdot_execute_step "ssh_setup" "install_ssh_setup" "Set up SSH keys and GitHub authentication"
     tomdot_execute_step "homebrew" "install_homebrew" "Install Homebrew package manager"
     tomdot_execute_step "packages" "install_packages" "Install packages from Brewfile"
+    tomdot_execute_step "fonts" "install_fonts" "Install Zed Mono Extended fonts"
     tomdot_execute_step "languages" "install_languages" "Install Node.js and Rust toolchains"
     tomdot_execute_step "symlinks" "create_symlinks" "Create dotfiles symlinks"
 
@@ -667,6 +708,7 @@ tomdot_resume() {
         "ssh_setup"
         "homebrew"
         "packages"
+        "fonts"
         "languages"
         "symlinks"
     )
@@ -731,6 +773,9 @@ tomdot_resume() {
                 "packages")
                     tomdot_execute_step "packages" "install_packages" "Install packages from Brewfile"
                     ;;
+                "fonts")
+                    tomdot_execute_step "fonts" "install_fonts" "Install Zed Mono Extended fonts"
+                    ;;
                 "languages")
                     tomdot_execute_step "languages" "install_languages" "Install Node.js and Rust toolchains"
                     ;;
@@ -757,6 +802,9 @@ tomdot_run_step() {
             ;;
         "packages"|"pkg")
             tomdot_execute_step "packages" "install_packages" "Install packages from Brewfile"
+            ;;
+        "fonts")
+            tomdot_execute_step "fonts" "install_fonts" "Install Zed Mono Extended fonts"
             ;;
         "languages"|"lang")
             tomdot_execute_step "languages" "install_languages" "Install Node.js and Rust toolchains"
@@ -981,6 +1029,9 @@ tomdot_validate_step() {
         "packages")
             tomdot_validate_packages
             ;;
+        "fonts")
+            tomdot_validate_fonts
+            ;;
         "languages")
             tomdot_validate_languages
             ;;
@@ -1046,6 +1097,18 @@ tomdot_validate_packages() {
         return 0
     else
         echo "Validation failed: Missing packages: ${missing_packages[*]}"
+        return 1
+    fi
+}
+
+tomdot_validate_fonts() {
+    local fonts_dir="${HOME}/Library/Fonts"
+
+    if ls "$fonts_dir"/zed-mono-extended*.ttf >/dev/null 2>&1; then
+        echo "Fonts validation passed"
+        return 0
+    else
+        echo "Validation failed: Zed Mono Extended fonts not found"
         return 1
     fi
 }
