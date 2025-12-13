@@ -1,10 +1,6 @@
 # Text
-font-family = Operator Mono
-font-style = Book
-font-style-bold = Medium
-font-style-italic = Book Italic
-font-style-bold-italic = Medium Italic
-font-size = 14
+font-family = "Zed Mono Extended"
+font-size = 13
 
 # Tokyo Night Storm color palette
 background = 24283b
@@ -19,8 +15,8 @@ title = Ghostty 👻
 macos-titlebar-style = tabs
 window-padding-x = 16
 window-padding-y = 8
-window-width = 115
-window-height = 52
+window-width = 118
+window-height = 54
 macos-titlebar-style = transparent
 
 # Other

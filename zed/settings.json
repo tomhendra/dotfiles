@@ -2,76 +2,8 @@
   "buffer_font_family": ".ZedMono",
   "buffer_font_size": 13,
   "ui_font_size": 14,
-  "theme": "Tokyo Night Storm",
-  "theme_overrides": {
-    "Tokyo Night Storm": {
-      "tab_bar.background": "#1f2335",
-      "tab.inactive_background": "#1f2335",
-      "tab.active_background": "#24283b",
-      "toolbar.background": "#24283b",
-      "title_bar.background": "#1f2335",
-      "element.selected": "#292e42",
-      "element.active": "#3b4261",
-      "element.hover": "#292e42",
-      "element.background": "#1f2335",
-      "ghost_element.background": "#00000000",
-      "ghost_element.hover": "#292e42",
-      "ghost_element.selected": "#292e4280",
-      "ghost_element.active": "#3b4261",
-      "text.accent": "#7aa2f7",
-      "border": "#3b4261",
-      "border.variant": "#3b4261",
-      "version_control.added": "#9ece6a80",
-      "version_control.modified": "#7aa2f780",
-      "version_control.deleted": "#f7768e80"
-    },
-    "Tokyo Night": {
-      "tab_bar.background": "#16161e",
-      "tab.inactive_background": "#16161e",
-      "tab.active_background": "#1a1b26",
-      "toolbar.background": "#1a1b26",
-      "title_bar.background": "#16161e",
-      "element.selected": "#292e42",
-      "element.active": "#3b4261",
-      "element.hover": "#292e42",
-      "element.background": "#16161e",
-      "ghost_element.background": "#00000000",
-      "ghost_element.hover": "#292e42",
-      "ghost_element.selected": "#292e4280",
-      "ghost_element.active": "#3b4261",
-      "text.accent": "#7aa2f7",
-      "border": "#3b4261",
-      "border.variant": "#3b4261",
-      "version_control.added": "#9ece6a80",
-      "version_control.modified": "#7aa2f780",
-      "version_control.deleted": "#f7768e80"
-    },
-    "Tokyo Night Moon": {
-      "tab_bar.background": "#1e2030",
-      "tab.inactive_background": "#1e2030",
-      "tab.active_background": "#222436",
-      "toolbar.background": "#222436",
-      "title_bar.background": "#1e2030",
-      "element.selected": "#2f334d",
-      "element.active": "#444a73",
-      "element.hover": "#2f334d",
-      "element.background": "#1e2030",
-      "ghost_element.background": "#00000000",
-      "ghost_element.hover": "#2f334d",
-      "ghost_element.selected": "#2f334d80",
-      "ghost_element.active": "#444a73",
-      "text.accent": "#82aaff",
-      "border": "#3b4261",
-      "border.variant": "#3b4261",
-      "version_control.added": "#c3e88d80",
-      "version_control.modified": "#82aaff80",
-      "version_control.deleted": "#ff757f80"
-    }
-  },
-  "icon_theme": {
-    "mode": "dark",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)"
+  "terminal": {
+    "font_size": 12
   },
   "formatter": "prettier",
   "code_actions_on_format": {
@@ -89,6 +21,107 @@
     "Kotlin": {
       "enable_language_server": false
     }
+  },
+  "theme": "Tokyo Night Storm",
+  "theme_overrides": {
+    "Tokyo Night Storm": {
+      "tab_bar.background": "#1f2335",
+      "tab.inactive_background": "#1f2335",
+      "tab.active_background": "#24283b",
+      "toolbar.background": "#24283b",
+      "title_bar.background": "#1f2335",
+      "element.selected": "#292e42",
+      "element.active": "#3b4261",
+      "element.hover": "#292e42",
+      "element.background": "#1f2335",
+      "scrollbar.thumb.background": "#ffffff0a",
+      "scrollbar.thumb.hover_background": "#ffffff0d",
+      "scrollbar.thumb.border": "#ffffff0a",
+      "scrollbar.track.background": "#00000000",
+      "scrollbar.track.border": "#ffffff0a",
+      "ghost_element.background": "#00000000",
+      "ghost_element.hover": "#292e42",
+      "ghost_element.selected": "#292e4280",
+      "ghost_element.active": "#3b4261",
+      "text.accent": "#7aa2f7",
+      "border": "#3b4261",
+      "border.variant": "#3b4261",
+      "version_control.added": "#9ece6a80",
+      "version_control.modified": "#7aa2f780",
+      "version_control.deleted": "#f7768e80",
+      "syntax": {
+        "property": {
+          "color": "#73daca"
+        }
+      }
+    },
+    "Tokyo Night": {
+      "tab_bar.background": "#16161e",
+      "tab.inactive_background": "#16161e",
+      "tab.active_background": "#1a1b26",
+      "toolbar.background": "#1a1b26",
+      "title_bar.background": "#16161e",
+      "element.selected": "#292e42",
+      "element.active": "#3b4261",
+      "element.hover": "#292e42",
+      "element.background": "#16161e",
+      "scrollbar.thumb.background": "#ffffff0a",
+      "scrollbar.thumb.hover_background": "#ffffff0d",
+      "scrollbar.thumb.border": "#ffffff0a",
+      "scrollbar.track.background": "#00000000",
+      "scrollbar.track.border": "#ffffff0a",
+      "ghost_element.background": "#00000000",
+      "ghost_element.hover": "#292e42",
+      "ghost_element.selected": "#292e4280",
+      "ghost_element.active": "#3b4261",
+      "text.accent": "#7aa2f7",
+      "border": "#3b4261",
+      "border.variant": "#3b4261",
+      "version_control.added": "#9ece6a80",
+      "version_control.modified": "#7aa2f780",
+      "version_control.deleted": "#f7768e80",
+      "syntax": {
+        "property": {
+          "color": "#73daca"
+        }
+      }
+    },
+    "Tokyo Night Moon": {
+      "tab_bar.background": "#1e2030",
+      "tab.inactive_background": "#1e2030",
+      "tab.active_background": "#222436",
+      "toolbar.background": "#222436",
+      "title_bar.background": "#1e2030",
+      "element.selected": "#2f334d",
+      "element.active": "#444a73",
+      "element.hover": "#2f334d",
+      "element.background": "#1e2030",
+      "scrollbar.thumb.background": "#ffffff0a",
+      "scrollbar.thumb.hover_background": "#ffffff0d",
+      "scrollbar.thumb.border": "#ffffff0a",
+      "scrollbar.track.background": "#00000000",
+      "scrollbar.track.border": "#ffffff0a",
+      "ghost_element.background": "#00000000",
+      "ghost_element.hover": "#2f334d",
+      "ghost_element.selected": "#2f334d80",
+      "ghost_element.active": "#444a73",
+      "text.accent": "#82aaff",
+      "border": "#3b4261",
+      "border.variant": "#3b4261",
+      "version_control.added": "#c3e88d80",
+      "version_control.modified": "#82aaff80",
+      "version_control.deleted": "#ff757f80",
+      "syntax": {
+        "property": {
+          "color": "#73daca"
+        }
+      }
+    }
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
   },
   "telemetry": {
     "diagnostics": true,
