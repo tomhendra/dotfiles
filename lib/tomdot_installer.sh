@@ -545,6 +545,7 @@ create_symlinks() {
     # Create necessary directories
     mkdir -p "${HOME}/.config/bat"
     mkdir -p "${HOME}/.config/ghostty"
+    mkdir -p "${HOME}/.config/zed"
 
     # Function to create symlink safely
     create_symlink() {
@@ -575,6 +576,7 @@ create_symlinks() {
     create_symlink "git/.gitignore_global" ".gitignore_global"
     create_symlink "ghostty/config" ".config/ghostty/config"
     create_symlink "ghostty/themes" ".config/ghostty/themes"
+    create_symlink "zed/settings.json" ".config/zed/settings.json"
     create_symlink "starship.toml" ".config/starship.toml"
     create_symlink "zsh/.zshrc" ".zshrc"
     create_symlink "zsh/.zprofile" ".zprofile"
