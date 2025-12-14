@@ -1,6 +1,10 @@
 {
   "buffer_font_family": ".ZedMono",
   "buffer_font_size": 13,
+  "buffer_font_features": {
+    "liga": true,
+    "calt": true
+  },
   "ui_font_size": 14,
   "terminal": {
     "font_size": 12
@@ -87,6 +91,7 @@
       }
     },
     "Tokyo Night Moon": {
+      "editor.active_line.background": "#2f334d60",
       "tab_bar.background": "#1e2030",
       "tab.inactive_background": "#1e2030",
       "tab.active_background": "#222436",
