@@ -27,18 +27,18 @@ alias ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
 alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias pingoo="echo 'tom: Pinging Google' && ping www.google.com"
 
-# Kiro
-alias k="open -a Kiro ."
-alias dfk="open -a Kiro ${DOTFILES}"
+# Zed
+alias zed="open -a Zed.app"
+alias z="zed ."
+alias dfz="zed ${DOTFILES}"
 
 # VS Code
 alias c="code ."
 alias dfc="code ${DOTFILES}"
 
-# Zed
-alias zed="open -a Zed.app"
-alias z="zed ."
-alias dfz="zed ${DOTFILES}"
+# Kiro
+alias k="open -a Kiro ."
+alias dfk="open -a Kiro ${DOTFILES}"
 
 # Files & Directories
 alias ..="cd .."
