@@ -15,8 +15,8 @@ title = Ghostty 👻
 macos-titlebar-style = tabs
 window-padding-x = 16
 window-padding-y = 8
-window-width = 118
-window-height = 54
+window-width = 122
+window-height = 53
 macos-titlebar-style = transparent
 
 # Other

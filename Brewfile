@@ -22,8 +22,8 @@ brew 'watchman'
 
 # Casks
 cask 'android-studio'
-cask 'apidog'
 cask 'blender'
+cask 'bruno'
 cask 'claude-code'
 cask 'discord'
 cask 'expo-orbit'
