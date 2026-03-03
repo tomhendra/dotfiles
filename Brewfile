@@ -42,9 +42,7 @@ cask 'microsoft-word'
 cask 'obsidian'
 cask 'omnidisksweeper'
 cask 'raycast'
-# cask 'supabase/tap/supabase'  # Temporarily disabled - tap unavailable
 cask 'the-unarchiver'
-cask 'visual-studio-code'
 cask 'zed'
 cask 'zulu@17' # https://docs.expo.dev/workflow/android-studio-emulator/#install-dependencies
 
