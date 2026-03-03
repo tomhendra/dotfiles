@@ -5,6 +5,9 @@ alias firefox="open -a 'Firefox Developer Edition'"
 alias cafe="caffeinate -u -t 3600"
 alias sshcopy="pbcopy < ${HOME}/.ssh/id_rsa.pub"
 alias reloadzsh="source ${HOME}/.zshrc"
+alias refresh-dock-icons="rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
+
+# Emojis
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias gimme="echo '༼ つ ◕_◕ ༽つ' | pbcopy"
 alias disapprove="echo 'ಠ_ಠ' | pbcopy"
@@ -20,7 +23,6 @@ alias dealwithit="echo '(⌐■_■)' | pbcopy"
 alias wizard="echo '(ﾉಠヮಠ)ﾉ*:･ﾟ✧' | pbcopy"
 alias sol="echo '◎' | pbcopy"
 alias stx="echo 'Ӿ' | pbcopy"
-alias refresh-dock-icons="rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
 
 # Network
 alias ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
@@ -31,14 +33,6 @@ alias pingoo="echo 'tom: Pinging Google' && ping www.google.com"
 alias zed="open -a Zed.app"
 alias z="zed ."
 alias dfz="zed ${DOTFILES}"
-
-# VS Code
-alias c="code ."
-alias dfc="code ${DOTFILES}"
-
-# Kiro
-alias k="open -a Kiro ."
-alias dfk="open -a Kiro ${DOTFILES}"
 
 # Files & Directories
 alias ..="cd .."
