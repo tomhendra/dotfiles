@@ -16,7 +16,7 @@ export BAT_CONFIG_PATH="${HOME}/.config/bat/bat.conf"
 export GHOSTTY_CONFIG_PATH="${HOME}/.config/ghostty/config"
 
 # Start SSH agent & add all SSH keys
-eval "$(ssh-agent -s)"
+eval "$(ssh-agent -s)" >/dev/null
 ssh-add -A 2>/dev/null
 
 # Path configurations
