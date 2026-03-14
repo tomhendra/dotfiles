@@ -85,6 +85,11 @@ ui_detail() {
 ui_done() {
     printf "${C_DIM}│${C_RESET}\n"
     printf "${C_GREEN}◇${C_RESET} Installation complete ${C_GREEN}✓${C_RESET}\n"
+
+    if [[ "${DRY_RUN:-false}" == "true" ]]; then
+        return 0
+    fi
+
     echo
     echo "  Press Enter to reload your shell..."
     read -r

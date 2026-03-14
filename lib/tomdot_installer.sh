@@ -52,17 +52,19 @@ EOF
         eval "$(ssh-agent -s)" >/dev/null 2>&1
         ssh-add "$ssh_key" >/dev/null 2>&1
     else
-        ssh-add -K "$ssh_key" 2>/dev/null || ssh-add "$ssh_key" 2>/dev/null || true
+        ssh-add --apple-use-keychain "$ssh_key" 2>/dev/null || ssh-add "$ssh_key" 2>/dev/null || true
     fi
 
     if command -v pbcopy >/dev/null 2>&1; then
         pbcopy < "${ssh_key}.pub"
     fi
 
-    ui_detail "SSH public key copied to clipboard"
+    echo ""
+    echo "  SSH public key copied to clipboard."
     open "https://github.com/settings/keys"
-    ui_detail "Paste it in the browser window that just opened"
-    ui_detail "Press Enter when done..."
+    echo "  Paste it in the browser window that just opened."
+    echo ""
+    echo "  Press Enter when done..."
     read -r
 
     ssh_output=$(ssh -T git@github.com 2>&1 || true)
@@ -91,7 +93,8 @@ step_homebrew() {
 
     ui_step_start "$desc"
 
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 2>&1 | _progress
+    # Homebrew installer is interactive (sudo prompt), don't pipe through _progress
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # Add to PATH for Apple Silicon
     if [[ -f "/opt/homebrew/bin/brew" ]]; then
