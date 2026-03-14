@@ -91,7 +91,11 @@ ui_done() {
     fi
 
     echo
-    echo "  Press Enter to reload your shell..."
-    read -r
-    exec zsh -l
+    if [[ -t 0 ]]; then
+        echo "  Press Enter to reload your shell..."
+        read -r
+        exec zsh -l
+    else
+        echo "  Run 'source ~/.zshrc' to activate your new shell configuration."
+    fi
 }
