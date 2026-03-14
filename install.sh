@@ -41,6 +41,11 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         --step)
+            if [[ $# -lt 2 ]]; then
+                echo "Error: --step requires a step name"
+                echo "Steps: ssh, homebrew, packages, fonts, languages, claude, symlinks"
+                exit 1
+            fi
             MODE="step"
             STEP="$2"
             shift 2
