@@ -1,241 +1,75 @@
 #!/usr/bin/env bash
 
-set -e  # Exit immediately if a command exits with a non-zero status
+set -eu
 
-# Tomdot - Enhanced macOS development environment installer
-# This script can be run directly OR piped from curl
+# Tomdot - macOS development environment installer
+# Can be run directly or piped from curl
 
-# Colors for output
-C_CYAN='\033[0;36m'
-C_RED='\033[0;31m'
-C_GREEN='\033[0;32m'
-C_RESET='\033[0m'
-
-# Bootstrap function - clones repo if needed when run via curl
+# Bootstrap - clones repo if needed when run via curl
 bootstrap_tomdot() {
     local dotfiles_dir="${HOME}/.dotfiles"
-
-    # If we're being piped (no SCRIPT_DIR), clone the repo first
     if [[ ! -d "$dotfiles_dir" ]]; then
-        echo -e "${C_CYAN}Bootstrapping tomdot...${C_RESET}"
-        echo "Cloning dotfiles repository to $dotfiles_dir"
-
-        # Clone the repo
-        if ! git clone https://github.com/tomhendra/dotfiles.git "$dotfiles_dir"; then
-            echo -e "${C_RED}Error: Failed to clone dotfiles repository${C_RESET}"
-            echo "Please ensure you have git installed and internet connectivity."
-            exit 1
-        fi
-
-        echo -e "${C_GREEN}Repository cloned successfully${C_RESET}"
-        echo "Running installer from $dotfiles_dir/install.sh"
-        echo ""
-
-        # Now run the actual installer from the cloned repo
+        echo "Cloning dotfiles repository..."
+        git clone https://github.com/tomhendra/dotfiles.git "$dotfiles_dir"
         cd "$dotfiles_dir"
         exec bash "$dotfiles_dir/install.sh" "$@"
     fi
 }
 
-# Get the directory where this script is located
-# Handle both bash and sh execution (for curl piping)
+# Detect if piped from curl
 if [[ -n "${BASH_SOURCE:-}" ]]; then
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 elif [[ "$0" != "bash" && "$0" != "sh" && "$0" != "-bash" && "$0" != "-sh" ]]; then
     SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 else
-    # Being piped from curl - bootstrap first
     bootstrap_tomdot "$@"
     exit $?
 fi
 
-set -u  # Treat unset variables as an error when substituting (after BASH_SOURCE check)
+source "${SCRIPT_DIR}/lib/tomdot_ui.sh"
+source "${SCRIPT_DIR}/lib/tomdot_installer.sh"
 
-# Initialize state and logging early
-export TOMDOT_STATE_DIR="${HOME}/.tomdot_install_state"
-export TOMDOT_STATE_FILE="${TOMDOT_STATE_DIR}/state.json"
-export TOMDOT_BACKUP_DIR="${TOMDOT_STATE_DIR}/backups"
-export TOMDOT_LOG_FILE="${TOMDOT_STATE_DIR}/install.log"
-
-# Source the tomdot installation framework components
-if [[ -f "${SCRIPT_DIR}/lib/tomdot_installer.sh" ]]; then
-    source "${SCRIPT_DIR}/lib/tomdot_installer.sh"
-else
-    echo "Error: tomdot installation framework not found at ${SCRIPT_DIR}/lib/tomdot_installer.sh"
-    echo "Please ensure the lib/ directory is present with the required framework files."
-    exit 1
-fi
-
-# Verify all framework components are loaded
-if ! declare -f tomdot_install >/dev/null 2>&1; then
-    echo "Error: tomdot_installer.sh functions not properly loaded"
-    exit 1
-fi
-
-if ! declare -f ui_start_section >/dev/null 2>&1; then
-    echo "Error: tomdot_ui.sh functions not properly loaded"
-    exit 1
-fi
-
-# Cleanup function for trap handler
-cleanup() {
-    local exit_code=$?
-
-    # Stop any running spinners
-    if [[ -n "${TOMDOT_SPINNER_PID:-}" ]]; then
-        kill "$TOMDOT_SPINNER_PID" 2>/dev/null || true
-        wait "$TOMDOT_SPINNER_PID" 2>/dev/null || true
-        TOMDOT_SPINNER_PID=""
-    fi
-
-    # Log cleanup
-    if [[ $exit_code -ne 0 ]]; then
-        tomdot_log "ERROR" "Installation interrupted with exit code: $exit_code"
-        echo
-        echo "Installation was interrupted. You can resume later with:"
-        echo "  $0 --resume"
-        echo
-        echo "Or check the log file for details:"
-        echo "  cat $TOMDOT_LOG_FILE"
-    fi
-
-    exit $exit_code
-}
-
-# Set up trap handler for cleanup
-trap cleanup EXIT INT TERM
-
-# Check for required tools
-command -v git >/dev/null 2>&1 || { echo "Error: git is required but not installed" >&2; exit 1; }
-command -v python3 >/dev/null 2>&1 || { echo "Error: python3 is required but not installed" >&2; exit 1; }
-
-# Parse command line arguments
-TOMDOT_MODE="install"
-TOMDOT_STEP=""
+# Parse arguments
+MODE="install"
+STEP=""
+DRY_RUN=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --step)
-            TOMDOT_MODE="step"
-            TOMDOT_STEP="$2"
-            shift 2
-            ;;
-        --resume)
-            TOMDOT_MODE="resume"
+        --dry-run)
+            DRY_RUN=true
             shift
+            ;;
+        --step)
+            MODE="step"
+            STEP="$2"
+            shift 2
             ;;
         --help|-h)
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Options:"
-            echo "  --step STEP    Run individual installation step"
-            echo "                 Available steps: ssh, homebrew, packages, languages, symlinks"
-            echo "  --resume       Resume installation from failure point"
+            echo "  --dry-run      Show what would be done without making changes"
+            echo "  --step STEP    Run individual step"
+            echo "                 Steps: ssh, homebrew, packages, fonts, languages, claude, symlinks"
             echo "  --help, -h     Show this help message"
-            echo ""
-            echo "Examples:"
-            echo "  $0                    # Full installation"
-            echo "  $0 --step ssh         # Run SSH setup only"
-            echo "  $0 --resume           # Resume from failure"
-            echo ""
-            echo "Entry point compatibility:"
-            echo "  curl -ssL https://git.io/tomdot | sh"
             exit 0
             ;;
         *)
             echo "Unknown option: $1"
-            echo "Use --help for usage information"
             exit 1
             ;;
     esac
 done
 
-# Main execution logic with enhanced error handling
-main() {
-    # Initialize state and logging
-    tomdot_init_state
+export DRY_RUN
 
-    # Initialize UI state management
-    ui_reset_state
+# Check prerequisites
+command -v git >/dev/null 2>&1 || { echo "Error: git is required"; exit 1; }
+command -v curl >/dev/null 2>&1 || { echo "Error: curl is required"; exit 1; }
 
-    # Log installation start
-    tomdot_log "INFO" "Starting tomdot installation (mode: $TOMDOT_MODE)"
-
-    case "$TOMDOT_MODE" in
-        "step")
-            if [[ -z "$TOMDOT_STEP" ]]; then
-                echo "Error: --step requires a step name"
-                echo "Available steps: ssh, homebrew, packages, languages, symlinks"
-                exit 1
-            fi
-
-            tomdot_log "INFO" "Running individual step: $TOMDOT_STEP"
-
-            # Validate prerequisites for individual steps
-            if ! tomdot_check_prerequisites; then
-                echo "Prerequisites validation failed. Please resolve issues before continuing."
-                exit 1
-            fi
-
-            tomdot_run_step "$TOMDOT_STEP"
-            ;;
-        "resume")
-            tomdot_log "INFO" "Resuming installation from previous state"
-
-            if ! tomdot_can_resume; then
-                echo "No previous installation found to resume. Starting fresh installation..."
-                tomdot_install
-            else
-                tomdot_resume
-            fi
-            ;;
-        "install")
-            tomdot_log "INFO" "Starting full installation"
-
-            # Validate prerequisites before starting
-            if ! tomdot_check_prerequisites; then
-                echo "Prerequisites validation failed. Please resolve issues before continuing."
-                exit 1
-            fi
-
-            tomdot_install
-            ;;
-    esac
-
-    local exit_code=$?
-
-    if [[ $exit_code -eq 0 ]]; then
-        tomdot_log "INFO" "Installation completed successfully"
-
-        # Run final validation as part of main flow (no separate section)
-        printf "${C_DIM}│${C_RESET} ${C_CYAN}◇${C_RESET} Running final validation...\n"
-        if tomdot_validate_installation; then
-            printf "${C_DIM}│${C_RESET}\n"
-            printf "${C_GREEN}✓ All validations passed${C_RESET}\n"
-            echo
-
-            # Show next steps only once at the very end (state management prevents duplicates)
-            if ! ui_next_steps_shown; then
-                echo "Installation complete! To activate your new shell configuration:"
-                echo "  source .zshrc"
-                echo
-                echo "Then explore your development environment:"
-                echo "  cd ~/Developer"
-                echo "  git status"
-                echo
-                TOMDOT_UI_NEXT_STEPS_SHOWN=true
-            fi
-        else
-            printf "${C_DIM}│${C_RESET}\n"
-            printf "${C_YELLOW}⚠️  Some validations failed${C_RESET}\n"
-            echo
-        fi
-    else
-        tomdot_log "ERROR" "Installation failed with exit code: $exit_code"
-    fi
-
-    return $exit_code
-}
-
-# Execute main function
-main "$@"
+if [[ "$MODE" == "step" ]]; then
+    run_step "$STEP"
+else
+    run_all
+fi
