@@ -1,31 +1,22 @@
 #!/usr/bin/env bash
 
-set -eu
-
 # Tomdot - macOS development environment installer
 # Can be run directly or piped from curl
 
-# Bootstrap - clones repo if needed when run via curl
-bootstrap_tomdot() {
-    local dotfiles_dir="${HOME}/.dotfiles"
-    if [[ ! -d "$dotfiles_dir" ]]; then
+# Bootstrap: when piped from curl, clone repo then re-exec with bash
+# This block runs before set -eu to handle sh/bash detection safely
+if [ -z "${BASH_SOURCE:-}" ] || [ "$0" = "bash" ] || [ "$0" = "sh" ] || [ "$0" = "-bash" ] || [ "$0" = "-sh" ]; then
+    dotfiles_dir="${HOME}/.dotfiles"
+    if [ ! -d "$dotfiles_dir" ]; then
         echo "Cloning dotfiles repository..."
         git clone https://github.com/tomhendra/dotfiles.git "$dotfiles_dir"
-        cd "$dotfiles_dir"
-        exec bash "$dotfiles_dir/install.sh" "$@"
     fi
-}
-
-# Detect if piped from curl
-if [[ -n "${BASH_SOURCE:-}" ]]; then
-    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-elif [[ "$0" != "bash" && "$0" != "sh" && "$0" != "-bash" && "$0" != "-sh" ]]; then
-    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-else
-    bootstrap_tomdot "$@"
-    exit $?
+    exec bash "$dotfiles_dir/install.sh" "$@"
 fi
 
+set -eu
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/lib/tomdot_ui.sh"
 source "${SCRIPT_DIR}/lib/tomdot_installer.sh"
 
