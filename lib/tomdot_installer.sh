@@ -572,6 +572,23 @@ install_languages() {
     return 0
 }
 
+install_claude_code() {
+    # Check if already installed
+    if command -v claude >/dev/null 2>&1; then
+        echo "Claude Code already installed"
+        return 0
+    fi
+
+    echo "Installing Claude Code..."
+    if ! curl -fsSL https://claude.ai/install.sh | bash; then
+        echo "Failed to install Claude Code"
+        return 1
+    fi
+
+    echo "Claude Code installed successfully"
+    return 0
+}
+
 create_symlinks() {
     local dotfiles_dir="${HOME}/.dotfiles"
 
@@ -655,6 +672,7 @@ tomdot_install() {
         "packages"
         "fonts"
         "languages"
+        "claude_code"
         "symlinks"
     )
 
@@ -696,6 +714,7 @@ tomdot_install() {
     tomdot_execute_step "packages" "install_packages" "Install packages from Brewfile"
     tomdot_execute_step "fonts" "install_fonts" "Install Zed Mono Extended fonts"
     tomdot_execute_step "languages" "install_languages" "Install Node.js and Rust toolchains"
+    tomdot_execute_step "claude_code" "install_claude_code" "Install Claude Code CLI"
     tomdot_execute_step "symlinks" "create_symlinks" "Create dotfiles symlinks"
 
     # End the installation section properly
@@ -710,6 +729,7 @@ tomdot_resume() {
         "packages"
         "fonts"
         "languages"
+        "claude_code"
         "symlinks"
     )
 
@@ -779,6 +799,9 @@ tomdot_resume() {
                 "languages")
                     tomdot_execute_step "languages" "install_languages" "Install Node.js and Rust toolchains"
                     ;;
+                "claude_code")
+                    tomdot_execute_step "claude_code" "install_claude_code" "Install Claude Code CLI"
+                    ;;
                 "symlinks")
                     tomdot_execute_step "symlinks" "create_symlinks" "Create dotfiles symlinks"
                     ;;
@@ -809,12 +832,15 @@ tomdot_run_step() {
         "languages"|"lang")
             tomdot_execute_step "languages" "install_languages" "Install Node.js and Rust toolchains"
             ;;
+        "claude_code"|"claude")
+            tomdot_execute_step "claude_code" "install_claude_code" "Install Claude Code CLI"
+            ;;
         "symlinks"|"links")
             tomdot_execute_step "symlinks" "create_symlinks" "Create dotfiles symlinks"
             ;;
         *)
             echo "Unknown step: $step_name"
-            echo "Available steps: ssh, homebrew, packages, languages, symlinks"
+            echo "Available steps: ssh, homebrew, packages, fonts, languages, claude, symlinks"
             return 1
             ;;
     esac
@@ -1035,6 +1061,9 @@ tomdot_validate_step() {
         "languages")
             tomdot_validate_languages
             ;;
+        "claude_code")
+            tomdot_validate_claude_code
+            ;;
         "symlinks")
             tomdot_validate_symlinks
             ;;
@@ -1142,6 +1171,16 @@ tomdot_validate_languages() {
 
     echo "Language validation passed"
     return 0
+}
+
+tomdot_validate_claude_code() {
+    if command -v claude >/dev/null 2>&1; then
+        echo "Claude Code validation passed"
+        return 0
+    else
+        echo "Validation failed: Claude Code not found"
+        return 1
+    fi
 }
 
 tomdot_validate_symlinks() {
