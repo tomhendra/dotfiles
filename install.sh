@@ -34,7 +34,7 @@ while [[ $# -gt 0 ]]; do
         --step)
             if [[ $# -lt 2 ]]; then
                 echo "Error: --step requires a step name"
-                echo "Steps: ssh, homebrew, packages, fonts, languages, claude, symlinks"
+                echo "Steps: ssh, homebrew, packages, fonts, languages, claude, symlinks, neovim"
                 exit 1
             fi
             MODE="step"
@@ -47,7 +47,7 @@ while [[ $# -gt 0 ]]; do
             echo "Options:"
             echo "  --dry-run      Show what would be done without making changes"
             echo "  --step STEP    Run individual step"
-            echo "                 Steps: ssh, homebrew, packages, fonts, languages, claude, symlinks"
+            echo "                 Steps: ssh, homebrew, packages, fonts, languages, claude, symlinks, neovim"
             echo "  --help, -h     Show this help message"
             exit 0
             ;;

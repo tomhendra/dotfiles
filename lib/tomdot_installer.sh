@@ -254,6 +254,7 @@ step_symlinks() {
         ui_detail "git/.gitignore_global -> ~/.gitignore_global"
         ui_detail "ghostty/config -> ~/.config/ghostty/config"
         ui_detail "ghostty/themes -> ~/.config/ghostty/themes"
+        ui_detail "nvim -> ~/.config/nvim"
         ui_detail "zed/settings.json -> ~/.config/zed/settings.json"
         ui_detail "starship.toml -> ~/.config/starship.toml"
         ui_detail "zsh/.zshrc -> ~/.zshrc"
@@ -271,6 +272,7 @@ step_symlinks() {
         "git/.gitignore_global:.gitignore_global"
         "ghostty/config:.config/ghostty/config"
         "ghostty/themes:.config/ghostty/themes"
+        "nvim:.config/nvim"
         "zed/settings.json:.config/zed/settings.json"
         "starship.toml:.config/starship.toml"
         "zsh/.zshrc:.zshrc"
@@ -308,6 +310,32 @@ step_symlinks() {
     ui_step_ok "$desc"
 }
 
+step_neovim() {
+    local desc="Set up Neovim plugins"
+
+    if [[ "${DRY_RUN:-false}" == "true" ]]; then
+        ui_step_dry "$desc"
+        ui_detail "Install plugins via lazy.nvim"
+        ui_detail "Install LSP servers and tools via Mason"
+        return 0
+    fi
+
+    ui_step_start "$desc"
+
+    if ! command -v nvim >/dev/null 2>&1; then
+        ui_detail "nvim not found, skipping"
+        ui_step_fail "$desc"
+        return 1
+    fi
+
+    ui_detail "installing plugins..."
+    nvim --headless "+Lazy! sync" +qa 2>&1 | _progress
+    ui_detail "installing LSP servers and tools..."
+    nvim --headless "+MasonToolsInstallSync" +qa 2>&1 | _progress
+
+    ui_step_ok "$desc"
+}
+
 # --- Runner ---
 
 run_step() {
@@ -320,9 +348,10 @@ run_step() {
         languages|lang)  step_languages ;;
         claude_code|claude) step_claude_code ;;
         symlinks|links)  step_symlinks ;;
+        neovim|nvim)     step_neovim ;;
         *)
             echo "Unknown step: $step"
-            echo "Available: ssh, homebrew, packages, fonts, languages, claude, symlinks"
+            echo "Available: ssh, homebrew, packages, fonts, languages, claude, symlinks, neovim"
             return 1
             ;;
     esac
@@ -345,6 +374,7 @@ run_all() {
     step_languages
     step_claude_code
     step_symlinks
+    step_neovim
 
     ui_done
 }
