@@ -1,30 +1,31 @@
 {
+  "agent_buffer_font_size": 13.0,
   "buffer_font_family": ".ZedMono",
-  "buffer_font_size": 13,
+  "buffer_font_size": 12.5,
   "buffer_font_features": {
     "liga": true,
-    "calt": true
+    "calt": true,
   },
   "ui_font_size": 15,
   "terminal": {
-    "font_size": 12
+    "font_size": 12,
   },
   "formatter": "prettier",
   "code_actions_on_format": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
   },
   "git": {
     "inline_blame": {
-      "enabled": false
-    }
+      "enabled": false,
+    },
   },
   "languages": {
     "Swift": {
-      "enable_language_server": false
+      "enable_language_server": false,
     },
     "Kotlin": {
-      "enable_language_server": false
-    }
+      "enable_language_server": false,
+    },
   },
   "theme": "Tokyo Night Storm",
   "theme_overrides": {
@@ -55,9 +56,9 @@
       "version_control.deleted": "#f7768e80",
       "syntax": {
         "property": {
-          "color": "#73daca"
-        }
-      }
+          "color": "#73daca",
+        },
+      },
     },
     "Tokyo Night": {
       "tab_bar.background": "#16161e",
@@ -86,9 +87,9 @@
       "version_control.deleted": "#f7768e80",
       "syntax": {
         "property": {
-          "color": "#73daca"
-        }
-      }
+          "color": "#73daca",
+        },
+      },
     },
     "Tokyo Night Moon": {
       "editor.active_line.background": "#2f334d60",
@@ -118,18 +119,18 @@
       "version_control.deleted": "#ff757f80",
       "syntax": {
         "property": {
-          "color": "#73daca"
-        }
-      }
-    }
+          "color": "#73daca",
+        },
+      },
+    },
   },
   "icon_theme": {
     "mode": "dark",
     "light": "Zed (Default)",
-    "dark": "Zed (Default)"
+    "dark": "Zed (Default)",
   },
   "telemetry": {
     "diagnostics": true,
-    "metrics": false
-  }
+    "metrics": false,
+  },
 }
