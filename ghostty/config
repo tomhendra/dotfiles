@@ -1,10 +1,6 @@
 # Text
-font-family = "Operator Mono"
-font-style = Book
-font-style-bold = Bold
-font-style-italic = Book Italic
-font-style-bold-italic = Bold Italic
-font-size = 14
+font-family = "Lilex"
+font-size = 13
 
 # Tokyo Night Storm color palette
 background = 24283b
@@ -17,7 +13,7 @@ config-file = "themes/tokyo-night-storm"
 # Window
 title = 👻
 macos-titlebar-style = tabs
-window-padding-x = 16
+window-padding-x = 8
 window-padding-y = 8
 window-width = 197
 window-height = 53
