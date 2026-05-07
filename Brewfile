@@ -1,4 +1,5 @@
 # Brews
+brew 'azure-cli'
 brew 'bat'
 brew 'bruno-cli'
 brew 'cocoapods'
