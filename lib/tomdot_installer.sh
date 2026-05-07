@@ -244,6 +244,37 @@ step_claude_code() {
     ui_step_ok "$desc"
 }
 
+step_kiro() {
+    local desc="Install Kiro CLI"
+    local app="/Applications/Kiro CLI.app/Contents/MacOS"
+    local bin="${HOME}/.local/bin"
+
+    if [[ -x "${bin}/kiro-cli" ]]; then
+        ui_step_skip "$desc"
+        return 0
+    fi
+
+    if [[ "${DRY_RUN:-false}" == "true" ]]; then
+        ui_step_dry "$desc"
+        ui_detail "would run: curl -fsSL https://cli.kiro.dev/install | bash"
+        ui_detail "would symlink kiro-cli{,-chat,-term} -> ~/.local/bin/"
+        return 0
+    fi
+
+    ui_step_start "$desc"
+
+    ui_detail "downloading..."
+    curl -fsSL https://cli.kiro.dev/install | bash 2>&1 | _progress
+
+    mkdir -p "$bin"
+    for b in kiro-cli kiro-cli-chat kiro-cli-term; do
+        ln -sf "${app}/${b}" "${bin}/${b}"
+    done
+    ui_detail "linked kiro-cli{,-chat,-term} -> ${bin}/"
+
+    ui_step_ok "$desc"
+}
+
 step_symlinks() {
     local desc="Create dotfiles symlinks"
 
@@ -347,11 +378,12 @@ run_step() {
         fonts)           step_fonts ;;
         languages|lang)  step_languages ;;
         claude_code|claude) step_claude_code ;;
+        kiro_cli|kiro)   step_kiro ;;
         symlinks|links)  step_symlinks ;;
         neovim|nvim)     step_neovim ;;
         *)
             echo "Unknown step: $step"
-            echo "Available: ssh, homebrew, packages, fonts, languages, claude, symlinks, neovim"
+            echo "Available: ssh, homebrew, packages, fonts, languages, claude, kiro, symlinks, neovim"
             return 1
             ;;
     esac
@@ -373,6 +405,7 @@ run_all() {
     step_fonts
     step_languages
     step_claude_code
+    step_kiro
     step_symlinks
     step_neovim
 
