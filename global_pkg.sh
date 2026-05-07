@@ -3,6 +3,8 @@
 # global packages
 npm install -g @expo/ngrok
 npm install -g @sentry/cli
+npm install -g agent-device
+npm install -g agent-react-devtools
 npm install -g eas-cli
 npm install -g fkill-cli
 npm install -g keel
