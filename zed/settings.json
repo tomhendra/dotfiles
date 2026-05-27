@@ -1,5 +1,5 @@
 {
-  "agent_ui_font_size": 14.5,
+  "agent_ui_font_size": 14.0,
   "disable_ai": true,
   "project_panel": {
     "dock": "left"
