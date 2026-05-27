@@ -76,6 +76,7 @@ alias pop="git stash pop"
 alias stash="git stash -u"
 # Git misc
 alias unstage="git restore --staged ."
+alias untrack="git restore ."
 alias wip="git add . && git commit -m 'WIP'"
 
 # Node
