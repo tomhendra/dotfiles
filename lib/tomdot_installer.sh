@@ -142,9 +142,9 @@ step_packages() {
         ui_step_dry "$desc"
         if [[ -f "$brewfile" ]]; then
             local brew_count cask_count mas_count
-            brew_count=$(grep -c "^brew " "$brewfile" 2>/dev/null || echo 0)
-            cask_count=$(grep -c "^cask " "$brewfile" 2>/dev/null || echo 0)
-            mas_count=$(grep -c "^mas " "$brewfile" 2>/dev/null || echo 0)
+            brew_count=$(grep -c "^brew " "$brewfile" 2>/dev/null) || brew_count=0
+            cask_count=$(grep -c "^cask " "$brewfile" 2>/dev/null) || cask_count=0
+            mas_count=$(grep -c "^mas " "$brewfile" 2>/dev/null) || mas_count=0
             ui_detail "${brew_count} brews, ${cask_count} casks, ${mas_count} mas apps"
         else
             ui_detail "Brewfile not found at $brewfile"
