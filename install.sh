@@ -9,8 +9,19 @@ if [ -z "${BASH_SOURCE:-}" ] || [ "$0" = "bash" ] || [ "$0" = "sh" ] || [ "$0" =
     dotfiles_dir="${HOME}/.dotfiles"
     if [ ! -d "$dotfiles_dir" ]; then
         echo "Cloning dotfiles repository..."
-        git clone https://github.com/tomhendra/dotfiles.git "$dotfiles_dir"
+        git clone https://github.com/tomhendra/dotfiles.git "$dotfiles_dir" || {
+            echo "Error: clone failed. Is git installed? (xcode-select --install)"
+            exit 1
+        }
+    else
+        # Repo already present: pull, or we'd silently exec a stale script.
+        echo "Updating existing dotfiles repository..."
+        git -C "$dotfiles_dir" pull --ff-only || echo "Warning: pull failed, running local copy"
     fi
+    [ -f "$dotfiles_dir/install.sh" ] || {
+        echo "Error: $dotfiles_dir/install.sh not found"
+        exit 1
+    }
     exec bash "$dotfiles_dir/install.sh" "$@"
 fi
 
