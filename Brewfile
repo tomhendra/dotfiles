@@ -1,8 +1,3 @@
-# Taps
-# bun lives in a third-party tap; without this line brew bundle hits the
-# "not trusted" prompt and aborts the whole run.
-tap 'oven-sh/bun'
-
 # Brews
 brew 'azure-cli'
 brew 'bat'
@@ -17,7 +12,7 @@ brew 'git'
 brew 'git-delta'
 brew 'httpie'
 brew 'mas'
-brew 'oven-sh/bun/bun'
+brew 'bun'
 brew 'python'
 brew 'rbenv'
 brew 'fd'
