@@ -1,0 +1,40 @@
+# SSH config — symlinked to ~/.ssh/config by install.sh
+#
+# Keys are NEVER stored in this repo. Generate them per-machine:
+#
+#   ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_personal    -C "tom.hendra@outlook.com"
+#   ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_silicondali -C "thomas.hendra@silicondali.com"
+#
+# Then add each .pub to the relevant host:
+#   personal    -> https://github.com/settings/keys
+#   silicondali -> https://github.com/settings/keys (work account)
+#                  https://dev.azure.com/SiliconDali/_usersSettings/keys
+
+Host *
+  PreferredAuthentications publickey
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentitiesOnly yes
+
+# Personal GitHub — tomhendra/*
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_personal
+
+# Client GitHub — amar-technologies/*, SiliconDali/*
+# Clone with: git@github-silicondali:SiliconDali/repo.git
+Host github-silicondali
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_silicondali
+
+# Azure DevOps — SiliconDali/{Libertex,BetXchange}
+# ADO still requires RSA host key algorithms; without these two lines an
+# ed25519 client key fails with a misleading "permission denied" error.
+Host ssh.dev.azure.com
+  HostName ssh.dev.azure.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_silicondali
+  HostkeyAlgorithms +ssh-rsa
+  PubkeyAcceptedAlgorithms +ssh-rsa
