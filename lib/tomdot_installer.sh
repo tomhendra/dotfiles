@@ -103,6 +103,12 @@ step_ssh() {
 step_homebrew() {
     local desc="Install Homebrew"
 
+    # brew may be installed but absent from PATH (fresh shell, .zprofile not
+    # yet linked). Eval shellenv so later steps can find brew-installed tools.
+    if [[ -x /opt/homebrew/bin/brew ]] && ! command -v brew >/dev/null 2>&1; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+
     if command -v brew >/dev/null 2>&1; then
         ui_step_skip "$desc"
         return 0
@@ -210,6 +216,11 @@ step_languages() {
 
     ui_step_start "$desc"
 
+    # brew-installed tools (fnm) may not be on PATH yet when run standalone
+    if [[ -x /opt/homebrew/bin/brew ]] && ! command -v brew >/dev/null 2>&1; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+
     # Rust
     if ! command -v rustc >/dev/null 2>&1; then
         ui_detail "installing rust..."
@@ -219,6 +230,7 @@ step_languages() {
 
     # Node.js via fnm
     if ! command -v fnm >/dev/null 2>&1; then
+        ui_detail "fnm not found on PATH — is it installed? (brew install fnm)"
         ui_step_fail "$desc"
         return 1
     fi
