@@ -19,7 +19,7 @@ On a fresh macOS system, tomdot will do the following:
 6. Install Node.js 22 via fnm, enable Corepack, install global npm packages.
 7. Install Claude Code CLI.
 8. Install Kiro CLI.
-9. Symlink config files (bat, git, ghostty, zed, starship, zsh) and clone repos.
+9. Symlink config files (bat, git, ghostty, zed, starship, zsh, claude) and clone repos.
 
 ## Preparation
 

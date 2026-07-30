@@ -337,13 +337,18 @@ step_symlinks() {
         ui_detail "starship.toml -> ~/.config/starship.toml"
         ui_detail "zsh/.zshrc -> ~/.zshrc"
         ui_detail "zsh/.zprofile -> ~/.zprofile"
+        ui_detail "claude/settings.json -> ~/.claude/settings.json"
+        ui_detail "claude/CLAUDE.md -> ~/.claude/CLAUDE.md"
+        ui_detail "claude/statusline.sh -> ~/.claude/statusline.sh"
         return 0
     fi
 
     ui_step_start "$desc"
 
-    mkdir -p "${HOME}/.config/bat" "${HOME}/.config/ghostty" "${HOME}/.config/zed"
+    mkdir -p "${HOME}/.config/bat" "${HOME}/.config/ghostty" "${HOME}/.config/zed" "${HOME}/.claude"
 
+    # Only config is linked from ~/.claude — history, credentials, and caches
+    # stay local to each machine.
     local links=(
         "bat/bat.conf:.config/bat/bat.conf"
         "git/.gitconfig:.gitconfig"
@@ -355,6 +360,9 @@ step_symlinks() {
         "starship.toml:.config/starship.toml"
         "zsh/.zshrc:.zshrc"
         "zsh/.zprofile:.zprofile"
+        "claude/settings.json:.claude/settings.json"
+        "claude/CLAUDE.md:.claude/CLAUDE.md"
+        "claude/statusline.sh:.claude/statusline.sh"
     )
 
     for entry in "${links[@]}"; do
