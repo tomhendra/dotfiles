@@ -15,6 +15,9 @@ if [ -z "${BASH_SOURCE:-}" ] || [ "$0" = "bash" ] || [ "$0" = "sh" ] || [ "$0" =
 fi
 
 set -eu
+# Without pipefail, `cmd | _progress` always reports success because the
+# reader loop exits 0 — real failures were being swallowed.
+set -o pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/lib/tomdot_ui.sh"

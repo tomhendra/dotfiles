@@ -41,7 +41,8 @@ step_ssh() {
     # Passphrases are prompted for interactively, then stored in the keychain.
     # Personal key is ed25519; work key must be RSA because Azure DevOps
     # rejects ed25519 ("invalid keys will start with ssh-rsa").
-    local key comment
+    # Only newly generated keys need registering — existing ones are assumed done.
+    local key comment new_keys=()
     for key in "$key_personal" "$key_work"; do
         if [[ "$key" == "$key_personal" ]]; then
             comment="tom.hendra@outlook.com"
@@ -49,7 +50,9 @@ step_ssh() {
             comment="thomas.hendra@silicondali.com"
         fi
 
-        if [[ ! -f "$key" ]]; then
+        if [[ -f "$key" ]]; then
+            ui_detail "$(basename "$key") exists, skipping"
+        else
             echo ""
             echo "  Generating $(basename "$key") — enter a passphrase when prompted."
             if [[ "$key" == "$key_personal" ]]; then
@@ -57,23 +60,29 @@ step_ssh() {
             else
                 ssh-keygen -t rsa -b 4096 -f "$key" -C "$comment"
             fi
+            new_keys+=("$key")
         fi
         ssh-add --apple-use-keychain "$key" 2>/dev/null || ssh-add "$key" 2>/dev/null || true
     done
 
-    # Register each public key with its host.
-    for key in "$key_personal" "$key_work"; do
+    # Register only the keys generated in this run.
+    local url urls
+    for key in "${new_keys[@]:-}"; do
+        [[ -z "$key" ]] && continue
         command -v pbcopy >/dev/null 2>&1 && pbcopy < "${key}.pub"
         echo ""
         echo "  $(basename "${key}.pub") copied to clipboard."
         if [[ "$key" == "$key_personal" ]]; then
-            open "https://github.com/settings/keys"
-            echo "  Add it to your personal GitHub account."
+            urls="https://github.com/settings/keys"
+            echo "  Add it to your personal GitHub account:"
         else
-            open "https://github.com/settings/keys"
-            open "https://dev.azure.com/SiliconDali/_usersSettings/keys"
-            echo "  Add it to the work GitHub account AND Azure DevOps."
+            urls="https://github.com/settings/keys https://dev.azure.com/SiliconDali/_usersSettings/keys"
+            echo "  Add it to the work GitHub account AND Azure DevOps:"
         fi
+        for url in $urls; do
+            echo "    $url"
+            open "$url" 2>/dev/null || true
+        done
         echo "  Press Enter when done..."
         read -r
     done
@@ -435,15 +444,19 @@ run_all() {
     printf "${C_DIM}◇${C_RESET} Prerequisites\n"
     ui_detail "Xcode CLI tools, App Store login, macOS up to date"
 
-    step_ssh
-    step_homebrew
-    step_packages
-    step_fonts
-    step_languages
-    step_claude_code
-    step_kiro
-    step_symlinks
-    step_neovim
+    # A failing step must not abort the rest of the run (set -e would).
+    local failed=()
+    local s
+    for s in ssh homebrew packages fonts languages claude_code kiro symlinks neovim; do
+        "step_${s}" || failed+=("$s")
+    done
+
+    if [[ ${#failed[@]} -gt 0 ]]; then
+        echo ""
+        printf "${C_YELLOW}Failed steps:${C_RESET} %s\n" "${failed[*]}"
+        printf "Rerun individually, e.g. ${C_DIM}./install.sh --step %s${C_RESET}\n" "${failed[0]}"
+        return 1
+    fi
 
     ui_done
 }
