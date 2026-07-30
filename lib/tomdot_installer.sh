@@ -87,26 +87,21 @@ step_ssh() {
         read -r
     done
 
-    local ok=0
+    # Connection tests are diagnostics, not pass/fail criteria: a key that
+    # exists locally but isn't registered with a remote yet is a normal
+    # intermediate state, not a broken step.
     if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
         ui_detail "github: ok"
     else
-        ui_detail "github: FAILED"
-        ok=1
+        ui_detail "github: not authenticated — add ~/.ssh/id_ed25519_personal.pub"
     fi
     if ssh -T git@ssh.dev.azure.com 2>&1 | grep -qi "authenticated\|shell access"; then
         ui_detail "azure devops: ok"
     else
-        ui_detail "azure devops: FAILED"
-        ok=1
+        ui_detail "azure devops: not authenticated — add ~/.ssh/id_rsa_silicondali.pub"
     fi
 
-    if [[ $ok -eq 0 ]]; then
-        ui_step_ok "$desc"
-    else
-        ui_step_fail "$desc"
-        return 1
-    fi
+    ui_step_ok "$desc"
 }
 
 step_homebrew() {
