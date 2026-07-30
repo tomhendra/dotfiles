@@ -17,13 +17,13 @@ step_ssh() {
     local desc="Set up SSH keys"
     local ssh_dir="${HOME}/.ssh"
     local key_personal="${ssh_dir}/id_ed25519_personal"
-    local key_work="${ssh_dir}/id_ed25519_silicondali"
+    local key_work="${ssh_dir}/id_rsa_silicondali"
 
     if [[ "${DRY_RUN:-false}" == "true" ]]; then
         ui_step_dry "$desc"
         ui_detail "ssh/config -> ~/.ssh/config"
-        [[ -f "$key_personal" ]] && ui_detail "personal key exists" || ui_detail "would generate id_ed25519_personal"
-        [[ -f "$key_work" ]] && ui_detail "silicondali key exists" || ui_detail "would generate id_ed25519_silicondali"
+        [[ -f "$key_personal" ]] && ui_detail "personal key exists" || ui_detail "would generate id_ed25519_personal (ed25519)"
+        [[ -f "$key_work" ]] && ui_detail "silicondali key exists" || ui_detail "would generate id_rsa_silicondali (rsa — ADO requires it)"
         ui_detail "would test github + azure devops connections"
         return 0
     fi
@@ -39,7 +39,9 @@ step_ssh() {
     ui_detail "ssh/config -> ~/.ssh/config"
 
     # Passphrases are prompted for interactively, then stored in the keychain.
-    local key comment url
+    # Personal key is ed25519; work key must be RSA because Azure DevOps
+    # rejects ed25519 ("invalid keys will start with ssh-rsa").
+    local key comment
     for key in "$key_personal" "$key_work"; do
         if [[ "$key" == "$key_personal" ]]; then
             comment="tom.hendra@outlook.com"
@@ -50,7 +52,11 @@ step_ssh() {
         if [[ ! -f "$key" ]]; then
             echo ""
             echo "  Generating $(basename "$key") — enter a passphrase when prompted."
-            ssh-keygen -t ed25519 -f "$key" -C "$comment"
+            if [[ "$key" == "$key_personal" ]]; then
+                ssh-keygen -t ed25519 -f "$key" -C "$comment"
+            else
+                ssh-keygen -t rsa -b 4096 -f "$key" -C "$comment"
+            fi
         fi
         ssh-add --apple-use-keychain "$key" 2>/dev/null || ssh-add "$key" 2>/dev/null || true
     done
