@@ -28,6 +28,13 @@ step_ssh() {
         return 0
     fi
 
+    # Nothing to do if both keys exist and the config is already linked.
+    if [[ -f "$key_personal" && -f "$key_work" \
+          && "$(readlink "${ssh_dir}/config" 2>/dev/null)" == "${DOTFILES_DIR}/ssh/config" ]]; then
+        ui_step_skip "$desc"
+        return 0
+    fi
+
     ui_step_start "$desc"
 
     mkdir -p "$ssh_dir"
