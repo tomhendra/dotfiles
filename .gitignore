@@ -65,3 +65,14 @@ Temporary Items
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 .claude/
 
+# SSH: track config only, never key material
+ssh/*
+!ssh/config
+id_rsa*
+id_ed25519*
+*.pem
+*.p8
+*.jks
+*.keystore
+known_hosts*
+

@@ -16,59 +16,77 @@ _progress() {
 step_ssh() {
     local desc="Set up SSH keys"
     local ssh_dir="${HOME}/.ssh"
-    local ssh_key="${ssh_dir}/id_rsa"
+    local key_personal="${ssh_dir}/id_ed25519_personal"
+    local key_work="${ssh_dir}/id_ed25519_silicondali"
 
     if [[ "${DRY_RUN:-false}" == "true" ]]; then
         ui_step_dry "$desc"
-        [[ -f "$ssh_key" ]] && ui_detail "ssh key exists" || ui_detail "would generate ssh key"
-        ui_detail "would test github connection"
-        return 0
-    fi
-
-    local ssh_output
-    ssh_output=$(ssh -T git@github.com -o ConnectTimeout=5 -o StrictHostKeyChecking=no 2>&1 || true)
-    if echo "$ssh_output" | grep -q "successfully authenticated"; then
-        ui_step_skip "$desc"
+        ui_detail "ssh/config -> ~/.ssh/config"
+        [[ -f "$key_personal" ]] && ui_detail "personal key exists" || ui_detail "would generate id_ed25519_personal"
+        [[ -f "$key_work" ]] && ui_detail "silicondali key exists" || ui_detail "would generate id_ed25519_silicondali"
+        ui_detail "would test github + azure devops connections"
         return 0
     fi
 
     ui_step_start "$desc"
 
     mkdir -p "$ssh_dir"
+    chmod 700 "$ssh_dir"
 
-    if [[ ! -f "${ssh_dir}/config" ]]; then
-        cat > "${ssh_dir}/config" << 'EOF'
-Host *
- PreferredAuthentications publickey
- UseKeychain yes
- IdentityFile ~/.ssh/id_rsa
-EOF
-        chmod 600 "${ssh_dir}/config"
-    fi
+    # Config is tracked in the repo; keys never are.
+    rm -f "${ssh_dir}/config"
+    ln -sf "${DOTFILES_DIR}/ssh/config" "${ssh_dir}/config"
+    ui_detail "ssh/config -> ~/.ssh/config"
 
-    if [[ ! -f "$ssh_key" ]]; then
-        ui_detail "generating ssh key..."
-        ssh-keygen -t rsa -b 4096 -f "$ssh_key" -C "tom.hendra@outlook.com" -N "" 2>&1 | _progress
-        eval "$(ssh-agent -s)" >/dev/null 2>&1
-        ssh-add "$ssh_key" >/dev/null 2>&1
+    # Passphrases are prompted for interactively, then stored in the keychain.
+    local key comment url
+    for key in "$key_personal" "$key_work"; do
+        if [[ "$key" == "$key_personal" ]]; then
+            comment="tom.hendra@outlook.com"
+        else
+            comment="thomas.hendra@silicondali.com"
+        fi
+
+        if [[ ! -f "$key" ]]; then
+            echo ""
+            echo "  Generating $(basename "$key") — enter a passphrase when prompted."
+            ssh-keygen -t ed25519 -f "$key" -C "$comment"
+        fi
+        ssh-add --apple-use-keychain "$key" 2>/dev/null || ssh-add "$key" 2>/dev/null || true
+    done
+
+    # Register each public key with its host.
+    for key in "$key_personal" "$key_work"; do
+        command -v pbcopy >/dev/null 2>&1 && pbcopy < "${key}.pub"
+        echo ""
+        echo "  $(basename "${key}.pub") copied to clipboard."
+        if [[ "$key" == "$key_personal" ]]; then
+            open "https://github.com/settings/keys"
+            echo "  Add it to your personal GitHub account."
+        else
+            open "https://github.com/settings/keys"
+            open "https://dev.azure.com/SiliconDali/_usersSettings/keys"
+            echo "  Add it to the work GitHub account AND Azure DevOps."
+        fi
+        echo "  Press Enter when done..."
+        read -r
+    done
+
+    local ok=0
+    if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+        ui_detail "github: ok"
     else
-        ssh-add --apple-use-keychain "$ssh_key" 2>/dev/null || ssh-add "$ssh_key" 2>/dev/null || true
+        ui_detail "github: FAILED"
+        ok=1
+    fi
+    if ssh -T git@ssh.dev.azure.com 2>&1 | grep -qi "authenticated\|shell access"; then
+        ui_detail "azure devops: ok"
+    else
+        ui_detail "azure devops: FAILED"
+        ok=1
     fi
 
-    if command -v pbcopy >/dev/null 2>&1; then
-        pbcopy < "${ssh_key}.pub"
-    fi
-
-    echo ""
-    echo "  SSH public key copied to clipboard."
-    open "https://github.com/settings/keys"
-    echo "  Paste it in the browser window that just opened."
-    echo ""
-    echo "  Press Enter when done..."
-    read -r
-
-    ssh_output=$(ssh -T git@github.com 2>&1 || true)
-    if echo "$ssh_output" | grep -q "successfully authenticated"; then
+    if [[ $ok -eq 0 ]]; then
         ui_step_ok "$desc"
     else
         ui_step_fail "$desc"
