@@ -11,7 +11,6 @@ brew 'gh'
 brew 'git'
 brew 'git-delta'
 brew 'httpie'
-brew 'mas'
 brew 'bun'
 brew 'python'
 brew 'rbenv'
@@ -47,7 +46,3 @@ cask 'raycast'
 cask 'the-unarchiver'
 cask 'zed'
 cask 'zulu@17' # https://docs.expo.dev/workflow/android-studio-emulator/#install-dependencies
-
-# Mac App Store
-mas 'AdGuard para Safari', id: 1440147259
-mas 'Be Focused Pro', id: 961632517
