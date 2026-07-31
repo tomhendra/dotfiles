@@ -60,11 +60,7 @@
       "enable_language_server": false,
     },
   },
-  "theme": {
-    "mode": "dark",
-    "light": "One Light",
-    "dark": "Tokyo Night Storm",
-  },
+  "theme": "Tokyo Night Storm",
   "theme_overrides": {
     "Tokyo Night Storm": {
       "tab_bar.background": "#1f2335",
