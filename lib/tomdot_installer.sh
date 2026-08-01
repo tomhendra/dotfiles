@@ -152,11 +152,10 @@ step_packages() {
     if [[ "${DRY_RUN:-false}" == "true" ]]; then
         ui_step_dry "$desc"
         if [[ -f "$brewfile" ]]; then
-            local brew_count cask_count mas_count
+            local brew_count cask_count
             brew_count=$(grep -c "^brew " "$brewfile" 2>/dev/null) || brew_count=0
             cask_count=$(grep -c "^cask " "$brewfile" 2>/dev/null) || cask_count=0
-            mas_count=$(grep -c "^mas " "$brewfile" 2>/dev/null) || mas_count=0
-            ui_detail "${brew_count} brews, ${cask_count} casks, ${mas_count} mas apps"
+            ui_detail "${brew_count} brews, ${cask_count} casks"
         else
             ui_detail "Brewfile not found at $brewfile"
         fi
@@ -418,7 +417,7 @@ run_all() {
     fi
 
     printf "${C_DIM}◇${C_RESET} Prerequisites\n"
-    ui_detail "Xcode CLI tools, App Store login, macOS up to date"
+    ui_detail "Xcode CLI tools, macOS up to date"
 
     # A failing step must not abort the rest of the run (set -e would).
     local failed=()
