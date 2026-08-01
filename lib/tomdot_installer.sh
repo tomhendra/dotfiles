@@ -180,38 +180,6 @@ step_packages() {
     ui_step_ok "$desc"
 }
 
-step_fonts() {
-    local desc="Install Zed Mono Extended fonts"
-    local fonts_dir="${HOME}/Library/Fonts"
-
-    if ls "$fonts_dir"/zed-mono-extended*.ttf >/dev/null 2>&1; then
-        ui_step_skip "$desc"
-        return 0
-    fi
-
-    if [[ "${DRY_RUN:-false}" == "true" ]]; then
-        ui_step_dry "$desc"
-        ui_detail "would download zed-mono-1.2.0.zip"
-        ui_detail "would install extended variants to ~/Library/Fonts"
-        return 0
-    fi
-
-    ui_step_start "$desc"
-
-    local temp_dir="/tmp/zed-mono-install"
-    rm -rf "$temp_dir"
-    mkdir -p "$temp_dir"
-
-    ui_detail "downloading..."
-    curl -sL "https://github.com/zed-industries/zed-fonts/releases/download/1.2.0/zed-mono-1.2.0.zip" -o "$temp_dir/zed-mono.zip"
-    ui_detail "extracting..."
-    unzip -q "$temp_dir/zed-mono.zip" -d "$temp_dir"
-    cp "$temp_dir"/zed-mono-extended*.ttf "$fonts_dir/"
-    rm -rf "$temp_dir"
-
-    ui_step_ok "$desc"
-}
-
 step_languages() {
     local desc="Install Node.js and Rust"
 
@@ -430,7 +398,6 @@ run_step() {
         ssh|ssh_setup)   step_ssh ;;
         homebrew|brew)   step_homebrew ;;
         packages|pkg)    step_packages ;;
-        fonts)           step_fonts ;;
         languages|lang)  step_languages ;;
         claude_code|claude) step_claude_code ;;
         kiro_cli|kiro)   step_kiro ;;
@@ -438,7 +405,7 @@ run_step() {
         neovim|nvim)     step_neovim ;;
         *)
             echo "Unknown step: $step"
-            echo "Available: ssh, homebrew, packages, fonts, languages, claude, kiro, symlinks, neovim"
+            echo "Available: ssh, homebrew, packages, languages, claude, kiro, symlinks, neovim"
             return 1
             ;;
     esac
@@ -457,7 +424,7 @@ run_all() {
     # A failing step must not abort the rest of the run (set -e would).
     local failed=()
     local s
-    for s in ssh homebrew packages fonts languages claude_code kiro symlinks neovim; do
+    for s in ssh homebrew packages languages claude_code kiro symlinks neovim; do
         "step_${s}" || failed+=("$s")
     done
 

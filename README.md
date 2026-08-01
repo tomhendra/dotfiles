@@ -14,13 +14,12 @@ On a fresh macOS system, tomdot will do the following:
 1. Symlink `ssh/config`, generate per-host SSH keys — ed25519 (GitHub) + RSA 4096 (Azure DevOps rejects ed25519) — then prompt to register new keys with GitHub / Azure DevOps and test authentication.
 2. Install Homebrew.
 3. Install packages, casks, and App Store apps via Brewfile.
-4. Install Zed Mono Extended fonts.
-5. Install Rust via rustup.
-6. Install Node.js 22 via fnm, enable Corepack, install global npm packages.
-7. Install Claude Code CLI.
-8. Install Kiro CLI.
-9. Symlink config files (bat, git, ghostty, nvim, zed, starship, zsh, claude) and clone repos.
-10. Set up Neovim: sync plugins via lazy.nvim, install LSP servers & tools via Mason.
+4. Install Rust via rustup.
+5. Install Node.js 22 via fnm, enable Corepack, install global npm packages.
+6. Install Claude Code CLI.
+7. Install Kiro CLI.
+8. Symlink config files (bat, git, ghostty, nvim, zed, starship, zsh, claude) and clone repos.
+9. Set up Neovim: sync plugins via lazy.nvim, install LSP servers & tools via Mason.
 
 ## Preparation
 
@@ -44,14 +43,14 @@ There is some preparation to be done before performing a clean install of macOS 
 4. Run `curl -fsSL https://raw.githubusercontent.com/tomhendra/dotfiles/main/install.sh | sh` in the terminal.
 5. Grab a coffee and let tomdot do its thing!
 
-If a step fails, rerun it individually with `./install.sh --step <name>` (steps: ssh, homebrew, packages, fonts, languages, claude, kiro, symlinks, neovim). Use `--dry-run` to preview changes.
+If a step fails, rerun it individually with `./install.sh --step <name>` (steps: ssh, homebrew, packages, languages, claude, kiro, symlinks, neovim). Use `--dry-run` to preview changes.
 
 ## Post-Installation
 
 - Enable Desktop & Documents Folders in Apple menu  > System Settings > iCloud > iCloud Drive.
 - Install fonts backed-up to iCloud.
 - Launch Raycast & setup.
-- Install apps unavailable via Homebrew / App Store (e.g. IdeaShare).
+- Install apps unavailable via Homebrew / App Store.
 - Login to Chrome & enable sync.
 - Install Android studio Emulator.
 - Restart computer.
