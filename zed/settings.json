@@ -1,4 +1,5 @@
 {
+  "cli_default_open_behavior": "existing_window",
   "diff_view_style": "split",
   "agent_servers": {
     "claude-acp": {
