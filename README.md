@@ -33,7 +33,7 @@ There is some preparation to be done before performing a clean install of macOS 
 - Ensure Chrome is signed into and synced.
 - Login to iCloud with a browser and ensure all backed-up fonts and preferences have actually been uploaded.
 - Update MacOS to the [latest version](https://support.apple.com/en-us/HT201541).
-- Revoke the old machine's SSH keys in [GitHub](https://github.com/settings/keys) and [Azure DevOps](https://dev.azure.com/SiliconDali/_usersSettings/keys) — do this last, after everything is pushed, since revoking cuts off git access. New keys are generated during install.
+- Revoke the old machine's SSH keys in [GitHub](https://github.com/settings/keys) and [Azure DevOps](https://dev.azure.com/SiliconDali/_usersSettings/keys) — do this last, after everything is pushed, since revoking cuts off git access.
 
 ## Installation
 
