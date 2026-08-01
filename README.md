@@ -15,7 +15,7 @@ On a fresh macOS system, tomdot will do the following:
 2. Install Homebrew.
 3. Install packages, casks, and App Store apps via Brewfile.
 4. Install Rust via rustup.
-5. Install Node.js 22 via fnm, enable Corepack, install global npm packages.
+5. Install Node.js LTS via fnm, enable Corepack, install global npm packages.
 6. Install Claude Code CLI.
 7. Install Kiro CLI.
 8. Symlink config files (bat, git, ghostty, nvim, zed, starship, zsh, claude) and clone repos.
