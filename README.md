@@ -11,7 +11,7 @@
 
 On a fresh macOS system, tomdot will do the following:
 
-1. Symlink `ssh/config`, generate per-host ed25519 SSH keys (personal + silicondali), configure GitHub and Azure DevOps authentication.
+1. Symlink `ssh/config`, generate per-host SSH keys — ed25519 (personal) + RSA 4096 (silicondali, Azure DevOps rejects ed25519) — then prompt to register new keys with GitHub / Azure DevOps and test authentication.
 2. Install Homebrew.
 3. Install packages, casks, and App Store apps via Brewfile.
 4. Install Zed Mono Extended fonts.
@@ -19,7 +19,8 @@ On a fresh macOS system, tomdot will do the following:
 6. Install Node.js 22 via fnm, enable Corepack, install global npm packages.
 7. Install Claude Code CLI.
 8. Install Kiro CLI.
-9. Symlink config files (bat, git, ghostty, zed, starship, zsh, claude) and clone repos.
+9. Symlink config files (bat, git, ghostty, nvim, zed, starship, zsh, claude) and clone repos.
+10. Set up Neovim: sync plugins via lazy.nvim, install LSP servers & tools via Mason.
 
 ## Preparation
 
@@ -29,10 +30,11 @@ There is some preparation to be done before performing a clean install of macOS 
 - Backup any desired app preference files to iCloud.
 - Ensure all repos that you want to be cloned from GitHub are included in the `repos` array in `~/.dotfiles/git/get_repos.sh`.
 - Ensure local `~/.dotfiles` and repos are up-to-date & pushed to GitHub.
-- Ensure VS Code is signed into and synced.
+- Ensure any Zed settings changes are committed to `~/.dotfiles` (Zed config is symlinked, not account-synced).
 - Ensure Chrome is signed into and synced.
 - Login to iCloud with a browser and ensure all backed-up fonts and preferences have actually been uploaded.
 - Update MacOS to the [latest version](https://support.apple.com/en-us/HT201541).
+- Revoke the old machine's SSH keys in [GitHub](https://github.com/settings/keys) and [Azure DevOps](https://dev.azure.com/SiliconDali/_usersSettings/keys) — do this last, after everything is pushed, since revoking cuts off git access. New keys are generated during install.
 
 ## Installation
 
@@ -42,6 +44,8 @@ There is some preparation to be done before performing a clean install of macOS 
 4. Run `curl -fsSL https://raw.githubusercontent.com/tomhendra/dotfiles/main/install.sh | sh` in the terminal.
 5. Grab a coffee and let tomdot do its thing!
 
+If a step fails, rerun it individually with `./install.sh --step <name>` (steps: ssh, homebrew, packages, fonts, languages, claude, kiro, symlinks, neovim). Use `--dry-run` to preview changes.
+
 ## Post-Installation
 
 - Enable Desktop & Documents Folders in Apple menu  > System Settings > iCloud > iCloud Drive.
@@ -49,7 +53,6 @@ There is some preparation to be done before performing a clean install of macOS 
 - Launch Raycast & setup.
 - Install apps unavailable via Homebrew / App Store (e.g. IdeaShare).
 - Login to Chrome & enable sync.
-- Add SSH public key to Azure DevOps.
 - Install Android studio Emulator.
 - Restart computer.
 
