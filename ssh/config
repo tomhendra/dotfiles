@@ -33,7 +33,7 @@ Host github-silicondali
   User git
   IdentityFile ~/.ssh/id_rsa_silicondali
 
-# Azure DevOps — SiliconDali/{Libertex,BetXchange}
+# Azure DevOps — SiliconDali
 # ADO requires RSA for both the client key and the host key algorithms.
 # Without the two algorithm lines, modern OpenSSH refuses ADO's ssh-rsa host
 # key and fails with a misleading "permission denied".
