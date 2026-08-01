@@ -187,7 +187,7 @@ step_languages() {
         ui_step_dry "$desc"
         command -v rustc >/dev/null 2>&1 && ui_detail "rust: installed" || ui_detail "would install rust via rustup"
         command -v fnm >/dev/null 2>&1 && ui_detail "fnm: installed" || ui_detail "fnm: not found (install via homebrew first)"
-        command -v node >/dev/null 2>&1 && ui_detail "node: installed" || ui_detail "would install node 22 via fnm"
+        command -v node >/dev/null 2>&1 && ui_detail "node: installed" || ui_detail "would install node LTS via fnm"
         ui_detail "would enable corepack (pnpm, yarn)"
         [[ -f "${DOTFILES_DIR}/global_pkg.sh" ]] && ui_detail "would install global npm packages" || ui_detail "global_pkg.sh not found"
         return 0
@@ -216,12 +216,11 @@ step_languages() {
 
     eval "$(fnm env --use-on-cd)" >/dev/null 2>&1
 
-    if ! fnm list 2>/dev/null | grep -q "v22"; then
-        ui_detail "installing node 22..."
-        fnm install 22 2>&1 | _progress
-    fi
-    fnm use 22 >/dev/null 2>&1
-    fnm default 22 >/dev/null 2>&1
+    # `fnm install --lts` is idempotent — skips if already installed.
+    ui_detail "installing node lts..."
+    fnm install --lts 2>&1 | _progress
+    fnm use lts-latest >/dev/null 2>&1
+    fnm default lts-latest >/dev/null 2>&1
 
     ui_detail "enabling corepack..."
     corepack enable >/dev/null 2>&1
