@@ -13,7 +13,7 @@ On a fresh macOS system, tomdot will do the following:
 
 1. Symlink `ssh/config`, generate per-host SSH keys — ed25519 (GitHub) + RSA 4096 (Azure DevOps).
 2. Install Homebrew.
-3. Install packages, casks, and App Store apps via Brewfile.
+3. Install packages and casks via Brewfile.
 4. Install Rust via rustup.
 5. Install Node.js LTS via fnm, enable Corepack, install global npm packages.
 6. Install Claude Code CLI.
