@@ -11,7 +11,7 @@
 
 On a fresh macOS system, tomdot will do the following:
 
-1. Symlink `ssh/config`, generate per-host SSH keys — ed25519 (personal) + RSA 4096 (silicondali, Azure DevOps rejects ed25519) — then prompt to register new keys with GitHub / Azure DevOps and test authentication.
+1. Symlink `ssh/config`, generate per-host SSH keys — ed25519 (GitHub) + RSA 4096 (Azure DevOps rejects ed25519) — then prompt to register new keys with GitHub / Azure DevOps and test authentication.
 2. Install Homebrew.
 3. Install packages, casks, and App Store apps via Brewfile.
 4. Install Zed Mono Extended fonts.
