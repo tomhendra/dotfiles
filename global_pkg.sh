@@ -2,6 +2,7 @@
 
 # global packages
 npm install -g @expo/ngrok
+npm install -g @microsoft/inshellisense
 npm install -g @sentry/cli
 npm install -g agent-device
 npm install -g agent-react-devtools

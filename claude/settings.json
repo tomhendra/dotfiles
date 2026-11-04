@@ -1,4 +1,5 @@
 {
+  "includeCoAuthoredBy": false,
   "permissions": {
     "deny": [
       "EnterPlanMode",
@@ -16,6 +17,7 @@
       "CronList"
     ]
   },
+  "model": "fable",
   "disableClaudeAiConnectors": false,
   "disableBundledSkills": true,
   "disableRemoteControl": true,
@@ -31,6 +33,52 @@
   },
   "alwaysThinkingEnabled": false,
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "autoMemoryEnabled": false,
-  "skipAutoPermissionPrompt": true
+  "switchModelsOnFlag": false,
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(agent-device *) in /Users/tomhendra/Developer/lbx-mobile-app",
+      "Bash(pod install) in /Users/tomhendra/Developer/lbx-mobile-app",
+      "Bash(xcrun *) in /Users/tomhendra/Developer/lbx-mobile-app"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(*.env.production*) writes/reads outside declared local setup in /Users/tomhendra/Developer/lbx-mobile-app",
+      "Bash(scripts/debug-prod.sh) in /Users/tomhendra/Developer/lbx-mobile-app"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: amar-technologies (GitHub org; repo amar-technologies/lbx-mobile-app)",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: Private — amar-technologies/lbx-mobile-app (per gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured — local .env* files (.env, .env.local, .env.staging, .env.production, .env.template) and build-time secrets (Sentry CLI auth token, Android signing passwords, AppsFlyer Maven token, android/fastlane/.env.example, fastlane/play-store-key.json, AuthKey*.p8, keystores) are gitignored; treat as local secret material, never for commit/push",
+      "**Default / protected branches**: main (default), dev and main are protected (per gh); no rulesets listed; branch protection on main requires 2 approvals per CONTRIBUTING.md",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine with open internet",
+      "**Source control**: The trusted repo (amar-technologies/lbx-mobile-app) and its origin remote only",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: DXTrade trading API (upstream docs at libtx-stage.prosp.devexperts.com); Jira (amar-tech.atlassian.net, project MA) — used for issue tracking, read/write via MCP tooling per repo skill docs",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: .env, .env.local, .env.production, .env.staging, .env.template, .secretlintrc.json, android/fastlane/.env.example, scripts/debug-prod.sh, and other gitignored secret files (*.keystore, fastlane/.env, fastlane/play-store-key.json, fastlane/AuthKey*.p8) — credentials and build signing material; share only with cleared engineering audiences",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (e.g. .env.production, build:ios:prod, build:android:staging targets, scripts/debug-prod.sh)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (React Native mobile app — LBX trading app)",
+      "**Trusted repo**: /Users/tomhendra/Developer/lbx-mobile-app (origin: github.com:amar-technologies/lbx-mobile-app.git), private — confidential material (excluding secrets) OK to commit here; secrets and PII never cleared by visibility",
+      "**Org-specific CLIs**: agent-device (device driver/profiler), gh (GitHub CLI), xcrun, idevicesyslog, idevicescreenshot, pod (CocoaPods) — routine within this repo",
+      "routine under lbx-mobile-app/ prefix: npm run lint/format/type:check/test/validate, agent-device commands, pod install, xcrun/idevicesyslog/idevicescreenshot for iOS device debugging"
+    ]
+  }
 }

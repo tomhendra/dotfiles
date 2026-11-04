@@ -1,6 +1,3 @@
-# Kiro CLI pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
-
 # default language
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -30,6 +27,7 @@ path=(
     "$ANDROID_HOME/emulator"
     "$ANDROID_HOME/platform-tools"
     "/usr/local/sbin"
+    "$HOME/.local/bin"
     $path
 )
 
@@ -53,11 +51,23 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
-
 # flashlight
 export PATH="/Users/tomhendra/.flashlight/bin:$PATH"
 
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
+# inshellisense: ctrl-L runs zsh's clear-screen widget, which erases the screen and
+# redraws the prompt without firing zle-line-init, so inshellisense never gets its
+# prompt-start/end marks and stops suggesting until the next command. Re-emit them.
+if [[ -n "$ISTERM" ]]; then
+  __is_clear_screen() {
+    zle .clear-screen
+    zle -R   # flush the erase + prompt redraw now, so the marks land after it
+    if (( ${+functions[__is_prompt_start]} )); then
+      __is_prompt_start
+      __is_prompt_end
+    fi
+  }
+  zle -N clear-screen __is_clear_screen
+fi
 
+# inshellisense (must stay the last line)
+[[ -f "${HOME}/.local/share/inshellisense/init/zsh/init.zsh" ]] && source "${HOME}/.local/share/inshellisense/init/zsh/init.zsh"

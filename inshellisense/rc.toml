@@ -1,0 +1,8 @@
+# inshellisense config — https://github.com/microsoft/inshellisense#configuration
+# Only the active row's background is themeable; all other text inherits the
+# terminal's own colours, so it already follows Ghostty's Tokyo Night Storm.
+
+# Tokyo Night Storm selection-background, matches Ghostty's selection colour
+activeSuggestionBackgroundColor = "#364a82"
+boxBorderStyle = "rounded"
+useAliases = true

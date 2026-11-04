@@ -257,33 +257,37 @@ step_claude_code() {
     ui_step_ok "$desc"
 }
 
-step_kiro() {
-    local desc="Install Kiro CLI"
-    local app="/Applications/Kiro CLI.app/Contents/MacOS"
-    local bin="${HOME}/.local/bin"
+step_inshellisense() {
+    local desc="Set up inshellisense shell plugin"
+    local init="${HOME}/.local/share/inshellisense/init/zsh/init.zsh"
 
-    if [[ -x "${bin}/kiro-cli" ]]; then
+    if [[ -f "$init" ]]; then
         ui_step_skip "$desc"
         return 0
     fi
 
     if [[ "${DRY_RUN:-false}" == "true" ]]; then
         ui_step_dry "$desc"
-        ui_detail "would run: curl -fsSL https://cli.kiro.dev/install | bash"
-        ui_detail "would symlink kiro-cli{,-chat,-term} -> ~/.local/bin/"
+        command -v is >/dev/null 2>&1 && ui_detail "inshellisense: installed" || ui_detail "would install @microsoft/inshellisense via npm"
+        ui_detail "would run: is init zsh (generates $init)"
         return 0
     fi
 
     ui_step_start "$desc"
 
-    ui_detail "downloading..."
-    curl -fsSL https://cli.kiro.dev/install | bash 2>&1 | _progress
+    # fnm-managed node may not be on PATH yet when run standalone
+    if command -v fnm >/dev/null 2>&1 && ! command -v npm >/dev/null 2>&1; then
+        eval "$(fnm env)"
+    fi
 
-    mkdir -p "$bin"
-    for b in kiro-cli kiro-cli-chat kiro-cli-term; do
-        ln -sf "${app}/${b}" "${bin}/${b}"
-    done
-    ui_detail "linked kiro-cli{,-chat,-term} -> ${bin}/"
+    if ! command -v is >/dev/null 2>&1; then
+        ui_detail "installing @microsoft/inshellisense..."
+        npm install -g @microsoft/inshellisense 2>&1 | _progress
+    fi
+
+    # generates ~/.local/share/inshellisense/{init,shell,spec}; zsh/.zshrc sources init.zsh
+    is init zsh >/dev/null
+    ui_detail "generated $init"
 
     ui_step_ok "$desc"
 }
@@ -301,6 +305,7 @@ step_symlinks() {
         ui_detail "nvim -> ~/.config/nvim"
         ui_detail "zed/settings.json -> ~/.config/zed/settings.json"
         ui_detail "starship.toml -> ~/.config/starship.toml"
+        ui_detail "inshellisense/rc.toml -> ~/.config/inshellisense/rc.toml"
         ui_detail "zsh/.zshrc -> ~/.zshrc"
         ui_detail "zsh/.zprofile -> ~/.zprofile"
         ui_detail "claude/settings.json -> ~/.claude/settings.json"
@@ -311,7 +316,7 @@ step_symlinks() {
 
     ui_step_start "$desc"
 
-    mkdir -p "${HOME}/.config/bat" "${HOME}/.config/ghostty" "${HOME}/.config/zed" "${HOME}/.claude"
+    mkdir -p "${HOME}/.config/bat" "${HOME}/.config/ghostty" "${HOME}/.config/zed" "${HOME}/.config/inshellisense" "${HOME}/.claude"
 
     # Only config is linked from ~/.claude — history, credentials, and caches
     # stay local to each machine.
@@ -324,6 +329,7 @@ step_symlinks() {
         "nvim:.config/nvim"
         "zed/settings.json:.config/zed/settings.json"
         "starship.toml:.config/starship.toml"
+        "inshellisense/rc.toml:.config/inshellisense/rc.toml"
         "zsh/.zshrc:.zshrc"
         "zsh/.zprofile:.zprofile"
         "claude/settings.json:.claude/settings.json"
@@ -398,12 +404,12 @@ run_step() {
         packages|pkg)    step_packages ;;
         languages|lang)  step_languages ;;
         claude_code|claude) step_claude_code ;;
-        kiro_cli|kiro)   step_kiro ;;
+        inshellisense|is)   step_inshellisense ;;
         symlinks|links)  step_symlinks ;;
         neovim|nvim)     step_neovim ;;
         *)
             echo "Unknown step: $step"
-            echo "Available: ssh, homebrew, packages, languages, claude, kiro, symlinks, neovim"
+            echo "Available: ssh, homebrew, packages, languages, claude, inshellisense, symlinks, neovim"
             return 1
             ;;
     esac
@@ -422,7 +428,7 @@ run_all() {
     # A failing step must not abort the rest of the run (set -e would).
     local failed=()
     local s
-    for s in ssh homebrew packages languages claude_code kiro symlinks neovim; do
+    for s in ssh homebrew packages languages claude_code inshellisense symlinks neovim; do
         "step_${s}" || failed+=("$s")
     done
 
