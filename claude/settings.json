@@ -1,4 +1,5 @@
 {
+  "includeCoAuthoredBy": false,
   "permissions": {
     "deny": [
       "EnterPlanMode",
@@ -16,6 +17,7 @@
       "CronList"
     ]
   },
+  "model": "fable",
   "disableClaudeAiConnectors": false,
   "disableBundledSkills": true,
   "disableRemoteControl": true,
@@ -31,6 +33,12 @@
   },
   "alwaysThinkingEnabled": false,
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "autoMemoryEnabled": false,
+  "switchModelsOnFlag": false,
   "skipAutoPermissionPrompt": true
 }

@@ -17,8 +17,8 @@ On a fresh macOS system, tomdot will do the following:
 4. Install Rust via rustup.
 5. Install Node.js LTS via fnm, enable Corepack, install global npm packages.
 6. Install Claude Code CLI.
-7. Install Kiro CLI.
-8. Symlink config files (bat, git, ghostty, nvim, zed, starship, zsh, claude) and clone repos.
+7. Set up inshellisense (terminal autocomplete, installed with the global npm packages).
+8. Symlink config files (bat, git, ghostty, nvim, zed, starship, inshellisense, zsh, claude) and clone repos.
 9. Set up Neovim: sync plugins via lazy.nvim, install LSP servers & tools via Mason.
 
 ## Preparation
@@ -43,7 +43,7 @@ There is some preparation to be done before performing a clean install of macOS 
 4. Run `curl -fsSL https://tomhendra.dev/dot | sh` in the terminal.
 5. Grab a coffee and let tomdot do its thing!
 
-If a step fails, rerun it individually with `./install.sh --step <name>` (steps: ssh, homebrew, packages, languages, claude, kiro, symlinks, neovim). Use `--dry-run` to preview changes.
+If a step fails, rerun it individually with `./install.sh --step <name>` (steps: ssh, homebrew, packages, languages, claude, inshellisense, symlinks, neovim). Use `--dry-run` to preview changes.
 
 ## Post-Installation
 
