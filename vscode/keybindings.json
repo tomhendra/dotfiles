@@ -1,0 +1,25 @@
+[
+  // Sidebar toggle on shift+cmd+b (frees cmd+b, drops tasks.build)
+  {
+    "key": "shift+cmd+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "cmd+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "shift+cmd+b",
+    "command": "-workbench.action.tasks.build",
+    "when": "taskCommandsRegistered"
+  },
+  // Emmet balance (expand/shrink selection by tag)
+  {
+    "key": "ctrl+shift+down",
+    "command": "editor.emmet.action.balanceIn"
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "editor.emmet.action.balanceOut"
+  }
+]

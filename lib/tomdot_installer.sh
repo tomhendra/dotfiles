@@ -152,10 +152,11 @@ step_packages() {
     if [[ "${DRY_RUN:-false}" == "true" ]]; then
         ui_step_dry "$desc"
         if [[ -f "$brewfile" ]]; then
-            local brew_count cask_count
+            local brew_count cask_count vscode_count
             brew_count=$(grep -c "^brew " "$brewfile" 2>/dev/null) || brew_count=0
             cask_count=$(grep -c "^cask " "$brewfile" 2>/dev/null) || cask_count=0
-            ui_detail "${brew_count} brews, ${cask_count} casks"
+            vscode_count=$(grep -c "^vscode " "$brewfile" 2>/dev/null) || vscode_count=0
+            ui_detail "${brew_count} brews, ${cask_count} casks, ${vscode_count} VS Code extensions"
         else
             ui_detail "Brewfile not found at $brewfile"
         fi
@@ -304,6 +305,7 @@ step_symlinks() {
         ui_detail "ghostty/themes -> ~/.config/ghostty/themes"
         ui_detail "nvim -> ~/.config/nvim"
         ui_detail "zed/settings.json -> ~/.config/zed/settings.json"
+        ui_detail "vscode/{settings,keybindings}.json, snippets -> ~/Library/Application Support/Code/User/"
         ui_detail "starship.toml -> ~/.config/starship.toml"
         ui_detail "inshellisense/rc.toml -> ~/.config/inshellisense/rc.toml"
         ui_detail "zsh/.zshrc -> ~/.zshrc"
@@ -328,6 +330,9 @@ step_symlinks() {
         "ghostty/themes:.config/ghostty/themes"
         "nvim:.config/nvim"
         "zed/settings.json:.config/zed/settings.json"
+        "vscode/settings.json:Library/Application Support/Code/User/settings.json"
+        "vscode/keybindings.json:Library/Application Support/Code/User/keybindings.json"
+        "vscode/snippets:Library/Application Support/Code/User/snippets"
         "starship.toml:.config/starship.toml"
         "inshellisense/rc.toml:.config/inshellisense/rc.toml"
         "zsh/.zshrc:.zshrc"
