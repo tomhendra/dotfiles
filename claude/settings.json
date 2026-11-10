@@ -17,7 +17,7 @@
       "CronList"
     ]
   },
-  "model": "fable",
+  "model": "opus",
   "disableClaudeAiConnectors": false,
   "disableBundledSkills": true,
   "disableRemoteControl": true,
@@ -35,7 +35,7 @@
   "effortLevel": "high",
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "high"
+      "effortLevel": "medium"
     }
   },
   "autoMemoryEnabled": false,
