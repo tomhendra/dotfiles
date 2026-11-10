@@ -33,6 +33,10 @@ alias pingoo="echo 'tom: Pinging Google' && ping www.google.com"
 alias z="zed ."
 alias dfz="zed ${DOTFILES}"
 
+# VS Code
+alias c="code ."
+alias dfc="code ${DOTFILES}"
+
 # Files & Directories
 alias ..="cd .."
 alias dl="cd ${HOME}/Downloads"

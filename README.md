@@ -13,12 +13,12 @@ On a fresh macOS system, tomdot will do the following:
 
 1. Symlink `ssh/config`, generate per-host SSH keys — ed25519 (GitHub) + RSA 4096 (Azure DevOps).
 2. Install Homebrew.
-3. Install packages and casks via Brewfile.
+3. Install packages, casks and VS Code extensions via Brewfile.
 4. Install Rust via rustup.
 5. Install Node.js LTS via fnm, enable Corepack, install global npm packages.
 6. Install Claude Code CLI.
 7. Set up inshellisense (terminal autocomplete, installed with the global npm packages).
-8. Symlink config files (bat, git, ghostty, nvim, zed, starship, inshellisense, zsh, claude) and clone repos.
+8. Symlink config files (bat, git, ghostty, nvim, zed, vscode, starship, inshellisense, zsh, claude) and clone repos.
 9. Set up Neovim: sync plugins via lazy.nvim, install LSP servers & tools via Mason.
 
 ## Preparation
@@ -30,6 +30,7 @@ There is some preparation to be done before performing a clean install of macOS 
 - Ensure all repos that you want to be cloned from GitHub are included in the `repos` array in `~/.dotfiles/git/get_repos.sh`.
 - Ensure local `~/.dotfiles` and repos are up-to-date & pushed to GitHub.
 - Ensure any Zed settings changes are committed to `~/.dotfiles` (Zed config is symlinked, not account-synced).
+- Ensure any VS Code settings/keybindings changes are committed (symlinked from `~/.dotfiles/vscode`); extensions live in the Brewfile (`code --list-extensions` to diff).
 - Ensure Chrome is signed into and synced.
 - Login to iCloud with a browser and ensure all backed-up fonts and preferences have actually been uploaded.
 - Update MacOS to the [latest version](https://support.apple.com/en-us/HT201541).
@@ -50,6 +51,7 @@ If a step fails, rerun it individually with `./install.sh --step <name>` (steps:
 - Enable Desktop & Documents Folders in Apple menu  > System Settings > iCloud > iCloud Drive.
 - Install fonts backed-up to iCloud.
 - Launch Raycast & setup.
+- Launch VS Code & sign in to the Claude Code extension (Copilot AI features are disabled). Leave Settings Sync off — settings, keybindings & snippets are symlinked from `~/.dotfiles/vscode`, extensions installed via Brewfile.
 - Install apps unavailable via Homebrew / App Store.
 - Login to Chrome & enable sync.
 - Install Android studio Emulator.
