@@ -74,4 +74,5 @@ if [[ -n "$ISTERM" ]]; then
 fi
 
 # inshellisense (must stay the last line)
-[[ -f "${HOME}/.local/share/inshellisense/init/zsh/init.zsh" ]] && source "${HOME}/.local/share/inshellisense/init/zsh/init.zsh"
+# guard on `is`: init runs `is ...; exit`, so a missing binary (e.g. new node w/o globals) kills the shell
+(( $+commands[is] )) && [[ -f "${HOME}/.local/share/inshellisense/init/zsh/init.zsh" ]] && source "${HOME}/.local/share/inshellisense/init/zsh/init.zsh"
