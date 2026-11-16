@@ -84,8 +84,8 @@ alias wip="git add . && git commit -m 'WIP'"
 
 # Node
 alias rnm="rm -rf node_modules"
-alias node-lts="fnm install --lts && fnm use lts-latest"
-alias node-latest="fnm install latest && fnm use latest"
+alias node-lts="fnm install --lts && fnm use lts-latest && fnm default lts-latest"
+alias node-latest="fnm install latest && fnm use latest && fnm default latest"
 # Node fnm
 alias fnm-list="fnm list"
 alias fnm-ls="fnm list"
@@ -125,7 +125,6 @@ alias nprm="npm uninstall"
 alias npo="npm outdated"
 alias npu="npm update"
 alias npog="npm outdated -g"
-alias npug="npm update -g"
 alias npr="npm run"
 alias npd="npm run dev"
 alias nps="npm run start"
@@ -133,6 +132,9 @@ alias npsr="npm run start -- --reset-cache"
 alias npt="npm run test"
 alias npb="npm run build"
 alias npdir="npm config get prefix"
+# install/upgrade all globals from global_pkg.sh @latest (run after switching node version)
+unalias npug 2>/dev/null  # was an alias; clear it so re-sourcing works
+function npug { sh "${DOTFILES}/global_pkg.sh"; }
 
 # pnpm
 alias pnx="pnpm dlx"
@@ -150,26 +152,9 @@ alias pns="pnpm start"
 alias pnt="pnpm test"
 alias pnb="pnpm build"
 alias pnaip="pnpm config set auto-install-peers true"
-alias pnus="corepack use pnpm@latest"
+alias pnus="pnpm self-update"
 alias pndir="pnpm root -g"
 
-# yarn
-alias yx="yarn dlx"
-alias yi="yarn install"
-alias ya="yarn add"
-alias yad="yarn add --dev"
-alias yag="yarn global add"
-alias yrm="yarn remove"
-alias yu="yarn upgrade-interactive"
-alias yout="yarn outdated"
-alias yd="yarn dev"
-alias ys="yarn start"
-alias yt="yarn test"
-alias yb="yarn build"
-alias ynuke="rm -rf node_modules/ yarn.lock"
-alias yw="yarn workspace"
-alias yus="corepack use yarn@latest"
-alias ydir="yarn global dir"
 
 # Rust
 alias rb="rustup doc --book"

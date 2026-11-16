@@ -51,6 +51,10 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 
+# pnpm (standalone, independent of node version)
+export PNPM_HOME="${HOME}/Library/pnpm"
+path=("$PNPM_HOME/bin" $path)
+
 # flashlight
 export PATH="/Users/tomhendra/.flashlight/bin:$PATH"
 

@@ -10,9 +10,6 @@ Thumbs.db
 # npm
 npm-debug.log
 
-# yarn
-yarn-error.log
-
 # VIM
 *.un~
 Session.vim

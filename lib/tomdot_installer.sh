@@ -188,7 +188,7 @@ step_languages() {
         command -v rustc >/dev/null 2>&1 && ui_detail "rust: installed" || ui_detail "would install rust via rustup"
         command -v fnm >/dev/null 2>&1 && ui_detail "fnm: installed" || ui_detail "fnm: not found (install via homebrew first)"
         command -v node >/dev/null 2>&1 && ui_detail "node: installed" || ui_detail "would install node LTS via fnm"
-        ui_detail "would enable corepack (pnpm, yarn)"
+        [[ -x "${HOME}/Library/pnpm/bin/pnpm" ]] && ui_detail "pnpm: installed" || ui_detail "would install pnpm (standalone)"
         [[ -f "${DOTFILES_DIR}/global_pkg.sh" ]] && ui_detail "would install global npm packages" || ui_detail "global_pkg.sh not found"
         return 0
     fi
@@ -222,10 +222,11 @@ step_languages() {
     fnm use lts-latest >/dev/null 2>&1
     fnm default lts-latest >/dev/null 2>&1
 
-    ui_detail "enabling corepack..."
-    corepack enable >/dev/null 2>&1
-    corepack enable pnpm >/dev/null 2>&1
-    corepack enable yarn >/dev/null 2>&1
+    # pnpm standalone; zsh/.zshrc sets PNPM_HOME/PATH so don't let setup edit it
+    if [[ ! -x "${HOME}/Library/pnpm/bin/pnpm" ]]; then
+        ui_detail "installing pnpm..."
+        curl -fsSL https://get.pnpm.io/install.sh | PNPM_NO_MODIFY_PATH=1 sh - 2>&1 | _progress
+    fi
 
     # Global npm packages
     if [[ -f "${DOTFILES_DIR}/global_pkg.sh" ]]; then

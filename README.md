@@ -15,7 +15,7 @@ On a fresh macOS system, tomdot will do the following:
 2. Install Homebrew.
 3. Install packages, casks and VS Code extensions via Brewfile.
 4. Install Rust via rustup.
-5. Install Node.js LTS via fnm, enable Corepack, install global npm packages.
+5. Install Node.js LTS via fnm, pnpm (standalone), global npm packages.
 6. Install Claude Code CLI.
 7. Set up inshellisense (terminal autocomplete, installed with the global npm packages).
 8. Symlink config files (bat, git, ghostty, nvim, zed, vscode, starship, inshellisense, zsh, claude) and clone repos.

@@ -1,18 +1,19 @@
 #!/bin/sh
 
 # global packages
-npm install -g @expo/ngrok
-npm install -g @microsoft/inshellisense
-npm install -g @sentry/cli
-npm install -g agent-device
-npm install -g agent-react-devtools
-npm install -g eas-cli
-npm install -g fkill-cli
-npm install -g keel
-npm install -g localtunnel
-npm install -g ngrok
-npm install -g semantic-release-cli
-npm install -g sharp-cli
-npm install -g serve
-npm install -g typescript
-npm install -g wrangler
+npm install -g @expo/ngrok@latest
+npm install -g @microsoft/inshellisense@latest
+npm install -g @sentry/cli@latest
+npm install -g agent-device@latest
+npm install -g agent-react-devtools@latest
+npm install -g appium@latest
+npm install -g eas-cli@latest
+npm install -g fkill-cli@latest
+npm install -g keel@latest
+npm install -g localtunnel@latest
+npm install -g ngrok@latest
+npm install -g semantic-release-cli@latest
+npm install -g sharp-cli@latest
+npm install -g serve@latest
+npm install -g typescript@latest
+npm install -g wrangler@latest
